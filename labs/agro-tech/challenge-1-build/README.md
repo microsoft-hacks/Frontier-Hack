@@ -11,7 +11,7 @@ By the end of this challenge, you will have:
 - ✅ An **OpenAPI tool** attached to the Classifier so it reads live farm data
 - ✅ An **Azure AI Search tool** attached to the Advisor so it can cite approved treatment products
 
-![AIgro Tech Agents](./images/build.png)
+![AgroTech Agents](./images/build.png)
 
 ## Context
 

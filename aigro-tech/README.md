@@ -1,4 +1,4 @@
-# 🚜 Scenario: AIgro Tech — GreenRise AgroTech (no-code)
+# 🚜 Scenario: AgroTech — GreenRise AgroTech (no-code)
 
 > **No code required.** Every step in this lab is done in the browser, in the [Microsoft Foundry portal](https://ai.azure.com/nextgen). There is nothing to clone, install, or run from a terminal.
 

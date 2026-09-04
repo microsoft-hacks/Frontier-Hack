@@ -18,7 +18,7 @@ This lab guides you through the full lifecycle of building production-ready AI a
 
 This is a **code-first hackathon**: you will write and run Python throughout the experience. However, several challenges also require interaction with the **Microsoft Foundry portal** to deploy models, explore traces, review evaluations, and create workflows visually. Expect to switch regularly between your IDE and the portal.
 
-If you would rather not write code, the **AIgro Tech** scenario below covers the same material entirely through the Foundry portal.
+If you would rather not write code, the **AgroTech** scenario below covers the same material entirely through the Foundry portal.
 
 
 ## Choose your scenario
@@ -27,9 +27,9 @@ All tracks teach the same Foundry concepts. Choose the one that best matches you
 
 | Scenario | Description | Start here |
 |----------|-------------|------------|
-| 📞 **Call center** | Classify call intents and guide resolutions at NovaTel Communications | [Call center lab](./labs/callcenter/README.md) |
-| 🌱 **Smart Farm** | Monitor crop health and recommend actions at GreenRise AgroTech | [Smart Farm lab](./labs/smart-farm/README.md) |
-| 🚜 **AIgro Tech** | The same GreenRise AgroTech scenario, no code — everything in the Foundry portal | [AIgro Tech lab](./labs/agro-tech/README.md) |
+| 📞 **Call center** | Classify call intents and guide resolutions at NovaTel Communications | [lab](./labs/callcenter/README.md) |
+| 🌱 **Smart Farm** | Monitor crop health and recommend actions at GreenRise AgroTech | [lab](./labs/smart-farm/README.md) |
+| 🚜 **AgroTech** | The same GreenRise AgroTech scenario, no code — everything in the Foundry portal | [lab](./labs/agro-tech/README.md) |
 
 All scenarios follow the same five-challenge structure:
 
