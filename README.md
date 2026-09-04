@@ -27,9 +27,9 @@ All tracks teach the same Foundry concepts. Choose the one that best matches you
 
 | Scenario | Description | Start here |
 |----------|-------------|------------|
-| 📞 **Call center** | Classify call intents and guide resolutions at NovaTel Communications | [Call center lab](./callcenter/README.md) |
-| 🌱 **Smart Farm** | Monitor crop health and recommend actions at GreenRise AgroTech | [Smart Farm lab](./smart-farm/README.md) |
-| 🚜 **AIgro Tech** | The same GreenRise AgroTech scenario, no code — everything in the Foundry portal | [AIgro Tech lab](./aigro-tech/README.md) |
+| 📞 **Call center** | Classify call intents and guide resolutions at NovaTel Communications | [Call center lab](./labs/callcenter/README.md) |
+| 🌱 **Smart Farm** | Monitor crop health and recommend actions at GreenRise AgroTech | [Smart Farm lab](./labs/smart-farm/README.md) |
+| 🚜 **AIgro Tech** | The same GreenRise AgroTech scenario, no code — everything in the Foundry portal | [AIgro Tech lab](./labs/agro-tech/README.md) |
 
 All scenarios follow the same five-challenge structure:
 
