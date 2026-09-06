@@ -1,4 +1,4 @@
-"""Pydantic schemas for the GreenRise AgroTech Smart Farm API."""
+"""Pydantic schemas for the GreenRise AgroTech Agro Tech (SDK) API."""
 
 from enum import Enum
 from typing import Dict, List

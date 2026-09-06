@@ -44,7 +44,7 @@ def run_traced_agent():
         agent_name="agro-tech-tracing-agent",
         definition=PromptAgentDefinition(
             model=MODEL_DEPLOYMENT_NAME,
-            instructions="You are a smart farm monitoring assistant. Summarize the supplied zone statuses and call out the critical zone.",
+            instructions="You are a Agro Tech (SDK) monitoring assistant. Summarize the supplied zone statuses and call out the critical zone.",
         ),
     )
     conversation = openai_client.conversations.create()

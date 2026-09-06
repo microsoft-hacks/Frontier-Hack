@@ -1,4 +1,4 @@
-"""Loads and caches the smart farm sensor dataset."""
+"""Loads and caches the Agro Tech (SDK) sensor dataset."""
 
 import json
 from functools import lru_cache

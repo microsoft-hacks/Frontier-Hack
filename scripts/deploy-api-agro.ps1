@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Publica a Smart Farm API-AGRO (FastAPI) no Azure App Service (Linux) usando o Azure CLI.
+    Publica a Agro Tech (SDK) API-AGRO (FastAPI) no Azure App Service (Linux) usando o Azure CLI.
 
 .DESCRIPTION
     Usa o contexto de autenticação já ativo do usuário (az login). Pergunta interativamente

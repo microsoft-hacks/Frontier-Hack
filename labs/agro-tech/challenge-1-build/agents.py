@@ -1,6 +1,6 @@
 """
 Challenge 1: Build Agents -- SDK Track
-Agents for GreenRise AgroTech smart farm crop-zone health monitoring.
+Agents for GreenRise AgroTech Agro Tech (SDK) crop-zone health monitoring.
 """
 
 import json

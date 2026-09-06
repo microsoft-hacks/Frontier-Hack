@@ -1,6 +1,6 @@
 """
 Challenge 5: Interactive Multi-Agent Orchestration -- Microsoft Agent Framework (Python)
-GreenRise AgroTech Smart Farm Lab
+GreenRise AgroTech Agro Tech (SDK) Lab
 
 Orchestrates two agents:
 1. agro-tech-classifier-agent (Agent 1): Tool-grounded agent for metric threshold analysis.

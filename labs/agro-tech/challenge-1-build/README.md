@@ -10,11 +10,11 @@ By the end of this challenge, you will have:
 - ✅ The **Advisory Agent** turns those findings into agronomic recommendations
 - ✅ Both agents created in your Foundry project and visible in the portal
 
-![Smart Farm Agents](./images/build.png)
+![Agro Tech (SDK) Agents](./images/build.png)
 
 ## Context
 
-GreenRise AgriTech monitors five growing zones at the Smart Farm Demonstration. Each zone has a crop, four metrics — `soil_moisture`, `temperature`, `humidity`, and `ph_level` — and its own `min` and `max` thresholds, so a reading that is safe in one zone can be an emergency in another. Your agents need to:
+GreenRise AgriTech monitors five growing zones at the Agro Tech (SDK) Demonstration. Each zone has a crop, four metrics — `soil_moisture`, `temperature`, `humidity`, and `ph_level` — and its own `min` and `max` thresholds, so a reading that is safe in one zone can be an emergency in another. Your agents need to:
 
 1. **Classification**: compare every reading with that zone's thresholds and mark each metric 🔴 critical, ⚠️ warning, or ✅ normal, including any recorded issues
 2. **Advisory**: given that classification, recommend irrigation, disease, and escalation actions — and look up treatment products when pests are present
@@ -107,7 +107,7 @@ See follow result:
 
 ![Agent Result](./images/foundry-agent-result.png)
 
-## Smart Farm data via API
+## Agro Tech (SDK) data via API
 
 The source dataset is `api-agro/data/smart_farm_data.json`. It contains a snapshot of five zones with crop details, inspection dates, observed issues, and these readings:
 

@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "GreenRise AgroTech Smart Farm API",
-    "description": "Read-only REST API for crop-zone sensor data (soil moisture, temperature, humidity and pH) at the Smart Farm Demonstration. Every resource can be queried for a single zone/metric or for all of them.",
+    "title": "GreenRise AgroTech Agro Tech (SDK) API",
+    "description": "Read-only REST API for crop-zone sensor data (soil moisture, temperature, humidity and pH) at the Agro Tech (SDK) Demonstration. Every resource can be queried for a single zone/metric or for all of them.",
     "version": "1.0.0"
   },
   "servers": [
