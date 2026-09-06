@@ -1,0 +1,6 @@
+azure-ai-projects>=2.0.0
+azure-identity>=1.15.0
+azure-monitor-opentelemetry==1.8.7
+opentelemetry-sdk>=1.20.0
+openai>=1.0.0
+python-dotenv>=1.0.0

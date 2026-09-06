@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Northline Motion Works Asset Condition API",
+    "version": "1.0.0",
+    "description": "Read-only condition data for fictional Riverbend drive assets. Replace the server URL with the facilitator-confirmed deployment before importing."
+  },
+  "servers": [{"url": "https://YOUR-API-HOST.example.com"}],
+  "paths": {
+    "/assets/{asset_id}/condition": {
+      "get": {
+        "operationId": "get_asset_condition",
+        "summary": "Get one asset's condition",
+        "description": "Get current readings, asset-specific thresholds, status, violations, and known issues for one DRIVE-101 through DRIVE-105 asset. Always call this operation for each requested asset.",
+        "parameters": [{
+          "name": "asset_id",
+          "in": "path",
+          "required": true,
+          "description": "Stable asset ID, for example DRIVE-103",
+          "schema": {"type": "string"}
+        }],
+        "responses": {
+          "200": {"description": "Asset condition returned"},
+          "404": {"description": "Asset not found"}
+        }
+      }
+    }
+  }
+}

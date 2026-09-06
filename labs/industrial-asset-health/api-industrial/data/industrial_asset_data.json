@@ -1,0 +1,97 @@
+{
+  "company": "Northline Motion Works",
+  "site": "Riverbend Electrification Plant",
+  "timestamp": "2026-09-06T14:00:00Z",
+  "assets": [
+    {
+      "asset_id": "DRIVE-101",
+      "name": "Primary Coil Line Drive",
+      "status": "normal",
+      "readings": {
+        "vibration": {"value": 2.4, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 68.0, "unit": "C"},
+        "current_load": {"value": 72.0, "unit": "percent rated"},
+        "operating_efficiency": {"value": 94.0, "unit": "percent"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 4.0},
+        "winding_temperature": {"min": 20.0, "max": 85.0},
+        "current_load": {"min": 25.0, "max": 90.0},
+        "operating_efficiency": {"min": 90.0, "max": 100.0}
+      },
+      "issues": []
+    },
+    {
+      "asset_id": "DRIVE-102",
+      "name": "Busbar Forming Drive",
+      "status": "warning",
+      "readings": {
+        "vibration": {"value": 4.8, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 73.0, "unit": "C"},
+        "current_load": {"value": 76.0, "unit": "percent rated"},
+        "operating_efficiency": {"value": 92.0, "unit": "percent"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 4.2},
+        "winding_temperature": {"min": 20.0, "max": 88.0},
+        "current_load": {"min": 25.0, "max": 92.0},
+        "operating_efficiency": {"min": 89.0, "max": 100.0}
+      },
+      "issues": ["Intermittent bearing-side vibration noted during the latest inspection."]
+    },
+    {
+      "asset_id": "DRIVE-103",
+      "name": "High-Load Lamination Press Drive",
+      "status": "critical",
+      "readings": {
+        "vibration": {"value": 7.6, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 112.0, "unit": "C"},
+        "current_load": {"value": 96.0, "unit": "percent rated"},
+        "operating_efficiency": {"value": 84.0, "unit": "percent"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 4.5},
+        "winding_temperature": {"min": 20.0, "max": 90.0},
+        "current_load": {"min": 30.0, "max": 95.0},
+        "operating_efficiency": {"min": 88.0, "max": 100.0}
+      },
+      "issues": ["Compound vibration and winding-temperature excursion requires controlled shutdown and safety escalation."]
+    },
+    {
+      "asset_id": "DRIVE-104",
+      "name": "Rotor Assembly Conveyor Drive",
+      "status": "normal",
+      "readings": {
+        "vibration": {"value": 3.1, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 71.0, "unit": "C"},
+        "current_load": {"value": 64.0, "unit": "percent rated"},
+        "operating_efficiency": {"value": 93.0, "unit": "percent"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 3.8},
+        "winding_temperature": {"min": 18.0, "max": 82.0},
+        "current_load": {"min": 20.0, "max": 85.0},
+        "operating_efficiency": {"min": 91.0, "max": 100.0}
+      },
+      "issues": []
+    },
+    {
+      "asset_id": "DRIVE-105",
+      "name": "Final Test Dynamometer Drive",
+      "status": "warning",
+      "readings": {
+        "vibration": {"value": 2.8, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 79.0, "unit": "C"},
+        "current_load": {"value": 58.0, "unit": "percent rated"},
+        "operating_efficiency": {"value": 86.5, "unit": "percent"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 3.5},
+        "winding_temperature": {"min": 20.0, "max": 80.0},
+        "current_load": {"min": 20.0, "max": 88.0},
+        "operating_efficiency": {"min": 89.0, "max": 100.0}
+      },
+      "issues": ["Efficiency has declined across three consecutive production cycles."]
+    }
+  ]
+}
