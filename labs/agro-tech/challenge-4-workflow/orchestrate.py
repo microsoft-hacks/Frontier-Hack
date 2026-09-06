@@ -185,7 +185,7 @@ def run_advisor_agent(client, agent_name: str, monitor_context: str) -> str:
 def display_flow_header():
     print("""
 ================================================================================
-                     🌱 MULTI-AGENT ORCHESTRATION - GREENRISE AgroTech (CHALLENGE 5)
+                     🚜 MULTI-AGENT ORCHESTRATION - GREENRISE AgroTech (CHALLENGE 5)
 ================================================================================
     [ Execution Flow ]
 

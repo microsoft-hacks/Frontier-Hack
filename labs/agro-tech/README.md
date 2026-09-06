@@ -1,4 +1,4 @@
-# 🌱 Scenario: Agro Tech (SDK) — GreenRise AgroTech
+# 🚜 Scenario: Agro Tech (SDK) — GreenRise AgroTech
 
 ## Context
 
