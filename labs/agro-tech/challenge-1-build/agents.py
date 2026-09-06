@@ -63,7 +63,7 @@ class SmartFarmClassifierAgent:
 - If key data is missing, ask precise follow-up questions.
 """
         self.agent = self.client.agents.create_version(
-            agent_name="smart-farm-classifier-agent",
+            agent_name="agro-tech-classifier-agent",
             definition=PromptAgentDefinition(model=MODEL_DEPLOYMENT_NAME, instructions=instructions),
         )
         return self.agent 
@@ -112,7 +112,7 @@ Apply these patterns:
 
 """
         self.agent = self.client.agents.create_version(
-            agent_name="smart-farm-advisor-agent",
+            agent_name="agro-tech-advisor-agent",
             definition=PromptAgentDefinition(model=MODEL_DEPLOYMENT_NAME, instructions=instructions),
         )
         return self.agent

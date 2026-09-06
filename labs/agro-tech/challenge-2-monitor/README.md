@@ -63,7 +63,7 @@ If you see a **"Create or connect an App Insights resource to get started"** ban
 Open [monitor.py](./monitor.py) and review the tracing configuration.
 
 ```bash
-cd labs/smart-farm/challenge-2-monitor
+cd labs/agro-tech/challenge-2-monitor
 python monitor.py
 ```
 

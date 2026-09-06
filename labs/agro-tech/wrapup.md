@@ -8,7 +8,7 @@ Congratulations — you built, observed, evaluated, and orchestrated a multi-age
 
 | # | Challenge | What you built |
 |---|-----------|----------------|
-| 0 | **Setup** | Provisioned the `smart-farm-project` Microsoft Foundry project, a `gpt-5.4` model deployment, and Application Insights using `azd provision` |
+| 0 | **Setup** | Provisioned the `agro-tech-project` Microsoft Foundry project, a `gpt-5.4` model deployment, and Application Insights using `azd provision` |
 | 1 | **Build agents** | Built a tool-grounded **Crop Health Monitor** and a tool-free **Agronomic Advisor** that analyze five growing zones and turn threshold violations into practical recommendations |
 | 2 | **Monitor** | Enabled OpenTelemetry GenAI tracing and inspected model input, output, latency, token usage, and errors in Microsoft Foundry and Application Insights |
 | 3 | **Evaluate** | Ran a repeatable 10-case evaluation covering normal, warning, critical, single-metric, and multi-metric conditions, then reviewed coherence and fluency at aggregate and row level |

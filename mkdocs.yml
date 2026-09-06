@@ -64,13 +64,13 @@ nav:
       - Challenge 4 — Workflow: callcenter/challenge-4-workflow/README.md
       - Wrap Up: callcenter/wrapup.md
   - 🌱 Smart Farm:
-      - Overview: smart-farm/README.md
-      - Challenge 0 — Setup: smart-farm/challenge-0-setup/README.md
-      - Challenge 1 — Build Agents: smart-farm/challenge-1-build/README.md
-      - Challenge 2 — Monitor: smart-farm/challenge-2-monitor/README.md
-      - Challenge 3 — Evaluate: smart-farm/challenge-3-evaluate/README.md
-      - Challenge 4 — Workflow: smart-farm/challenge-4-workflow/README.md
-      - Wrap Up: smart-farm/wrapup.md
+      - Overview: agro-tech/README.md
+      - Challenge 0 — Setup: agro-tech/challenge-0-setup/README.md
+      - Challenge 1 — Build Agents: agro-tech/challenge-1-build/README.md
+      - Challenge 2 — Monitor: agro-tech/challenge-2-monitor/README.md
+      - Challenge 3 — Evaluate: agro-tech/challenge-3-evaluate/README.md
+      - Challenge 4 — Workflow: agro-tech/challenge-4-workflow/README.md
+      - Wrap Up: agro-tech/wrapup.md
   - 🚜 AgroTech:
       - Overview: agro-tech-portal/README.md
       - Challenge 0 — Setup: agro-tech-portal/challenge-0-setup/README.md

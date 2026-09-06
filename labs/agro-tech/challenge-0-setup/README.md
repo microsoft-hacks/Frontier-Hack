@@ -53,11 +53,11 @@ az account show #validate if your using expected subscription
 azd auth login
 azd up
 # Command Prompt
-copy .env labs\smart-farm\.env
+copy .env labs\agro-tech\.env
 # PowerShell
-Copy-Item .env labs\smart-farm\.env
+Copy-Item .env labs\agro-tech\.env
 # Bash
-cp .env labs/smart-farm/.env
+cp .env labs/agro-tech/.env
 
 # Enter a unique environment name: hack-dev-XXX ( each participant must use a different number)
 # Create new resource group: rg-hack-dev-XXX
@@ -65,7 +65,7 @@ cp .env labs/smart-farm/.env
 
 ```
 
-This provisions all resources and writes your `.env` file to the repository root. The command above then copies it to the **smart-farm** folder. Deployment takes a few minutes. To change the region or names, use `azd env set` before running `azd up`.
+This provisions all resources and writes your `.env` file to the repository root. The command above then copies it to the **agro-tech** folder. Deployment takes a few minutes. To change the region or names, use `azd env set` before running `azd up`.
 
 ## Verify resource creation
 

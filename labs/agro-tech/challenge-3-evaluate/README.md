@@ -71,7 +71,7 @@ The evaluation dataset has already been prepared for you at [eval_portal.jsonl](
 3. Select **Agent** as the evaluation target
 4. Choose `call-center-intent-classifier-agent` from the dropdown
 5. Select **Individual Turns** and then **Existing Dataset**
-6. Click **Upload new dataset**. First, you need to enter a name for the dataset — upload will remain disabled until you do so. Enter a name (for example, `smart-farm-eval`), then add the file located at `labs/smart-farm/challenge-3-evaluate/eval_portal.jsonl` and confirm the upload.
+6. Click **Upload new dataset**. First, you need to enter a name for the dataset — upload will remain disabled until you do so. Enter a name (for example, `agro-tech-eval`), then add the file located at `labs/agro-tech/challenge-3-evaluate/eval_portal.jsonl` and confirm the upload.
 7. Leave **Field Mapping** and **Configure Agents** as they are.
 8. In the **Criteria** step, keep only **Coherence** and **Fluency**. Remove all other evaluators — especially **uncheck Tool Call Accuracy**, because the agents cannot execute local tools during evaluation and will always score poorly on this item. Reducing the evaluator list also makes the run significantly faster.
 9. Keep the evaluation name as is or configure it as you prefer.

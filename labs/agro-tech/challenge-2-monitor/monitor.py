@@ -41,7 +41,7 @@ def run_traced_agent():
     client = AIProjectClient(endpoint=PROJECT_CONNECTION_STRING, credential=DefaultAzureCredential())
     openai_client = client.get_openai_client()
     agent = client.agents.create_version(
-        agent_name="smart-farm-tracing-agent",
+        agent_name="agro-tech-tracing-agent",
         definition=PromptAgentDefinition(
             model=MODEL_DEPLOYMENT_NAME,
             instructions="You are a smart farm monitoring assistant. Summarize the supplied zone statuses and call out the critical zone.",

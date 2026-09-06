@@ -58,7 +58,7 @@ function Read-ValueOrDefault {
 $ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$apiPath = Join-Path $repoRoot "labs\smart-farm\api-agro"
+$apiPath = Join-Path $repoRoot "labs\agro-tech\api-agro"
 
 if (-not (Test-Path $apiPath)) {
     throw "Não encontrei a pasta da API em '$apiPath'."
