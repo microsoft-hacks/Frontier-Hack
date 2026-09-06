@@ -75,15 +75,15 @@ python agents.py
 
 ### What you've deployed
 
-**`agro-tech-classifier-agent`** reports a classification summary table only — one row per zone, one column per metric, marked 🔴 / ⚠️ / ✅, plus a priority column and any recorded issues. Its instructions explicitly forbid recommendations, which keeps classification separate from advice.
+**`agro-tech-1-classifier-agent`** reports a classification summary table only — one row per zone, one column per metric, marked 🔴 / ⚠️ / ✅, plus a priority column and any recorded issues. Its instructions explicitly forbid recommendations, which keeps classification separate from advice.
 
-**`agro-tech-advisor-agent`** has no tools of its own. It reasons from the classifier's output using three patterns: low soil moisture with high temperature indicates irrigation stress; high humidity with low pH indicates fungal or disease risk; multiple critical readings require urgent agronomist escalation.
+**`agro-tech-2-advisor-agent`** has no tools of its own. It reasons from the classifier's output using three patterns: low soil moisture with high temperature indicates irrigation stress; high humidity with low pH indicates fungal or disease risk; multiple critical readings require urgent agronomist escalation.
 
 
 ## Run the agents in the portal
 
 1. Open [ai.azure.com/nextgen](https://ai.azure.com/nextgen), select your project, and go to **Agents**.
-2. Open `agro-tech-classifier-agent` and test follow prompt
+2. Open `agro-tech-1-classifier-agent` and test follow prompt
 
 ```powershell
 Classify follow zones:
@@ -155,7 +155,7 @@ The script leaves both agents in your project, so finish the challenge in the po
 ### Tool for Classifier Agent Steps
 
 1. Open [ai.azure.com/nextgen](https://ai.azure.com/nextgen), select your project, and go to **Agents**.
-2. Open `agro-tech-classifier-agent` and expand the tabs **TOOLS**. ADD a TOOL.
+2. Open `agro-tech-1-classifier-agent` and expand the tabs **TOOLS**. ADD a TOOL.
 3. Once the selection window pops up, choose the tab **CUSTOM**. Choose the **OpenAPI tool**.
 4. Add the **Name** and **Description** of your preference. Note: Remember that the agent uses the description to locate your tool.
 5. On **OpenAPI 3.0+ schema** windows, attach the Json Schema for **OpenAPI** tool using `api-agro/openapi.json` file. 
@@ -166,7 +166,7 @@ The script leaves both agents in your project, so finish the challenge in the po
 > On this Step, you will connect to a pre-loaded Search AI Index. This index is connected to some documents in a storage account. This will be the RAG (Retrieval‑Augmented Generation)
 
 
-1. Open `agro-tech-advisor-agent` and expand the tabs **TOOLS**. ADD a TOOL.
+1. Open `agro-tech-2-advisor-agent` and expand the tabs **TOOLS**. ADD a TOOL.
 2. Select the **Azure AI Search**
 3. Now, choose to select a resource. Look for **search-hack-shared**. Click to **Connect**
 4. Select the index listed in the box.

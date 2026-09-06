@@ -3,8 +3,8 @@ Challenge 5: Interactive Multi-Agent Orchestration -- Microsoft Agent Framework 
 GreenRise AgroTech Agro Tech (SDK) Lab
 
 Orchestrates two agents:
-1. agro-tech-classifier-agent (Agent 1): Tool-grounded agent for metric threshold analysis.
-2. agro-tech-advisor-agent (Agent 2): Tool-free agent for agronomic reasoning & recommendations.
+1. agro-tech-1-classifier-agent (Agent 1): Tool-grounded agent for metric threshold analysis.
+2. agro-tech-2-advisor-agent (Agent 2): Tool-free agent for agronomic reasoning & recommendations.
 
 Flow: User Prompt -> Agent 1 -> Response Context -> Agent 2 -> Final Agronomic Response.
 """
@@ -30,8 +30,8 @@ PROJECT_CONNECTION_STRING = os.getenv("PROJECT_CONNECTION_STRING")
 MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-5.4")
 DATA_PATH = Path(__file__).resolve().parent.parent / "challenge-1-build" / "smart_farm_data.json"
 
-MONITOR_AGENT_NAME = "agro-tech-classifier-agent"
-ADVISOR_AGENT_NAME = "agro-tech-advisor-agent"
+MONITOR_AGENT_NAME = "agro-tech-1-classifier-agent"
+ADVISOR_AGENT_NAME = "agro-tech-2-advisor-agent"
 
 
 def _load_zones() -> list[dict]:
@@ -197,14 +197,14 @@ def display_flow_header():
                      ▼
    ┌───────────────────────────────────┐
      │  🤖 AGENT 1: HEALTH MONITOR       │
-   │   (agro-tech-classifier-agent)      │
+   │   (agro-tech-1-classifier-agent)      │
    └─────────────────┬─────────────────┘
                      │
                                          │  2. Analysis Context / Anomalies
                      ▼
    ┌───────────────────────────────────┐
      │  🤖 AGENT 2: AGRONOMIC ADVISOR    │
-   │   (agro-tech-advisor-agent)      │
+   │   (agro-tech-2-advisor-agent)      │
    └─────────────────┬─────────────────┘
                      │
                                          │  3. Diagnosis and Final Assessment
