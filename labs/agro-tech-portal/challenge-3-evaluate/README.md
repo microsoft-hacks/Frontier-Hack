@@ -81,9 +81,9 @@ Together these two give you a quick quality signal. A low coherence score points
 ## Step 2 — Configure the evaluation
 
 3. Select **Agent** as the evaluation target.
-4. Choose `agro-tech-classifier-agent` from the dropdown.
+4. Choose `agro-tech-portal-classifier-agent` from the dropdown.
 5. Select **Individual Turns**, then **Existing Dataset**.
-6. Select **Upload new dataset**. Enter a name first — for example `agro-tech-eval` — because the upload button stays disabled until the name is filled in. Then browse for the `eval_portal.jsonl` file you downloaded and confirm the upload.
+6. Select **Upload new dataset**. Enter a name first — for example `agro-tech-portal-eval` — because the upload button stays disabled until the name is filled in. Then browse for the `eval_portal.jsonl` file you downloaded and confirm the upload.
 7. Leave **Field Mapping** and **Configure Agents** as they are.
 8. On the **Criteria** step, keep only **Coherence** and **Fluency**. Remove every other evaluator — in particular **uncheck Tool Call Accuracy**, because it scores tool usage in a way this dataset does not support and will always come out poorly. A shorter evaluator list also makes the run much faster.
 9. Keep the suggested evaluation name or set your own.

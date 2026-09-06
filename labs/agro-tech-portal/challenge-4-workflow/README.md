@@ -29,9 +29,9 @@ You could put every instruction into one agent. You should not:
 ```mermaid
 flowchart TD
     U["👤 User prompt<br/>Analyse all zones and recommend actions"]
-   A1["🤖 Agent 1 — Classifier<br/><code>agro-tech-classifier-agent</code>"]
+   A1["🤖 Agent 1 — Classifier<br/><code>agro-tech-portal-classifier-agent</code>"]
     T["🔧 farm_api tool<br/>Live zone readings and thresholds"]
-   A2["🤖 Agent 2 — Advisor<br/><code>agro-tech-advisor-agent</code>"]
+   A2["🤖 Agent 2 — Advisor<br/><code>agro-tech-portal-advisor-agent</code>"]
     R["📄 Final field report"]
 
     U --> A1
@@ -49,7 +49,7 @@ flowchart TD
 3. Select **+ New workflow** and name it:
 
    ```text
-   agro-tech-field-report
+   agro-tech-portal-field-report
    ```
 
 4. The designer opens with a **Start** (input) node and an **End** (output) node.
@@ -59,13 +59,13 @@ flowchart TD
 ## Step 2 — Add the Classifier node
 
 1. Select **+ Add node** (or drag from the Start node) and choose **Agent**.
-2. Pick `agro-tech-classifier-agent` from the list.
+2. Pick `agro-tech-portal-classifier-agent` from the list.
 3. Name the node `classify`.
 4. Connect **Start → classify**, and set the node's input to the workflow input.
 
 ## Step 3 — Add the Advisor node
 
-1. Add a second **Agent** node and pick `agro-tech-advisor-agent`.
+1. Add a second **Agent** node and pick `agro-tech-portal-advisor-agent`.
 2. Name the node `advise`.
 3. Connect **classify → advise**.
 4. Set the `advise` node's input to the **output of `classify`**. If the designer offers a message template, use something like:
@@ -109,9 +109,9 @@ flowchart TD
 
 If **Workflows** is not available in your region or tenant, you can get the same behaviour by making the Classifier a tool of the Advisor:
 
-1. Open `agro-tech-advisor-agent` → **Tools** → **+ Add**.
+1. Open `agro-tech-portal-advisor-agent` → **Tools** → **+ Add**.
 2. Choose **Connected agent** (sometimes shown as **Agent tool** or **Add agent as tool**).
-3. Select `agro-tech-classifier-agent`.
+3. Select `agro-tech-portal-classifier-agent`.
 4. Give it a description such as:
 
    ```text

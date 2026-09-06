@@ -45,7 +45,7 @@ Specifically for GreenRise: if the Classifier's `farm_api` call silently returns
 
 Traces only exist for runs that have already happened. Give yourself something to look at.
 
-1. Open **Build** → **Agents** → `agro-tech-classifier-agent` → the playground.
+1. Open **Build** → **Agents** → `agro-tech-portal-classifier-agent` → the playground.
 2. Send these prompts, one at a time, waiting for each response:
 
    ```text
@@ -68,7 +68,7 @@ Traces only exist for runs that have already happened. Give yourself something t
 
    The agent should refuse and explain its purpose. That refusal is a trace too.
 
-4. Open `agro-tech-advisor-agent` and send:
+4. Open `agro-tech-portal-advisor-agent` and send:
 
    ```text
    ZONE-GAMMA has four critical readings and a confirmed Ácaro-branco infestation. What should the crew do today?
@@ -140,7 +140,7 @@ The Foundry views are backed by Application Insights, which offers deeper analys
 
    - Use the **Time range** and **Agent** filters at the top, switch between the **Dashboard** and **All agents** tabs, or select **Explore in Grafana**.
    - **Agent operational metrics**:
-   - **Agent Runs** — total invocations broken down by agent (`agro-tech-classifier-agent`, `agro-tech-advisor-agent`). Select **View Traces with Agent Runs** to jump to the underlying traces.
+   - **Agent Runs** — total invocations broken down by agent (`agro-tech-portal-classifier-agent`, `agro-tech-portal-advisor-agent`). Select **View Traces with Agent Runs** to jump to the underlying traces.
      - **Gen AI Errors** — traces with GenAI errors in the window; a green check means none were found.
      - **Tool Calls** — a table of each tool with its error count, average duration, and number of calls, so you can spot slow or failing tools.
      - **Models** — a breakdown by model showing errors, average duration, and call count.

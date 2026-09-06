@@ -48,6 +48,6 @@ Build an AI agent system that:
 - Nothing else — no Python, no Azure CLI, no `git`
 
 > [!TIP]
-> This lab is the click-through twin of the [Agro Tech](../agro-tech/README.md) lab. Same scenario, same data, same agent prompts — only the delivery differs. If you prefer Python and the SDK, do that one instead.
+> This lab is the click-through twin of the [Agro Tech](../agro-tech-portal/README.md) lab. Same scenario, same data, same agent prompts — only the delivery differs. If you prefer Python and the SDK, do that one instead.
 
 When you are done, see the [wrap up](./wrapup.md) for a recap and cleanup steps.

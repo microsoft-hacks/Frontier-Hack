@@ -72,10 +72,10 @@ nav:
       - Challenge 4 — Workflow: smart-farm/challenge-4-workflow/README.md
       - Wrap Up: smart-farm/wrapup.md
   - 🚜 AgroTech:
-      - Overview: agro-tech/README.md
-      - Challenge 0 — Setup: agro-tech/challenge-0-setup/README.md
-      - Challenge 1 — Build Agents: agro-tech/challenge-1-build/README.md
-      - Challenge 2 — Monitor: agro-tech/challenge-2-monitor/README.md
-      - Challenge 3 — Evaluate: agro-tech/challenge-3-evaluate/README.md
-      - Challenge 4 — Workflow: agro-tech/challenge-4-workflow/README.md
-      - Wrap Up: agro-tech/wrapup.md
+      - Overview: agro-tech-portal/README.md
+      - Challenge 0 — Setup: agro-tech-portal/challenge-0-setup/README.md
+      - Challenge 1 — Build Agents: agro-tech-portal/challenge-1-build/README.md
+      - Challenge 2 — Monitor: agro-tech-portal/challenge-2-monitor/README.md
+      - Challenge 3 — Evaluate: agro-tech-portal/challenge-3-evaluate/README.md
+      - Challenge 4 — Workflow: agro-tech-portal/challenge-4-workflow/README.md
+      - Wrap Up: agro-tech-portal/wrapup.md

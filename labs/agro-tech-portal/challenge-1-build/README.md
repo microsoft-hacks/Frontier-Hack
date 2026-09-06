@@ -86,7 +86,7 @@ The schema file you will upload is [openapi.json](./openapi.json), in this folde
 4. Set the **Agent name** to:
 
    ```text
-   agro-tech-classifier-agent
+   agro-tech-portal-classifier-agent
    ```
 
 5. Set the **Model** to the deployment you created in Challenge 0.
@@ -130,7 +130,7 @@ The schema file you will upload is [openapi.json](./openapi.json), in this folde
 
 ## Step 2 — Attach the OpenAPI tool to the Classifier
 
-1. With `agro-tech-classifier-agent` open, find the **Tools** section and select **+ Add**.
+1. With `agro-tech-portal-classifier-agent` open, find the **Tools** section and select **+ Add**.
 2. In the tool picker, open the **Custom** tab and choose **OpenAPI 3.0 specified tool**.
 3. Fill in:
 
@@ -195,7 +195,7 @@ The schema file you will upload is [openapi.json](./openapi.json), in this folde
 2. Set the **Agent name** to:
 
    ```text
-   agro-tech-advisor-agent
+   agro-tech-portal-advisor-agent
    ```
 
 3. Set the **Model** to the same deployment.
@@ -229,7 +229,7 @@ The schema file you will upload is [openapi.json](./openapi.json), in this folde
 
 In this step you connect a pre-loaded Azure AI Search index. The index is built over treatment documents in a storage account, which gives the Advisor **RAG** (Retrieval-Augmented Generation) — it can cite approved products instead of inventing them.
 
-1. With `agro-tech-advisor-agent` open, find the **Tools** section and select **+ Add**.
+1. With `agro-tech-portal-advisor-agent` open, find the **Tools** section and select **+ Add**.
 2. Choose **Azure AI Search**.
 3. Select **Connect other Azure AI Search resource** (or **Select a resource**) and look for **search-hack-shared**. Select **Connect**.
 

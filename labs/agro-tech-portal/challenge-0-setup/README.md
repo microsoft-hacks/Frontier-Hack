@@ -36,7 +36,7 @@ By the end of this challenge, you will have:
    | **Resource group** | Select **Create new** and name it `rg-aigro-<your-initials>` |
    | **Region** | **Sweden Central** (or the region your proctor gave you) |
    | **Name** | `foundry-aigro-<your-initials>` — must be globally unique |
-   | **Project name** | `agro-tech-project` |
+   | **Project name** | `agro-tech-portal-project` |
 
 5. Leave every other tab at its default. Select **Review + create**, then **Create**.
 6. Wait for **Your deployment is complete**, then select **Go to resource**.
@@ -56,7 +56,7 @@ Your resource group should now look similar to this:
 ## Step 2 — Open the project in the Foundry portal
 
 1. Go to [ai.azure.com/nextgen](https://ai.azure.com/nextgen) and sign in with the same account.
-2. If you are not taken to your project automatically, use the project picker in the top-right corner and select **agro-tech-project**.
+2. If you are not taken to your project automatically, use the project picker in the top-right corner and select **agro-tech-portal-project**.
 
 ![Foundry Project](./images/foundry-project.png)
 
@@ -117,7 +117,7 @@ You need this for Challenge 2. Setting it up now means Challenge 2 is pure explo
 ## Success criteria
 
 - [ ] Your resource group in the Azure portal contains a Microsoft Foundry resource
-- [ ] You can open **agro-tech-project** at [ai.azure.com/nextgen](https://ai.azure.com/nextgen)
+- [ ] You can open **agro-tech-portal-project** at [ai.azure.com/nextgen](https://ai.azure.com/nextgen)
 - [ ] Your model deployment shows the status **Succeeded**
 - [ ] You received a response in the model playground
 - [ ] **Observability → Tracing** shows a connected Application Insights resource, not the connect banner

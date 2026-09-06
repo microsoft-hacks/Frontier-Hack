@@ -29,7 +29,7 @@ All tracks teach the same Foundry concepts. Choose the one that best matches you
 |----------|-------------|------------|
 | 📞 **Call center** | Classify call intents and guide resolutions at NovaTel Communications | [lab](./labs/callcenter/README.md) |
 | 🌱 **Smart Farm** | Monitor crop health and recommend actions at GreenRise AgroTech | [lab](./labs/smart-farm/README.md) |
-| 🚜 **AgroTech** | The same GreenRise AgroTech scenario, no code — everything in the Foundry portal | [lab](./labs/agro-tech/README.md) |
+| 🚜 **AgroTech** | The same GreenRise AgroTech scenario (no code)| [lab](./labs/agro-tech-portal/README.md) |
 
 All scenarios follow the same five-challenge structure:
 
