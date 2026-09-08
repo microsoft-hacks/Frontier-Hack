@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from openai.types.responses.response_input_param import FunctionCallOutput
 
 
-CLASSIFIER_NAME = "asset-health-classifier-agent"
+CLASSIFIER_NAME = "electric-plant-1-classifier-agent"
 ADVISOR_NAME = "maintenance-efficiency-advisor-agent"
 API_PATH = Path(__file__).resolve().parents[1] / "api-data"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[3]

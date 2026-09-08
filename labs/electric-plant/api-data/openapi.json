@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "/",
+      "url": "https://app-electric-plant.azurewebsites.net/",
       "description": "Replace with the facilitator-confirmed API base URL"
     }
   ],

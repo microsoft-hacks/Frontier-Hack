@@ -12,7 +12,7 @@ The classifier obtains evidence and never recommends actions. The advisor receiv
 
 ## Get started
 
-1. Open `agents.py`. It defines `get_asset_condition(asset_id)` and an identically named `FunctionTool`, attaches that tool to `asset-health-classifier-agent`, and creates `maintenance-efficiency-advisor-agent` without tools.
+1. Open `agents.py`. It defines `get_asset_condition(asset_id)` and an identically named `FunctionTool`, attaches that tool to `electric-plant-1-classifier-agent`, and creates `maintenance-efficiency-advisor-agent` without tools.
 2. From the repository root, run:
 
    ```powershell
@@ -25,7 +25,7 @@ The classifier obtains evidence and never recommends actions. The advisor receiv
 3. In Foundry, open **Build** → **Agents**. Confirm both exact names exist:
 
    ```text
-   asset-health-classifier-agent
+   electric-plant-1-classifier-agent
    maintenance-efficiency-advisor-agent
    ```
 

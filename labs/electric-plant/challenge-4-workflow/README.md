@@ -10,7 +10,7 @@ The workflow keeps evidence classification separate from recommendations.
 
 ```mermaid
 flowchart LR
-    U[User prompt] --> C[asset-health-classifier-agent]
+    U[User prompt] --> C[electric-plant-1-classifier-agent]
     C <--> T[get_asset_condition]
     C --> F[Structured findings]
     F --> A[maintenance-efficiency-advisor-agent]

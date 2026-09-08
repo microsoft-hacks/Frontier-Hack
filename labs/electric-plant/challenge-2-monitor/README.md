@@ -17,7 +17,7 @@ Monitoring answers **is it running?** through spans, latency, tokens, errors, an
    ```
 
 2. In Foundry, open **Observability** → **Tracing**. If a connection banner appears, select **Connect Application Insights**, choose the instance in the lab resource group, and save once.
-3. Run the tracing script. It enables instrumentation before creating `AIProjectClient`, verifies that Challenge 1 created `asset-health-classifier-agent`, invokes `get_asset_condition` for DRIVE-103, and deletes the temporary conversation.
+3. Run the tracing script. It enables instrumentation before creating `AIProjectClient`, verifies that Challenge 1 created `electric-plant-1-classifier-agent`, invokes `get_asset_condition` for DRIVE-103, and deletes the temporary conversation.
 
    ```powershell
    Set-Location labs/electric-plant
@@ -27,7 +27,7 @@ Monitoring answers **is it running?** through spans, latency, tokens, errors, an
    Expected terminal result: a critical classification for DRIVE-103 with vibration and winding-temperature evidence.
 
 4. In Foundry **Tracing**, open the newest conversation. Expand spans and inspect full message content, model span, token counts, latency, and status. For tool-call spans, inspect arguments and output.
-5. Open `asset-health-classifier-agent`, select its **Monitor** panel, and locate agent runs, token usage, and estimated cost.
+5. Open `electric-plant-1-classifier-agent`, select its **Monitor** panel, and locate agent runs, token usage, and estimated cost.
 6. In the Azure portal, open Application Insights → **Transaction search**, select the recent end-to-end transaction, then review the agent dashboard for runs, errors, tool calls, models, and token consumption.
 
 ## Success criteria

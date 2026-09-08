@@ -16,7 +16,7 @@ The facilitator must provide a deployed industrial API URL. `openapi.json` conta
 2. In Foundry, open the project, then **Build** → **Agents** → **+ New agent**. Select the model deployed in Challenge 0 and use this exact name:
 
    ```text
-   asset-health-classifier-agent
+   electric-plant-1-classifier-agent
    ```
 
 3. Paste these complete instructions:

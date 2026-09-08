@@ -12,7 +12,7 @@ Monitoring answers **is it running?** It exposes spans, tool calls, latency, tok
 
 1. Open the copied `.env` and confirm it contains `PROJECT_CONNECTION_STRING`, `APPLICATIONINSIGHTS_CONNECTION_STRING`, `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true`, and `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`.
 2. In Foundry, open **Observability** → **Tracing**. If a connect banner appears, select **Connect Application Insights**, choose the instance in the lab resource group, and save this one-time connection.
-3. Open `asset-health-classifier-agent` in the playground and run:
+3. Open `electric-plant-1-classifier-agent` in the playground and run:
 
    ```text
    Call get_asset_condition for DRIVE-103 and classify it. Return only the required table.
