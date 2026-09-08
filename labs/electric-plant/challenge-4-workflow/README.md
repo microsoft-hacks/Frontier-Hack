@@ -22,7 +22,7 @@ flowchart LR
 1. Run the orchestration from the lab folder:
 
    ```powershell
-   Set-Location labs/industrial-asset-health
+   Set-Location labs/electric-plant
    python challenge-4-workflow/orchestrate.py
    ```
 

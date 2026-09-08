@@ -20,7 +20,7 @@ Monitoring answers **is it running?** through spans, latency, tokens, errors, an
 3. Run the tracing script. It enables instrumentation before creating `AIProjectClient`, verifies that Challenge 1 created `asset-health-classifier-agent`, invokes `get_asset_condition` for DRIVE-103, and deletes the temporary conversation.
 
    ```powershell
-   Set-Location labs/industrial-asset-health
+   Set-Location labs/electric-plant
    python challenge-2-monitor/monitor.py
    ```
 

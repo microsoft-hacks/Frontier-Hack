@@ -26,8 +26,8 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    python -m pip install --upgrade pip
-   pip install -r labs/industrial-asset-health/requirements.txt
-   pip install -r labs/industrial-asset-health/api-industrial/requirements.txt
+   pip install -r labs/electric-plant/requirements.txt
+   pip install -r labs/electric-plant/api-data/requirements.txt
    ```
 
    Linux/macOS bash:
@@ -36,8 +36,8 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
    python3 -m venv .venv
    source .venv/bin/activate
    python -m pip install --upgrade pip
-   pip install -r labs/industrial-asset-health/requirements.txt
-   pip install -r labs/industrial-asset-health/api-industrial/requirements.txt
+   pip install -r labs/electric-plant/requirements.txt
+   pip install -r labs/electric-plant/api-data/requirements.txt
    ```
 
 4. Sign in, select the intended subscription, and provision. Enter a unique environment such as `industrial-youralias-01` and use `swedencentral` when prompted for a region.
@@ -58,13 +58,13 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
    PowerShell:
 
    ```powershell
-   Copy-Item .env labs/industrial-asset-health/.env
+   Copy-Item .env labs/electric-plant/.env
    ```
 
    Bash:
 
    ```bash
-   cp .env labs/industrial-asset-health/.env
+   cp .env labs/electric-plant/.env
    ```
 
 6. In the [Azure portal](https://portal.azure.com), open the resource group printed by `azd up`. Confirm it contains a Foundry resource/project, model deployment, Application Insights, and Log Analytics workspace.
@@ -73,6 +73,6 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
 ## Success criteria
 - [ ] The Foundry project is visible and the model deployment shows **Succeeded**
 - [ ] The model playground answers a test message
-- [ ] `labs/industrial-asset-health/.env` exists
+- [ ] `labs/electric-plant/.env` exists
 
 Next: [Challenge 1 - Build agents](../challenge-1-build/README.md)

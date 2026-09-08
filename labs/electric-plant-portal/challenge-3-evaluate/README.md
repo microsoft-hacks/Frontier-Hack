@@ -13,7 +13,7 @@ Monitoring can show a fast, error-free answer that is wrong. A routine-monitorin
 1. In Foundry, open the project, then **Build** → **Evaluations** → **Create**.
 2. Select **Agent** and choose `maintenance-efficiency-advisor-agent`.
 3. Choose **Individual turns** and **Existing dataset**.
-4. Name the dataset `industrial-asset-health-portal-10-cases` before uploading `labs/industrial-asset-health-portal/challenge-3-evaluate/eval_portal.jsonl`; upload remains disabled until a name is present.
+4. Name the dataset `electric-plant-portal-10-cases` before uploading `labs/electric-plant-portal/challenge-3-evaluate/eval_portal.jsonl`; upload remains disabled until a name is present.
 5. Keep the `input` and `expected` field mapping unless the wizard asks you to set it.
 6. Keep only quality evaluators needed for the lab, such as groundedness, relevance, coherence, and similarity. Uncheck tool-call accuracy because this advisor has no tool; checking it adds latency and produces an irrelevant poor score.
 7. Submit and wait for all 10 rows to complete.

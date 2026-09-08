@@ -31,7 +31,7 @@ function Invoke-Az {
 }
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$apiPath = Join-Path $repoRoot "labs\industrial-asset-health\api-industrial"
+$apiPath = Join-Path $repoRoot "labs\electric-plant\api-data"
 if (-not (Test-Path $apiPath)) { throw "API folder not found: $apiPath" }
 
 $accountJson = & az account show --only-show-errors 2>$null
@@ -67,7 +67,7 @@ Invoke-Az -Arguments @("webapp", "config", "appsettings", "set", "-n", $AppName,
 Invoke-Az -Arguments @("webapp", "config", "appsettings", "delete", "-n", $AppName, "-g", $ResourceGroup, "--setting-names", "WEBSITE_RUN_FROM_PACKAGE") | Out-Null
 Invoke-Az -Arguments @("webapp", "config", "set", "-n", $AppName, "-g", $ResourceGroup, "--startup-file", "python -m uvicorn main:app --host 0.0.0.0") | Out-Null
 
-$zipPath = Join-Path $env:TEMP "api-industrial-deploy.zip"
+$zipPath = Join-Path $env:TEMP "api-data-deploy.zip"
 if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
 Push-Location $apiPath
 try {

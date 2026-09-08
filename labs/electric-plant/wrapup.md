@@ -1,4 +1,4 @@
-# Industrial Asset Health SDK wrap-up
+# Electric Plant SDK wrap-up
 
 | Challenge | Skill practiced |
 |---|---|
@@ -18,7 +18,7 @@ Resources continue to incur charges until deleted. From the repository root, rem
 azd down --purge --force
 ```
 
-If the optional industrial API was deployed, delete its separate resource group using the exact command printed by `deploy-api-industrial.ps1`:
+If the optional industrial API was deployed, delete its separate resource group using the exact command printed by `deploy-api-data.ps1`:
 
 ```powershell
 az group delete --name <api-resource-group> --yes --no-wait

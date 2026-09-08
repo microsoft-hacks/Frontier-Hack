@@ -1,6 +1,6 @@
-# Industrial Asset Health (Portal)
+# Electric Plant (SDK)
 
-Northline Motion Works operates the fictional Riverbend Electrification Plant. In this no-code track, you use Microsoft Foundry portal screens to classify five drive assets, turn evidence into maintenance guidance, inspect traces, evaluate quality, and build a visual workflow.
+Northline Motion Works operates the fictional Riverbend Electrification Plant. Five drive assets report vibration, winding temperature, current load, and operating efficiency. Your mission is to build a tool-grounded classifier and a separate maintenance advisor, observe and evaluate them, then orchestrate their handoff.
 
 | Asset | Name | Status | Current issue |
 |---|---|---|---|
@@ -10,12 +10,14 @@ Northline Motion Works operates the fictional Riverbend Electrification Plant. I
 | DRIVE-104 | Rotor Assembly Conveyor Drive | ✅ normal | None |
 | DRIVE-105 | Final Test Dynamometer Drive | ⚠️ warning | Efficiency below its asset-specific minimum |
 
+The canonical readings and thresholds are in [`api-data/data/industrial_asset_data.json`](api-data/data/industrial_asset_data.json).
+
 | Challenge | Time | Outcome |
 |---|---:|---|
 | [0 - Setup](challenge-0-setup/README.md) | 20 min | Provision and verify Foundry |
-| [1 - Build](challenge-1-build/README.md) | 35 min | Configure both agents and one OpenAPI tool |
-| [2 - Monitor](challenge-2-monitor/README.md) | 20 min | Inspect portal and Application Insights traces |
+| [1 - Build](challenge-1-build/README.md) | 35 min | Create both agents and attach one function tool |
+| [2 - Monitor](challenge-2-monitor/README.md) | 20 min | Inspect traces and operational telemetry |
 | [3 - Evaluate](challenge-3-evaluate/README.md) | 30 min | Evaluate 10 quality cases |
-| [4 - Workflow](challenge-4-workflow/README.md) | 25 min | Build the visual classifier-to-advisor flow |
+| [4 - Workflow](challenge-4-workflow/README.md) | 25 min | Run classifier-to-advisor orchestration |
 
 Start with [Challenge 0](challenge-0-setup/README.md).

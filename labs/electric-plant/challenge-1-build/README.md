@@ -16,7 +16,7 @@ The classifier obtains evidence and never recommends actions. The advisor receiv
 2. From the repository root, run:
 
    ```powershell
-   Set-Location labs/industrial-asset-health
+   Set-Location labs/electric-plant
    python challenge-1-build/agents.py
    ```
 

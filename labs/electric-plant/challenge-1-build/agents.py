@@ -1,4 +1,4 @@
-"""Create and exercise the two persistent industrial asset health agents."""
+"""Create and exercise the two persistent Electric Plant agents."""
 
 import json
 import os
@@ -14,7 +14,7 @@ from openai.types.responses.response_input_param import FunctionCallOutput
 
 CLASSIFIER_NAME = "asset-health-classifier-agent"
 ADVISOR_NAME = "maintenance-efficiency-advisor-agent"
-API_PATH = Path(__file__).resolve().parents[1] / "api-industrial"
+API_PATH = Path(__file__).resolve().parents[1] / "api-data"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(API_PATH))
 from data_store import get_asset_condition as read_asset_condition  # noqa: E402

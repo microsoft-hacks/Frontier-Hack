@@ -12,7 +12,7 @@ The facilitator must provide a deployed industrial API URL. `openapi.json` conta
 
 ## Get started
 
-1. Replace the placeholder `servers[0].url` in `labs/industrial-asset-health-portal/challenge-1-build/openapi.json` with the facilitator-confirmed HTTPS base URL. Check it in a browser by opening `<confirmed-url>/assets/DRIVE-103/condition`; JSON containing DRIVE-103 must appear. If it does not, stop and ask the facilitator to confirm the endpoint. Participants do not deploy or write API code.
+1. Replace the placeholder `servers[0].url` in `labs/electric-plant-portal/challenge-1-build/openapi.json` with the facilitator-confirmed HTTPS base URL. Check it in a browser by opening `<confirmed-url>/assets/DRIVE-103/condition`; JSON containing DRIVE-103 must appear. If it does not, stop and ask the facilitator to confirm the endpoint. Participants do not deploy or write API code.
 2. In Foundry, open the project, then **Build** → **Agents** → **+ New agent**. Select the model deployed in Challenge 0 and use this exact name:
 
    ```text
@@ -35,7 +35,7 @@ The facilitator must provide a deployed industrial API URL. `openapi.json` conta
    Never recommend actions. Never invent readings or thresholds. Prefer entity-specific tool thresholds over fallbacks. If an asset is unknown or evidence is missing, state that in the table.
    ```
 
-4. Save. Select **Tools** → **+ Add** → **OpenAPI**. Choose **Upload file**, select `labs/industrial-asset-health-portal/challenge-1-build/openapi.json`, use **Anonymous** authentication, and confirm the imported operation is exactly `get_asset_condition`. Save the tool.
+4. Save. Select **Tools** → **+ Add** → **OpenAPI**. Choose **Upload file**, select `labs/electric-plant-portal/challenge-1-build/openapi.json`, use **Anonymous** authentication, and confirm the imported operation is exactly `get_asset_condition`. Save the tool.
 5. Create another agent with the same deployed model and exact name:
 
    ```text

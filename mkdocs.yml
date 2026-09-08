@@ -79,19 +79,19 @@ nav:
       - Challenge 3 — Evaluate: agro-tech-portal/challenge-3-evaluate/README.md
       - Challenge 4 — Workflow: agro-tech-portal/challenge-4-workflow/README.md
       - Wrap Up: agro-tech-portal/wrapup.md
-  - 🏭 Industrial Asset Health (SDK):
-      - Overview: industrial-asset-health/README.md
-      - Challenge 0 — Setup: industrial-asset-health/challenge-0-setup/README.md
-      - Challenge 1 — Build Agents: industrial-asset-health/challenge-1-build/README.md
-      - Challenge 2 — Monitor: industrial-asset-health/challenge-2-monitor/README.md
-      - Challenge 3 — Evaluate: industrial-asset-health/challenge-3-evaluate/README.md
-      - Challenge 4 — Workflow: industrial-asset-health/challenge-4-workflow/README.md
-      - Wrap Up: industrial-asset-health/wrapup.md
-  - 🏭 Industrial Asset Health (Portal):
-      - Overview: industrial-asset-health-portal/README.md
-      - Challenge 0 — Setup: industrial-asset-health-portal/challenge-0-setup/README.md
-      - Challenge 1 — Build Agents: industrial-asset-health-portal/challenge-1-build/README.md
-      - Challenge 2 — Monitor: industrial-asset-health-portal/challenge-2-monitor/README.md
-      - Challenge 3 — Evaluate: industrial-asset-health-portal/challenge-3-evaluate/README.md
-      - Challenge 4 — Workflow: industrial-asset-health-portal/challenge-4-workflow/README.md
-      - Wrap Up: industrial-asset-health-portal/wrapup.md
+  - 🏭 Electric Plant (SDK):
+      - Overview: electric-plant/README.md
+      - Challenge 0 — Setup: electric-plant/challenge-0-setup/README.md
+      - Challenge 1 — Build Agents: electric-plant/challenge-1-build/README.md
+      - Challenge 2 — Monitor: electric-plant/challenge-2-monitor/README.md
+      - Challenge 3 — Evaluate: electric-plant/challenge-3-evaluate/README.md
+      - Challenge 4 — Workflow: electric-plant/challenge-4-workflow/README.md
+      - Wrap Up: electric-plant/wrapup.md
+  - 🏭 Electric Plant (Portal):
+      - Overview: electric-plant-portal/README.md
+      - Challenge 0 — Setup: electric-plant-portal/challenge-0-setup/README.md
+      - Challenge 1 — Build Agents: electric-plant-portal/challenge-1-build/README.md
+      - Challenge 2 — Monitor: electric-plant-portal/challenge-2-monitor/README.md
+      - Challenge 3 — Evaluate: electric-plant-portal/challenge-3-evaluate/README.md
+      - Challenge 4 — Workflow: electric-plant-portal/challenge-4-workflow/README.md
+      - Wrap Up: electric-plant-portal/wrapup.md

@@ -49,13 +49,13 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
    PowerShell:
 
    ```powershell
-   Copy-Item .env labs/industrial-asset-health-portal/.env
+   Copy-Item .env labs/electric-plant-portal/.env
    ```
 
    Bash:
 
    ```bash
-   cp .env labs/industrial-asset-health-portal/.env
+   cp .env labs/electric-plant-portal/.env
    ```
 
 5. In the [Azure portal](https://portal.azure.com), confirm the resource group contains a Foundry resource/project, model deployment, Application Insights, and Log Analytics workspace.
@@ -65,6 +65,6 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
 ## Success criteria
 - [ ] The project is visible and model deployment shows **Succeeded**
 - [ ] The model playground answers
-- [ ] `labs/industrial-asset-health-portal/.env` exists
+- [ ] `labs/electric-plant-portal/.env` exists
 
 Next: [Challenge 1 - Build agents](../challenge-1-build/README.md)

@@ -1,4 +1,4 @@
-# Industrial Asset Health portal wrap-up
+# Electric Plant portal wrap-up
 
 | Challenge | Skill practiced |
 |---|---|
@@ -18,7 +18,7 @@ Azure resources keep costing money until deleted. From the repository root:
 azd down --purge --force
 ```
 
-The facilitator who deployed the optional API must also run the cleanup command printed by `deploy-api-industrial.ps1`:
+The facilitator who deployed the optional API must also run the cleanup command printed by `deploy-api-data.ps1`:
 
 ```powershell
 az group delete --name <api-resource-group> --yes --no-wait

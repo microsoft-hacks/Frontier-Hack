@@ -19,7 +19,7 @@ flowchart LR
 
 ## Get started
 
-1. In Foundry, open **Build** → **Workflows** → **+ New workflow**. Name it `industrial-asset-health-response`.
+1. In Foundry, open **Build** → **Workflows** → **+ New workflow**. Name it `electric-plant-response`.
 2. Add an **Agent** node named `classify`, select `asset-health-classifier-agent`, connect **Start → classify**, and use the workflow input as its input.
 3. Add an **Agent** node named `advise`, select `maintenance-efficiency-advisor-agent`, and connect **classify → advise**.
 4. Use the portal variable picker to insert the classifier output into this advisor input template:

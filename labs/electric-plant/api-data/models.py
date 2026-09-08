@@ -1,4 +1,4 @@
-"""Typed API models for the fictional industrial asset health scenario."""
+"""Typed API models for the fictional Electric Plant scenario."""
 
 from enum import Enum
 

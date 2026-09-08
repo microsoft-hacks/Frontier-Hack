@@ -13,7 +13,7 @@ Monitoring can show a fast, error-free response that is still wrong. For example
 1. In Foundry, open the project, then **Build** → **Evaluations** → **Create**.
 2. Select **Agent** as the target and choose `maintenance-efficiency-advisor-agent`.
 3. Choose **Individual turns** and **Existing dataset**.
-4. Name the dataset `industrial-asset-health-10-cases` first, then upload `challenge-3-evaluate/eval_portal.jsonl`. Upload remains disabled until the dataset has a name.
+4. Name the dataset `electric-plant-10-cases` first, then upload `challenge-3-evaluate/eval_portal.jsonl`. Upload remains disabled until the dataset has a name.
 5. Keep the default mapping of `input` to input and `expected` to expected result unless the wizard requests explicit mapping.
 6. Keep only relevant quality evaluators such as groundedness, relevance, coherence, and similarity. Uncheck tool-call accuracy: this target has no tool and local function tools cannot execute in this evaluation path, so that evaluator adds latency and misleadingly poor scores.
 7. Submit and wait until all 10 rows finish.
