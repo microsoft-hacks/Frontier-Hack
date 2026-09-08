@@ -31,7 +31,7 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
    source .venv/bin/activate
    ```
 
-3. Sign in, verify the subscription, and provision. Enter a unique name such as `industrial-portal-youralias-01` and use `swedencentral`.
+3. Sign in, verify the subscription, and provision. Enter a unique name such as `electric-plant-youralias-01` and use `swedencentral`.
 
    ```powershell
    az login --tenant <your-tenant-id>
@@ -39,7 +39,7 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
    az account set --subscription <subscription-id>
    az account show --output table
    azd auth login
-   azd env new industrial-portal-youralias-01
+   azd env new electric-plant-youralias-01
    azd env set AZURE_LOCATION swedencentral
    azd up
    ```
