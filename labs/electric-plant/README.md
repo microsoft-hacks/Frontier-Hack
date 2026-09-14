@@ -10,7 +10,7 @@ Northline Electrics operates the fictional Riverbend Electrification Plant. Five
 | DRIVE-104 | Rotor Assembly Conveyor Drive | ✅ normal | None |
 | DRIVE-105 | Final Test Dynamometer Drive | ⚠️ warning | Efficiency below its asset-specific minimum |
 
-The canonical readings and thresholds are in [`api-data/data/industrial_asset_data.json`](api-data/data/industrial_asset_data.json).
+The canonical readings and thresholds are in [`api-data/data/api_data.json`](api-data/data/api_data.json).
 
 | Challenge | Time | Outcome |
 |---|---:|---|
