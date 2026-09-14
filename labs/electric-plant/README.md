@@ -1,6 +1,6 @@
 # Electric Plant (SDK)
 
-Northline Motion Works operates the fictional Riverbend Electrification Plant. Five drive assets report vibration, winding temperature, current load, and operating efficiency. Your mission is to build a tool-grounded classifier and a separate maintenance advisor, observe and evaluate them, then orchestrate their handoff.
+Northline Electrics operates the fictional Riverbend Electrification Plant. Five drive assets report vibration, winding temperature, current load, and operating efficiency. Your mission is to build a tool-grounded classifier and a separate maintenance advisor, observe and evaluate them, then orchestrate their handoff.
 
 | Asset | Name | Status | Current issue |
 |---|---|---|---|

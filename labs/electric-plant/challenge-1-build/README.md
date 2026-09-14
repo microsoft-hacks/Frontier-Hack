@@ -32,7 +32,7 @@ The classifier obtains evidence and never recommends actions. The advisor receiv
 4. Test inline classification in the classifier playground:
 
    ```text
-   Classify this asset using the supplied readings: DRIVE-101, vibration 2.4 mm/s RMS (0-4.0), winding temperature 68 C (20-85), current load 72 percent rated (25-90), operating efficiency 94 percent (90-100).
+   Classify this asset using the supplied readings: DRIVE-101, vibration 2.4 mm/s RMS (0-4.0), winding temperature 68 C (20-85), current load 72 % (25-90), operating efficiency 94 percent (90-100).
    ```
 
    Expected: one table row marked ✅ normal, four in-range readings, and no recommendation.

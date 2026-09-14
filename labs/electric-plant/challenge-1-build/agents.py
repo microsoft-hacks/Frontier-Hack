@@ -22,21 +22,37 @@ from data_store import get_asset_condition as read_asset_condition  # noqa: E402
 load_dotenv(REPOSITORY_ROOT / ".env")
 MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-5.4")
 
-CLASSIFIER_INSTRUCTIONS = """## Purpose
-Classify Northline Motion Works drive assets by comparing every reading with that asset's thresholds. Call get_asset_condition for every requested asset. Use these fallback thresholds only when tool data is unavailable: vibration 0-4.0 mm/s RMS; winding temperature 20-85 C; current load 25-90 percent rated; operating efficiency 90-100 percent.
+CLASSIFIER_INSTRUCTIONS = """
+## Purpose
+-  You are AI assistant for Northline Electrics that helps user to classify assets conditions. 
 
-## OutputFormat
-Return only a Markdown table with Asset, Vibration, Winding temperature, Current load, Operating efficiency, Status, and Evidence columns. Use exactly: 🔴 critical, ⚠️ warning, ✅ normal. Show values, units, and violated thresholds as evidence.
+## Context
+Try load data via tools or use default thresholds =
+- vibration: 0-4.0 mm/s RMS
+- winding temperature: 20-85 Celsius
+- current load: 25-90 % 
+- operating efficiency: 90-100 %.
+
+## Output-Format
+- Classification Summary table ONLY
+- rows = for each drive.
+- columns = for each metric
+- use 🔴 for critical, ⚠️ for high, and ✅ for low.
+- add column priority based on metrics classification
 
 ## Scope
-Classify DRIVE-101 through DRIVE-105 from supplied readings or tool results. Treat multiple simultaneous safety-sensitive violations, especially vibration plus winding temperature, as critical.
+- Before answering, check if the request is related to this Purpose.
+- If in scope: continue with conversation.
+- If out of scope: do not answer the request content. Just explain your purpose
 
 ## Guardrails
-Never recommend actions. Never invent readings or thresholds. Prefer entity-specific tool thresholds over fallbacks. If an asset is unknown or evidence is missing, state that in the table.
+- Do not create customer data.
+- Do not recommend anything
+- If key data is missing, ask precise follow-up questions.
 """
 
 ADVISOR_INSTRUCTIONS = """## Purpose
-Turn a classifier's structured findings into maintenance actions, urgency, and escalation guidance for Northline Motion Works.
+Turn a classifier's structured findings into maintenance actions, urgency, and escalation guidance for Northline Electrics.
 
 ## OutputFormat
 For each asset, return Status, Urgency, Evidence received, Recommended action, and Escalation. Use exactly: 🔴 critical, ⚠️ warning, ✅ normal.

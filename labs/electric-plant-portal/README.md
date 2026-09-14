@@ -1,6 +1,6 @@
 # Electric Plant (Portal)
 
-Northline Motion Works operates the fictional Riverbend Electrification Plant. In this no-code track, you use Microsoft Foundry portal screens to classify five drive assets, turn evidence into maintenance guidance, inspect traces, evaluate quality, and build a visual workflow.
+Northline Electrics operates the fictional Riverbend Electrification Plant. In this no-code track, you use Microsoft Foundry portal screens to classify five drive assets, turn evidence into maintenance guidance, inspect traces, evaluate quality, and build a visual workflow.
 
 | Asset | Name | Status | Current issue |
 |---|---|---|---|

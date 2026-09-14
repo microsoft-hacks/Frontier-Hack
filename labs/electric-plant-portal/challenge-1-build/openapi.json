@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Northline Motion Works Asset Condition API",
+    "title": "Northline Electrics Asset Condition API",
     "version": "1.0.0",
     "description": "Read-only condition data for fictional Riverbend drive assets. Replace the server URL with the facilitator-confirmed deployment before importing."
   },

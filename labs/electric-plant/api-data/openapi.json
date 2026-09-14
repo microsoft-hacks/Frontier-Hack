@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Northline Motion Works Asset Condition API",
+    "title": "Northline Electrics Asset Condition API",
     "description": "Returns current readings, entity-specific thresholds, violations, and reported status for one Riverbend Electrification Plant drive.",
     "version": "1.0.0"
   },

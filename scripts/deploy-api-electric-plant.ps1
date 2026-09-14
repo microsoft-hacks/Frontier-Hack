@@ -11,8 +11,8 @@ group after the workshop if it was created only for this API.
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)] [string]$AppName,
-    [string]$ResourceGroup = "$AppName-rg",
-    [string]$Plan = "$AppName-plan",
+    [string]$ResourceGroup = "rg-$AppName",
+    [string]$Plan = "plan-$AppName",
     [string]$Location = "swedencentral",
     [string]$Sku = "B1",
     [string]$Subscription

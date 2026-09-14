@@ -1,5 +1,5 @@
 {
-  "company": "Northline Motion Works",
+  "company": "Northline Electrics",
   "site": "Riverbend Electrification Plant",
   "timestamp": "2026-09-06T14:00:00Z",
   "assets": [
@@ -10,8 +10,8 @@
       "readings": {
         "vibration": {"value": 2.4, "unit": "mm/s RMS"},
         "winding_temperature": {"value": 68.0, "unit": "C"},
-        "current_load": {"value": 72.0, "unit": "percent rated"},
-        "operating_efficiency": {"value": 94.0, "unit": "percent"}
+        "current_load": {"value": 72.0, "unit": "%"},
+        "operating_efficiency": {"value": 94.0, "unit": "%"}
       },
       "thresholds": {
         "vibration": {"min": 0.0, "max": 4.0},
@@ -28,8 +28,8 @@
       "readings": {
         "vibration": {"value": 4.8, "unit": "mm/s RMS"},
         "winding_temperature": {"value": 73.0, "unit": "C"},
-        "current_load": {"value": 76.0, "unit": "percent rated"},
-        "operating_efficiency": {"value": 92.0, "unit": "percent"}
+        "current_load": {"value": 76.0, "unit": "%"},
+        "operating_efficiency": {"value": 92.0, "unit": "%"}
       },
       "thresholds": {
         "vibration": {"min": 0.0, "max": 4.2},
@@ -46,8 +46,8 @@
       "readings": {
         "vibration": {"value": 7.6, "unit": "mm/s RMS"},
         "winding_temperature": {"value": 112.0, "unit": "C"},
-        "current_load": {"value": 96.0, "unit": "percent rated"},
-        "operating_efficiency": {"value": 84.0, "unit": "percent"}
+        "current_load": {"value": 96.0, "unit": "%"},
+        "operating_efficiency": {"value": 84.0, "unit": "%"}
       },
       "thresholds": {
         "vibration": {"min": 0.0, "max": 4.5},
@@ -64,8 +64,8 @@
       "readings": {
         "vibration": {"value": 3.1, "unit": "mm/s RMS"},
         "winding_temperature": {"value": 71.0, "unit": "C"},
-        "current_load": {"value": 64.0, "unit": "percent rated"},
-        "operating_efficiency": {"value": 93.0, "unit": "percent"}
+        "current_load": {"value": 64.0, "unit": "%"},
+        "operating_efficiency": {"value": 93.0, "unit": "%"}
       },
       "thresholds": {
         "vibration": {"min": 0.0, "max": 3.8},
@@ -82,8 +82,8 @@
       "readings": {
         "vibration": {"value": 2.8, "unit": "mm/s RMS"},
         "winding_temperature": {"value": 79.0, "unit": "C"},
-        "current_load": {"value": 58.0, "unit": "percent rated"},
-        "operating_efficiency": {"value": 86.5, "unit": "percent"}
+        "current_load": {"value": 58.0, "unit": "%"},
+        "operating_efficiency": {"value": 86.5, "unit": "%"}
       },
       "thresholds": {
         "vibration": {"min": 0.0, "max": 3.5},

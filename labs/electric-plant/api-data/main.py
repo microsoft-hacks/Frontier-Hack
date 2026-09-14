@@ -1,4 +1,4 @@
-"""Read-only FastAPI service for Northline Motion Works asset condition data."""
+"""Read-only FastAPI service for Northline Electrics asset condition data."""
 
 from fastapi import FastAPI, HTTPException, Path
 from fastapi.openapi.utils import get_openapi
@@ -8,7 +8,7 @@ from models import AssetCondition, ErrorResponse
 
 
 app = FastAPI(
-    title="Northline Motion Works Asset Condition API",
+    title="Northline Electrics Asset Condition API",
     description=(
         "Returns current readings, entity-specific thresholds, violations, and reported status "
         "for one Riverbend Electrification Plant drive."
