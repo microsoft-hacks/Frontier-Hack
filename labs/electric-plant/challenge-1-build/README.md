@@ -1,62 +1,64 @@
-# Challenge 1: Build tool-grounded agents
+# Challenge 1: Construir agentes baseados em ferramentas
 
-Time: ~35 minutes
+Tempo: ~35 minutos
 
-## Objectives
-- ✅ Create the classifier with exactly one attached function tool and the tool-free advisor
+## Objetivos
+- ✅ Criar o classificador com exatamente uma ferramenta de função anexada e o advisor com o Azure AI Search tool (RAG) para fundamentar cada recomendação
 
-## Context
-An agent combines a model, instructions, and optional tools. A **function** runs local code; **OpenAPI** calls a described HTTP API; **Azure AI Search** retrieves indexed enterprise content; **Code Interpreter** calculates and analyzes files; **File Search** retrieves from uploaded files. The model decides whether to call a tool only from its **name and description**, so a vague description is the most common reason a tool is ignored.
+## Contexto
+Um agente combina um modelo, instruções e ferramentas opcionais. Uma **função** executa código local; **Azure AI Search** recupera conteúdo corporativo indexado para ancorar respostas na base de conhecimento (RAG). O modelo decide se deve chamar uma ferramenta apenas pelo **nome e descrição** dela, portanto uma descrição vaga é o motivo mais comum para uma ferramenta ser ignorada.
 
-The classifier obtains evidence and never recommends actions. The advisor receives grounded findings and never invents readings.
+O classificador obtém evidências e nunca recomenda ações. O advisor consulta a base de conhecimento, cita a fonte de cada procedimento e nunca inventa leituras ou técnicas.
 
-## Get started
+> **Pré-requisitos deste desafio**: o índice `electric-plant-maintenance` e a conexão `search-hack-shared` devem existir no projeto. Os organizadores provisionam tudo em `scripts/deploy-search-electric-plant.ps1` antes do workshop (cria o Azure AI Search compartilhado e faz o upload da base). Se a conexão não existir, consulte o facilitador.
 
-1. Open `agents.py`. It defines `get_asset_condition(asset_id)` and an identically named `FunctionTool`, attaches that tool to `electric-plant-1-classifier-agent`, and creates `maintenance-efficiency-advisor-agent` without tools.
-2. From the repository root, run:
+## Primeiros passos
+
+1. Abra `agents.py`. Ele define `get_asset_condition(asset_id)` e um `FunctionTool` com o mesmo nome, anexa essa ferramenta ao `electric-plant-1-classifier-agent` e cria o `maintenance-efficiency-advisor-agent` com o Azure AI Search tool sobre o índice `electric-plant-maintenance`.
+2. Pela raiz do repositório, execute:
 
    ```powershell
    Set-Location labs/electric-plant
    python challenge-1-build/agents.py
    ```
 
-   Expected output names both created agent versions, explicitly says the classifier has `get_asset_condition`, and prints a DRIVE-103 classification containing 🔴 critical with vibration and winding-temperature evidence.
+   A saída esperada nomeia as duas versões criadas dos agentes, informa que o classificador tem `get_asset_condition` e o advisor tem o Azure AI Search tool sobre `electric-plant-maintenance`, e imprime uma classificação de XFR-401 contendo 🔴 crítico com evidências de vibração e temperatura do enrolamento.
 
-3. In Foundry, open **Build** → **Agents**. Confirm both exact names exist:
+3. No Foundry, abra **Build** → **Agents**. Confirme que os dois nomes exatos existem:
 
    ```text
    electric-plant-1-classifier-agent
    maintenance-efficiency-advisor-agent
    ```
 
-4. Test inline classification in the classifier playground:
+4. Teste a classificação inline no playground do classificador:
 
    ```text
-   Classify this asset using the supplied readings: DRIVE-101, vibration 2.4 mm/s RMS (0-4.0), winding temperature 68 C (20-85), current load 72 % (25-90), operating efficiency 94 percent (90-100).
+   Classifique este ativo usando as leituras fornecidas: MOTOR-201, vibração 2,4 mm/s RMS (0-4,0), temperatura do enrolamento 68 C (20-85), carga de corrente 72 % (25-90), eficiência operacional 94 por cento (90-100).
    ```
 
-   Expected: one table row marked ✅ normal, four in-range readings, and no recommendation.
+   Esperado: uma linha de tabela marcada como ✅ normal, quatro leituras dentro da faixa e nenhuma recomendação.
 
-5. Force the data tool:
+5. Force a ferramenta de dados:
 
    ```text
-   Call get_asset_condition for DRIVE-101, DRIVE-102, DRIVE-103, DRIVE-104, and DRIVE-105. Classify every result using each asset's thresholds.
+   Chame get_asset_condition para MOTOR-201, GEN-301, XFR-401, DRIVE-101 e VFD-501. Classifique cada resultado usando os limites de cada ativo.
    ```
 
-   Expected: 2 ✅ normal, 2 ⚠️ warning, and 1 🔴 critical. Expand each `get_asset_condition` event in run details and inspect its `asset_id` request and JSON response.
+   Esperado: 2 ✅ normal, 2 ⚠️ aviso e 1 🔴 crítico. Expanda cada evento `get_asset_condition` nos detalhes da execução e inspecione a solicitação `asset_id` e a resposta JSON.
 
-6. Test the advisor with grounded context:
+6. Teste o advisor com contexto comprovado:
 
    ```text
-   Classifier finding: DRIVE-103 is critical because vibration 7.6 exceeds 4.5 mm/s RMS and winding temperature 112 exceeds 90 C. Give urgency, action, and escalation.
+   Achado do classificador: XFR-401 está crítico porque a vibração 7,6 excede 4,5 mm/s RMS e a temperatura do enrolamento 112 excede 90 C. Dê urgência, ação e escalonamento.
    ```
 
-   Expected: immediate controlled shutdown under site procedure and safety/maintenance escalation, without new readings.
+   Esperado: desligamento controlado imediato e escalonamento de segurança/manutenção, com citação da base de conhecimento para cada ação, sem novas leituras.
 
-## Success criteria
-- [ ] Both exact agent names exist
-- [ ] The classifier calls its one tool and returns only a classification table
-- [ ] The result distribution is 2 normal, 2 warning, 1 critical
-- [ ] The advisor gives actions and urgency without inventing readings
+## Critérios de sucesso
+- [ ] Os dois nomes exatos dos agentes existem
+- [ ] O classificador chama sua única ferramenta e retorna apenas uma tabela de classificação
+- [ ] A distribuição do resultado é 2 normal, 2 aviso, 1 crítico
+- [ ] O advisor cita a base de conhecimento (RAG) e nunca inventa procedimentos ou leituras
 
-Next: [Challenge 2 - Monitor](../challenge-2-monitor/README.md)
+Próximo: [Challenge 2 - Monitor](../challenge-2-monitor/README.md)

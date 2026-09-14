@@ -1,32 +1,32 @@
-# Challenge 2: Monitor in Foundry
+# Challenge 2: Monitorar no Foundry
 
-Time: ~20 minutes
+Tempo: ~20 minutos
 
-## Objectives
-- ✅ Generate and inspect traces in Foundry and Application Insights without code
+## Objetivos
+- ✅ Gerar e inspecionar traces no Foundry e no Application Insights sem código
 
-## Context
-Monitoring answers **is it running?** It exposes spans, tool calls, latency, tokens, errors, and cost, but does not prove the answer is correct.
+## Contexto
+O monitoramento responde **está executando?** Ele expõe spans, chamadas de ferramenta, latência, tokens, erros e custo, mas não prova que a resposta está correta.
 
-## Get started
+## Primeiros passos
 
-1. Open the copied `.env` and confirm it contains `PROJECT_CONNECTION_STRING`, `APPLICATIONINSIGHTS_CONNECTION_STRING`, `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true`, and `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`.
-2. In Foundry, open **Observability** → **Tracing**. If a connect banner appears, select **Connect Application Insights**, choose the instance in the lab resource group, and save this one-time connection.
-3. Open `electric-plant-1-classifier-agent` in the playground and run:
+1. Abra o `.env` copiado e confirme que ele contém `PROJECT_CONNECTION_STRING`, `APPLICATIONINSIGHTS_CONNECTION_STRING`, `AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true` e `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`.
+2. No Foundry, abra **Observability** → **Tracing**. Se um banner de conexão aparecer, selecione **Connect Application Insights**, escolha a instância no grupo de recursos do laboratório e salve esta conexão única.
+3. Abra o `electric-plant-1-classifier-agent` no playground e execute:
 
    ```text
-   Call get_asset_condition for DRIVE-103 and classify it. Return only the required table.
+   Chame get_asset_condition para XFR-401 e classifique-o. Retorne apenas a tabela exigida.
    ```
 
-   Expected: a 🔴 critical row and a visible `get_asset_condition` call.
+   Esperado: uma linha 🔴 crítico e uma chamada `get_asset_condition` visível.
 
-4. Return to **Observability** → **Tracing**, open the newest conversation, and inspect the root span, model span, OpenAPI tool call, request/response, full message content, tokens, latency, and status.
-5. Open the agent's **Monitor** panel and read agent runs, token usage, and estimated cost.
-6. In Azure portal, open Application Insights → **Transaction search**, choose the recent end-to-end transaction, and review the agent dashboard for runs, errors, tool calls, models, and token consumption.
+4. Volte a **Observability** → **Tracing**, abra a conversa mais recente e inspecione o span raiz, o span do modelo, a chamada de ferramenta OpenAPI, a solicitação/resposta, o conteúdo completo das mensagens, os tokens, a latência e o status.
+5. Abra o painel **Monitor** do agente e leia execuções de agentes, uso de tokens e custo estimado.
+6. No portal do Azure, abra Application Insights → **Transaction search**, escolha a transação completa recente e revise o painel de agentes com execuções, erros, chamadas de ferramenta, modelos e consumo de tokens.
 
-## Success criteria
-- [ ] At least one trace appears in Foundry and Application Insights
-- [ ] The OpenAPI request and response are visible
-- [ ] You can explain where to investigate errors, latency, and unexpected tool behavior
+## Critérios de sucesso
+- [ ] Pelo menos um trace aparece no Foundry e no Application Insights
+- [ ] A solicitação e a resposta do OpenAPI estão visíveis
+- [ ] Você consegue explicar onde investigar erros, latência e comportamento inesperado de ferramentas
 
-Next: [Challenge 3 - Evaluate](../challenge-3-evaluate/README.md)
+Próximo: [Challenge 3 - Evaluation](../challenge-3-evaluate/README.md)

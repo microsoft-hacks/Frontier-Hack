@@ -1,4 +1,4 @@
-"""Read-only FastAPI service for Northline Electrics asset condition data."""
+"""Read-only FastAPI service for Eletroforça Indústrias Elétricas asset condition data."""
 
 from fastapi import FastAPI, HTTPException, Path
 from fastapi.openapi.utils import get_openapi
@@ -8,13 +8,13 @@ from models import AssetCondition, ErrorResponse
 
 
 app = FastAPI(
-    title="Northline Electrics Asset Condition API",
+    title="API de Condição de Ativos — Eletroforça Indústrias Elétricas",
     description=(
-        "Returns current readings, entity-specific thresholds, violations, and reported status "
-        "for one Riverbend Electrification Plant drive."
+        "Retorna leituras atuais, limites específicos do ativo, violações e status reportado "
+        "para um ativo do Complexo Industrial Serrana."
     ),
     version="1.0.0",
-    servers=[{"url": "/", "description": "Replace with the facilitator-confirmed API base URL"}],
+    servers=[{"url": "/", "description": "Substitua pela URL base da API confirmada pelo facilitador"}],
 )
 app.openapi_version = "3.0.3"
 
@@ -23,15 +23,15 @@ app.openapi_version = "3.0.3"
     "/assets/{asset_id}/condition",
     operation_id="get_asset_condition",
     response_model=AssetCondition,
-    summary="Get one asset's condition",
+    summary="Obtém a condição de um ativo",
     description=(
-        "Use this operation whenever an asset ID such as DRIVE-103 must be classified. "
-        "It returns all four readings, that asset's thresholds, violations, and known issues."
+        "Use esta operação sempre que um ID de ativo como XFR-401 precisar ser classificado. "
+        "Ela retorna as quatro leituras, os limites específicos do ativo, as violações e os problemas conhecidos."
     ),
-    responses={404: {"model": ErrorResponse, "description": "Asset not found"}},
+    responses={404: {"model": ErrorResponse, "description": "Ativo não encontrado"}},
 )
 def get_asset_condition(
-    asset_id: str = Path(..., description="Stable asset ID from DRIVE-101 through DRIVE-105"),
+    asset_id: str = Path(..., description="ID do ativo permanente (MOTOR-201, GEN-301, XFR-401, DRIVE-101, VFD-501)"),
 ) -> dict:
     condition = read_asset_condition(asset_id)
     if condition is None:

@@ -1,27 +1,27 @@
-# Challenge 3: Evaluate answer quality
+# Challenge 3: Avaliar a qualidade das respostas
 
-Time: ~30 minutes
+Tempo: ~30 minutos
 
-## Objectives
-- ✅ Complete a 10-row portal evaluation and find one quality improvement
+## Objetivos
+- ✅ Completar uma avaliação de 10 linhas no portal e encontrar uma melhoria de qualidade
 
-## Context
-Monitoring can show a fast, error-free answer that is wrong. A routine-monitoring recommendation for DRIVE-103 could have low latency and zero HTTP errors while missing its safety-sensitive compound failure. Evaluation compares answer quality with grounded expectations.
+## Contexto
+O monitoramento pode mostrar uma resposta rápida e sem erros que está errada. Uma recomendação de monitoramento de rotina para o XFR-401 poderia ter baixa latência e zero erros HTTP enquanto deixa de perceber sua falha combinada sensível à segurança. A avaliação compara a qualidade da resposta com expectativas fundamentadas.
 
-## Get started
+## Primeiros passos
 
-1. In Foundry, open the project, then **Build** → **Evaluations** → **Create**.
-2. Select **Agent** and choose `maintenance-efficiency-advisor-agent`.
-3. Choose **Individual turns** and **Existing dataset**.
-4. Name the dataset `electric-plant-portal-10-cases` before uploading `labs/electric-plant-portal/challenge-3-evaluate/eval_portal.jsonl`; upload remains disabled until a name is present.
-5. Keep the `input` and `expected` field mapping unless the wizard asks you to set it.
-6. Keep only quality evaluators needed for the lab, such as groundedness, relevance, coherence, and similarity. Uncheck tool-call accuracy because this advisor has no tool; checking it adds latency and produces an irrelevant poor score.
-7. Submit and wait for all 10 rows to complete.
-8. Record the aggregate scores from your run. Sort per-row results by lowest score, inspect evaluator rationale, and record one concrete instruction improvement. There is no predetermined expected score.
+1. No Foundry, abra o projeto e depois **Build** → **Evaluations** → **Create**.
+2. Selecione **Agent** e escolha `maintenance-efficiency-advisor-agent`.
+3. Escolha **Individual turns** e **Existing dataset**.
+4. Nomeie o dataset `electric-plant-portal-10-cases` antes de enviar `labs/electric-plant-portal/challenge-3-evaluate/eval_portal.jsonl`; o envio permanece desabilitado até existir um nome.
+5. Mantenha o mapeamento dos campos `input` e `expected`, a menos que o assistente peça para defini-lo.
+6. Mantenha apenas os avaliadores de qualidade necessários para o laboratório, como groundedness, relevance, coherence e similarity. Desmarque tool-call accuracy porque este advisor não tem ferramenta; marcá-lo adiciona latência e produz uma pontuação ruim irrelevante.
+7. Envie e aguarde as 10 linhas terminarem.
+8. Registre as pontuações agregadas da sua execução. Ordene os resultados por linha pela menor pontuação, inspecione a justificativa dos avaliadores e registre uma melhoria concreta de instrução. Não há pontuação esperada predefinida.
 
-## Success criteria
-- [ ] All 10 rows complete
-- [ ] Aggregate and per-row scores are readable
-- [ ] You identify one concrete improvement from a low-scoring case
+## Critérios de sucesso
+- [ ] Todas as 10 linhas terminam
+- [ ] As pontuações agregadas e por linha são legíveis
+- [ ] Você identifica uma melhoria concreta em um caso com pontuação baixa
 
-Next: [Challenge 4 - Workflow](../challenge-4-workflow/README.md)
+Próximo: [Challenge 4 - Workflow](../challenge-4-workflow/README.md)

@@ -1,17 +1,17 @@
-# Challenge 0: Set up Microsoft Foundry
+# Challenge 0: Configurar o Microsoft Foundry
 
-Time: ~20 minutes
+Tempo: ~20 minutos
 
-## Objectives
-- ✅ Provision the shared Foundry project and verify portal access
+## Objetivos
+- ✅ Provisionar o projeto compartilhado do Foundry e verificar o acesso ao portal
 
-## Context
-The lab reuses the repository-root infrastructure and `.env` convention without changing `infra/main.bicep`. Agent work after setup is entirely in the portal. Each participant must use a unique environment name.
+## Contexto
+O laboratório reutiliza a infraestrutura da raiz do repositório e a convenção `.env` sem alterar `infra/main.bicep`. O trabalho com agentes depois da configuração ocorre inteiramente no portal. Cada participante deve usar um nome de ambiente exclusivo.
 
-## Get started
+## Primeiros passos
 
-1. Confirm access to an Azure subscription with **Contributor** and **Azure AI User/Foundry User**, plus Git, Python 3.10+, Azure CLI, Azure Developer CLI, and a terminal. Python is part of the common workshop setup but is not used to build this portal track.
-2. Clone the repository and prepare an environment.
+1. Confirme o acesso a uma assinatura do Azure com **Contributor** e **Azure AI User/Foundry User**, além de Git, Python 3.10+, Azure CLI, Azure Developer CLI e um terminal. Python faz parte da configuração comum do workshop, mas não é usado para construir este percurso de portal.
+2. Clone o repositório e prepare um ambiente.
 
    Windows PowerShell:
 
@@ -31,7 +31,7 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
    source .venv/bin/activate
    ```
 
-3. Sign in, verify the subscription, and provision. Enter a unique name such as `electric-plant-youralias-01` and use `swedencentral`.
+3. Entre com a sua conta, verifique a assinatura e faça o provisionamento. Informe um nome exclusivo como `electric-plant-youralias-01` e use `swedencentral`.
 
    ```powershell
    az login --tenant <your-tenant-id>
@@ -44,7 +44,7 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
    azd up
    ```
 
-4. Copy the root `.env` into the lab folder.
+4. Copie o `.env` da raiz para a pasta do laboratório.
 
    PowerShell:
 
@@ -58,13 +58,13 @@ The lab reuses the repository-root infrastructure and `.env` convention without 
    cp .env labs/electric-plant-portal/.env
    ```
 
-5. In the [Azure portal](https://portal.azure.com), confirm the resource group contains a Foundry resource/project, model deployment, Application Insights, and Log Analytics workspace.
-6. In the [Microsoft Foundry portal](https://ai.azure.com/nextgen), open the project. Under **Build** → **Models** or **Deployments**, confirm the deployed model status is **Succeeded**.
-7. Open the model playground, send `Reply with: portal setup verified`, and confirm a response appears.
+5. No [portal do Azure](https://portal.azure.com), confirme que o grupo de recursos contém um recurso/projeto do Foundry, um deployment de modelo, o Application Insights e um workspace do Log Analytics.
+6. No [portal do Microsoft Foundry](https://ai.azure.com/nextgen), abra o projeto. Em **Build** → **Models** ou **Deployments**, confirme que o status do modelo implantado é **Succeeded**.
+7. Abra o playground do modelo, envie `Reply with: portal setup verified` e confirme que uma resposta aparece.
 
-## Success criteria
-- [ ] The project is visible and model deployment shows **Succeeded**
-- [ ] The model playground answers
-- [ ] `labs/electric-plant-portal/.env` exists
+## Critérios de sucesso
+- [ ] O projeto está visível e o deployment do modelo mostra **Succeeded**
+- [ ] O playground do modelo responde
+- [ ] `labs/electric-plant-portal/.env` existe
 
-Next: [Challenge 1 - Build agents](../challenge-1-build/README.md)
+Próximo: [Challenge 1 - Build](../challenge-1-build/README.md)

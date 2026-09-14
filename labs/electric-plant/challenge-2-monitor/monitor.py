@@ -43,7 +43,7 @@ def main() -> None:
             run_with_tool(
                 client,
                 CLASSIFIER_NAME,
-                "Call get_asset_condition for DRIVE-103 and classify it with evidence.",
+                "Chame get_asset_condition para XFR-401 e classifique-o com evidências.",
             )
         )
     finally:

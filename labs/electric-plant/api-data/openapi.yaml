@@ -1,19 +1,19 @@
 openapi: 3.0.3
 info:
-  title: Northline Electrics Asset Condition API
-  description: Returns current readings, entity-specific thresholds, violations, and
-    reported status for one Riverbend Electrification Plant drive.
+  title: API de Condição de Ativos — Eletroforça Indústrias Elétricas
+  description: Retorna leituras atuais, limites específicos do ativo, violações e
+    status reportado para um ativo do Complexo Industrial Serrana.
   version: 1.0.0
 servers:
 - url: /
-  description: Replace with the facilitator-confirmed API base URL
+  description: Substitua pela URL base da API confirmada pelo facilitador
 paths:
   /assets/{asset_id}/condition:
     get:
-      summary: Get one asset's condition
-      description: Use this operation whenever an asset ID such as DRIVE-103 must
-        be classified. It returns all four readings, that asset's thresholds, violations,
-        and known issues.
+      summary: Obtém a condição de um ativo
+      description: Use esta operação sempre que um ID de ativo como XFR-401 precisar
+        ser classificado. Ela retorna as quatro leituras, os limites específicos do
+        ativo, as violações e os problemas conhecidos.
       operationId: get_asset_condition
       parameters:
       - name: asset_id
@@ -21,9 +21,9 @@ paths:
         required: true
         schema:
           type: string
-          description: Stable asset ID from DRIVE-101 through DRIVE-105
+          description: ID do ativo permanente (MOTOR-201, GEN-301, XFR-401, DRIVE-101, VFD-501)
           title: Asset Id
-        description: Stable asset ID from DRIVE-101 through DRIVE-105
+        description: ID do ativo permanente (MOTOR-201, GEN-301, XFR-401, DRIVE-101, VFD-501)
       responses:
         '200':
           description: Successful Response
@@ -32,7 +32,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AssetCondition'
         '404':
-          description: Asset not found
+          description: Ativo não encontrado
           content:
             application/json:
               schema:
@@ -91,7 +91,7 @@ components:
         detail:
           type: string
           title: Detail
-          description: Human-readable error message.
+          description: Mensagem de erro legível por humanos.
       type: object
       required:
       - detail

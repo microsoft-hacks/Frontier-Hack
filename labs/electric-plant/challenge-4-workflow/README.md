@@ -1,43 +1,44 @@
-# Challenge 4: Orchestrate classifier and advisor
+# Challenge 4: Orquestrar classificador e advisor
 
-Time: ~25 minutes
+Tempo: ~25 minutos
 
-## Objectives
-- ✅ Run a visible classifier-to-advisor handoff with correlated tool outputs
+## Objetivos
+- ✅ Executar uma passagem visível de classificador para advisor com saídas de ferramentas correlacionadas
 
-## Context
-The workflow keeps evidence classification separate from recommendations.
+## Contexto
+O fluxo de trabalho mantém separada a classificação das evidências das recomendações.
 
 ```mermaid
 flowchart LR
-    U[User prompt] --> C[electric-plant-1-classifier-agent]
+    U[Prompt do usuário] --> C[electric-plant-1-classifier-agent]
     C <--> T[get_asset_condition]
-    C --> F[Structured findings]
+    C --> F[Findings estruturados]
     F --> A[maintenance-efficiency-advisor-agent]
-    A --> R[Final answer]
+    A --> R[Resposta final]
 ```
 
-## Get started
+## Primeiros passos
 
-1. Run the orchestration from the lab folder:
+1. Execute a orquestração pela pasta do laboratório:
 
    ```powershell
    Set-Location labs/electric-plant
    python challenge-4-workflow/orchestrate.py
    ```
 
-2. The script first lists deployed agents and fails clearly with `Challenge 1 is required` if either exact name is missing.
-3. Follow the classifier loop in `orchestrate.py`: read every `function_call`, execute the matching `get_asset_condition`, send a `FunctionCallOutput` with the same `call_id`, and repeat until the model returns final text.
-4. Observe the classifier output passed between `<classifier_findings>` delimiters. The advisor receives no raw tool and must use only this context.
-5. Expected terminal stages:
-   - `Stage 1` prints a table with 2 ✅ normal, 2 ⚠️ warning, and DRIVE-103 🔴 critical.
-   - `Stage 2` recommends controlled shutdown and safety/maintenance escalation for DRIVE-103, planned work for warning assets, and monitoring for normal assets.
-   - Conversations and the project client are closed when execution ends.
+2. O script primeiro lista os agentes implantados e falha claramente com `Challenge 1 is required` se um dos nomes exatos estiver ausente.
+3. Acompanhe o loop do classificador em `agents.py`: leia cada `function_call`, execute o `get_asset_condition` correspondente, envie um `FunctionCallOutput` com o mesmo `call_id` e repita até o modelo retornar o texto final. As chamadas do Azure AI Search do advisor são resolvidas pelo serviço e não exigem execução local.
+4. Observe a saída do classificador passada entre os delimitadores `<classifier_findings>`. O advisor ancora as recomendações nesse contexto e nas diretrizes da base de conhecimento (Azure AI Search).
+5. Estágios esperados no terminal:
+   - `Stage 1` imprime uma tabela com 2 ✅ normal, 2 ⚠️ aviso e o XFR-401 🔴 crítico.
+   - `Stage 2` recomenda desligamento controlado e escalonamento de segurança/manutenção para o XFR-401 com a fonte citada, trabalho planejado para os ativos em aviso e monitoramento para os ativos normais, também citando a base de conhecimento.
+   - As conversas e o client do projeto são encerrados ao final da execução.
 
-## Success criteria
-- [ ] The run completes and invokes `get_asset_condition`
-- [ ] The advisor receives the classifier's structured findings
-- [ ] DRIVE-103 receives controlled-shutdown and escalation guidance
-- [ ] Each stage is visible in terminal output and Foundry traces
+## Critérios de sucesso
+- [ ] A execução termina e chama `get_asset_condition`
+- [ ] O advisor recebe os findings estruturados do classificador
+- [ ] O XFR-401 recebe orientação de desligamento controlado e escalonamento
+- [ ] O advisor cita a base de conhecimento nas ações recomendadas
+- [ ] Cada estágio está visível na saída do terminal e nos traces do Foundry
 
-Next: [Wrap up](../wrapup.md)
+Próximo: [Encerramento](../wrapup.md)

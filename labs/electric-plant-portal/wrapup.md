@@ -1,27 +1,27 @@
-# Electric Plant portal wrap-up
+# Encerramento da Usina Elétrica (Portal)
 
-| Challenge | Skill practiced |
+| Challenge | Habilidade praticada |
 |---|---|
-| 0 | Shared Foundry provisioning and portal verification |
-| 1 | Portal agent instructions and OpenAPI tools |
-| 2 | Foundry and Application Insights monitoring |
-| 3 | Dataset-based quality evaluation |
-| 4 | Visual multi-agent workflow orchestration |
+| 0 | Provisionamento compartilhado do Foundry e verificação no portal |
+| 1 | Instruções de agentes e ferramentas OpenAPI no portal |
+| 2 | Monitoramento no Foundry e no Application Insights |
+| 3 | Avaliação de qualidade baseada em dataset |
+| 4 | Orquestração visual de fluxo de trabalho com múltiplos agentes |
 
-Next, expand the dataset with approved domain cases, rerun evaluations after instruction changes, and use traces to distinguish operational faults from quality faults.
+Em seguida, expanda o dataset com casos aprovados do domínio, execute novamente avaliações após mudanças de instruções e use traces para distinguir falhas operacionais de falhas de qualidade.
 
-## Cleanup
+## Limpeza
 
-Azure resources keep costing money until deleted. From the repository root:
+Os recursos do Azure continuam gerando custo até serem excluídos. Pela raiz do repositório:
 
 ```powershell
 azd down --purge --force
 ```
 
-The facilitator who deployed the optional API must also run the cleanup command printed by `deploy-api-data.ps1`:
+O facilitador que implantou a API opcional também deve executar o comando de limpeza impresso por `deploy-api-data.ps1`:
 
 ```powershell
 az group delete --name <api-resource-group> --yes --no-wait
 ```
 
-Portal alternative: open each workshop resource group in Azure portal, select **Delete resource group**, type its name, and confirm.
+Alternativa pelo portal: abra cada grupo de recursos do workshop no portal do Azure, selecione **Delete resource group**, digite o nome e confirme.

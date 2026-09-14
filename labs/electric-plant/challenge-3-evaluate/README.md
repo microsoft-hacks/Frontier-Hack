@@ -1,27 +1,27 @@
-# Challenge 3: Evaluate answer quality
+# Challenge 3: Avaliar a qualidade das respostas
 
-Time: ~30 minutes
+Tempo: ~30 minutos
 
-## Objectives
-- ✅ Run a 10-case quality evaluation and identify one concrete improvement
+## Objetivos
+- ✅ Executar uma avaliação de qualidade com 10 casos e identificar uma melhoria concreta
 
-## Context
-Monitoring can show a fast, error-free response that is still wrong. For example, advising routine monitoring for DRIVE-103 in 300 ms would look operationally healthy while missing a safety-sensitive compound failure. Evaluation measures correctness against expected outcomes.
+## Contexto
+O monitoramento pode mostrar uma resposta rápida e sem erros que ainda assim está errada. Por exemplo, recomendar monitoramento de rotina para o XFR-401 em 300 ms pareceria operacionalmente saudável, mas deixaria de perceber uma falha combinada sensível à segurança. A avaliação mede a corretude em relação aos resultados esperados — aqui, os casos esperam que o advisor aja e **cite a fonte da base de conhecimento** para cada recomendação (`eval_portal.jsonl` usa `query`/`ground_truth`).
 
-## Get started
+## Primeiros passos
 
-1. In Foundry, open the project, then **Build** → **Evaluations** → **Create**.
-2. Select **Agent** as the target and choose `maintenance-efficiency-advisor-agent`.
-3. Choose **Individual turns** and **Existing dataset**.
-4. Name the dataset `electric-plant-10-cases` first, then upload `challenge-3-evaluate/eval_portal.jsonl`. Upload remains disabled until the dataset has a name.
-5. Keep the default mapping of `input` to input and `expected` to expected result unless the wizard requests explicit mapping.
-6. Keep only relevant quality evaluators such as groundedness, relevance, coherence, and similarity. Uncheck tool-call accuracy: this target has no tool and local function tools cannot execute in this evaluation path, so that evaluator adds latency and misleadingly poor scores.
-7. Submit and wait until all 10 rows finish.
-8. Record the aggregate scores produced by your run. Sort rows by lowest score, read their input, expected result, output, and evaluator rationale, then write down one specific instruction improvement. Do not assume a target score.
+1. No Foundry, abra o projeto e depois **Build** → **Evaluations** → **Create**.
+2. Selecione **Agent** como alvo e escolha `maintenance-efficiency-advisor-agent`.
+3. Escolha **Individual turns** e **Existing dataset**.
+4. Nomeie o dataset `electric-plant-10-cases` primeiro e depois envie `challenge-3-evaluate/eval_portal.jsonl`. O envio permanece desabilitado até o dataset ter um nome.
+5. Mantenha o mapeamento padrão de `input` para entrada e `expected` para o resultado esperado, a menos que o assistente solicite um mapeamento explícito.
+6. Mantenha apenas os avaliadores de qualidade relevantes, como groundedness, relevance, coherence e similarity. Desmarque tool-call accuracy: a busca do advisor é resolvida pelo serviço e as funções locais não são executadas nesse caminho de avaliação, então esse avaliador adiciona latência e pontuações ruins enganosas.
+7. Envie e aguarde até as 10 linhas terminarem.
+8. Registre as pontuações agregadas produzidas pela sua execução. Ordene as linhas pela menor pontuação, leia input, resultado esperado, saída e a justificativa do avaliador e, em seguida, anote uma melhoria específica de instrução. Não presuma uma pontuação-alvo.
 
-## Success criteria
-- [ ] All 10 rows complete
-- [ ] Aggregate and per-row scores are readable
-- [ ] You identify one concrete improvement from the lowest-scoring row
+## Critérios de sucesso
+- [ ] Todas as 10 linhas terminam
+- [ ] As pontuações agregadas e por linha são legíveis
+- [ ] Você identifica uma melhoria concreta na linha com a menor pontuação
 
-Next: [Challenge 4 - Workflow](../challenge-4-workflow/README.md)
+Próximo: [Challenge 4 - Workflow](../challenge-4-workflow/README.md)

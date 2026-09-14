@@ -1,24 +1,24 @@
-# Challenge 0: Set up Microsoft Foundry
+# Challenge 0: Configurar o Microsoft Foundry
 
-Time: ~20 minutes
+Tempo: ~20 minutos
 
-## Objectives
-- ✅ Provision the shared Foundry infrastructure, verify model access, and place `.env` in the lab folder
+## Objetivos
+- ✅ Provisionar a infraestrutura compartilhada do Foundry, verificar o acesso ao modelo e colocar o `.env` na pasta do laboratório
 
-## Context
-This lab reuses the repository-root Bicep and `azd` workflow. It does not change shared infrastructure. Each participant needs a unique environment name because Azure resource names must not collide.
+## Contexto
+Este laboratório reutiliza o Bicep e o fluxo de trabalho `azd` da raiz do repositório. Ele não altera a infraestrutura compartilhada. Cada participante precisa de um nome de ambiente exclusivo porque os nomes de recursos do Azure não podem colidir.
 
-## Get started
+## Primeiros passos
 
-1. Confirm the prerequisites: an Azure subscription where you have **Contributor** and **Azure AI User/Foundry User**, Python 3.10+, Azure CLI, Azure Developer CLI, Git, and a terminal.
-2. Clone and enter the repository:
+1. Confirme os pré-requisitos: uma assinatura do Azure em que você tenha **Contributor** e **Azure AI User/Foundry User**, Python 3.10+, Azure CLI, Azure Developer CLI, Git e um terminal.
+2. Clone e entre no repositório:
 
    ```powershell
    git clone https://github.com/microsoft-hacks/Frontier-Hack.git
    Set-Location Frontier-Hack
    ```
 
-3. Create a virtual environment and install this lab's dependencies.
+3. Crie um ambiente virtual e instale as dependências deste laboratório.
 
    Windows PowerShell:
 
@@ -40,7 +40,7 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
    pip install -r labs/electric-plant/api-data/requirements.txt
    ```
 
-4. Sign in, select the intended subscription, and provision. Enter a unique environment such as `industrial-youralias-01` and use `swedencentral` when prompted for a region.
+4. Entre com a sua conta, selecione a assinatura pretendida e provisione. Informe um ambiente exclusivo como `industrial-youralias-01` e use `swedencentral` quando solicitada uma região.
 
    ```powershell
    az login --tenant <your-tenant-id>
@@ -53,7 +53,7 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
    azd up
    ```
 
-5. Root provisioning writes `.env`. Copy it to this lab folder.
+5. O provisionamento na raiz grava o `.env`. Copie-o para a pasta deste laboratório.
 
    PowerShell:
 
@@ -67,12 +67,12 @@ This lab reuses the repository-root Bicep and `azd` workflow. It does not change
    cp .env labs/electric-plant/.env
    ```
 
-6. In the [Azure portal](https://portal.azure.com), open the resource group printed by `azd up`. Confirm it contains a Foundry resource/project, model deployment, Application Insights, and Log Analytics workspace.
-7. In the [Microsoft Foundry portal](https://ai.azure.com/nextgen), open the project. Under **Build** → **Models** (or **Deployments**), confirm the model status is **Succeeded**. Open its playground, send `Reply with: setup verified`, and confirm it responds.
+6. No [portal do Azure](https://portal.azure.com), abra o grupo de recursos exibido pelo `azd up`. Confirme que ele contém um recurso/projeto do Foundry, um deployment de modelo, o Application Insights e um workspace do Log Analytics.
+7. No [portal do Microsoft Foundry](https://ai.azure.com/nextgen), abra o projeto. Em **Build** → **Models** (ou **Deployments**), confirme que o status do modelo é **Succeeded**. Abra o playground, envie `Reply with: setup verified` e confirme que ele responde.
 
-## Success criteria
-- [ ] The Foundry project is visible and the model deployment shows **Succeeded**
-- [ ] The model playground answers a test message
-- [ ] `labs/electric-plant/.env` exists
+## Critérios de sucesso
+- [ ] O projeto do Foundry está visível e o deployment do modelo mostra **Succeeded**
+- [ ] O playground do modelo responde a uma mensagem de teste
+- [ ] `labs/electric-plant/.env` existe
 
-Next: [Challenge 1 - Build agents](../challenge-1-build/README.md)
+Próximo: [Challenge 1 - Build](../challenge-1-build/README.md)

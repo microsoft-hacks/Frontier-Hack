@@ -1,100 +1,100 @@
-# Challenge 1: Build agents in the portal
+# Challenge 1: Construir agentes no portal
 
-Time: ~35 minutes
+Tempo: ~35 minutos
 
-## Objectives
-- ✅ Create two exact agent definitions and attach one OpenAPI data tool to the classifier
+## Objetivos
+- ✅ Criar duas definições exatas de agentes e anexar uma ferramenta de dados OpenAPI ao classificador
 
-## Context
-An agent combines a model, instructions, and optional tools. A **function** runs application code; **OpenAPI** calls a described HTTP API; **Azure AI Search** retrieves indexed enterprise content; **Code Interpreter** calculates and analyzes files; **File Search** retrieves from uploaded files. The model decides to call a tool based only on its **name and description**, so vague descriptions are the most common reason a tool is ignored.
+## Contexto
+Um agente combina um modelo, instruções e ferramentas opcionais. Uma **função** executa código de aplicação; **OpenAPI** chama uma API HTTP descrita; **Azure AI Search** recupera conteúdo corporativo indexado; **Code Interpreter** calcula e analisa arquivos; **File Search** recupera de arquivos enviados. O modelo decide chamar uma ferramenta apenas pelo **nome e descrição** dela, portanto descrições vagas são o motivo mais comum de uma ferramenta ser ignorada.
 
-The facilitator must provide a deployed industrial API URL. `openapi.json` contains `https://YOUR-API-HOST.example.com`, which is a placeholder, not a real deployment. Confirm the supplied URL responds before attaching it.
+O facilitador deve fornecer uma URL de API industrial implantada. O `openapi.json` contém `https://YOUR-API-HOST.example.com`, que é um placeholder, não um deployment real. Confirme se a URL fornecida responde antes de anexá-la.
 
-## Get started
+## Primeiros passos
 
-1. Replace the placeholder `servers[0].url` in `labs/electric-plant-portal/challenge-1-build/openapi.json` with the facilitator-confirmed HTTPS base URL. Check it in a browser by opening `<confirmed-url>/assets/DRIVE-103/condition`; JSON containing DRIVE-103 must appear. If it does not, stop and ask the facilitator to confirm the endpoint. Participants do not deploy or write API code.
-2. In Foundry, open the project, then **Build** → **Agents** → **+ New agent**. Select the model deployed in Challenge 0 and use this exact name:
+1. Substitua o placeholder `servers[0].url` em `labs/electric-plant-portal/challenge-1-build/openapi.json` pela URL base HTTPS confirmada pelo facilitador. Verifique-a no navegador abrindo `<url-confirmada>/assets/XFR-401/condition`; o JSON contendo XFR-401 deve aparecer. Se não aparecer, pare e peça ao facilitador para confirmar o endpoint. Os participantes não implantam nem escrevem código de API.
+2. No Foundry, abra o projeto e depois **Build** → **Agents** → **+ New agent**. Selecione o modelo implantado no Challenge 0 e use este nome exato:
 
    ```text
    electric-plant-1-classifier-agent
    ```
 
-3. Paste these complete instructions:
+3. Cole estas instruções completas:
 
    ```text
-## Purpose
--  You are AI assistant for Northline Electrics that helps user to classify assets conditions. 
+   ## Propósito
+   -  Você é um assistente de IA para a Eletroforça Indústrias Elétricas que ajuda o usuário a classificar as condições dos ativos.
 
-## Context
-Try load data via tools or use default thresholds =
-- vibration: 0-4.0 mm/s RMS
-- winding temperature: 20-85 Celsius
-- current load: 25-90 % 
-- operating efficiency: 90-100 %.
+   ## Contexto
+   Tente carregar os dados por meio das ferramentas ou use os limites padrão =
+   - vibração: 0-4,0 mm/s RMS
+   - temperatura do enrolamento: 20-85 °C
+   - carga de corrente: 25-90 %
+   - eficiência operacional: 90-100 %.
 
-## Output-Format
-- Classification Summary table ONLY
-- rows = for each drive.
-- columns = for each metric
-- use 🔴 for critical, ⚠️ for high, and ✅ for low.
-- add column priority based on metrics classification
+   ## Formato de Saída
+   - SOMENTE a tabela de resumo da classificação
+   - linhas = para cada ativo.
+   - colunas = para cada métrica
+   - use 🔴 para crítico, ⚠️ para alto, e ✅ para baixo.
+   - adicione uma coluna de prioridade com base na classificação das métricas
 
-## Scope
-- Before answering, check if the request is related to this Purpose.
-- If in scope: continue with conversation.
-- If out of scope: do not answer the request content. Just explain your purpose
+   ## Escopo
+   - Antes de responder, verifique se a solicitação está relacionada a este Propósito.
+   - Se estiver no escopo: continue a conversa.
+   - Se estiver fora do escopo: não responda ao conteúdo da solicitação. Apenas explique o seu propósito
 
-## Guardrails
-- Do not create customer data.
-- Do not recommend anything
-- If key data is missing, ask precise follow-up questions.
+   ## Guardrails
+   - Não crie dados de clientes.
+   - Não recomende nada
+   - Se faltarem dados-chave, faça perguntas de acompanhamento precisas.
    ```
 
-4. Save. Select **Tools** → **+ Add** → **OpenAPI**. Choose **Upload file**, select `labs/electric-plant-portal/challenge-1-build/openapi.json`, use **Anonymous** authentication, and confirm the imported operation is exactly `get_asset_condition`. Save the tool.
-5. Create another agent with the same deployed model and exact name:
+4. Salve. Selecione **Tools** → **+ Add** → **OpenAPI**. Escolha **Upload file**, selecione `labs/electric-plant-portal/challenge-1-build/openapi.json`, use autenticação **Anonymous** e confirme que a operação importada é exatamente `get_asset_condition`. Salve a ferramenta.
+5. Crie outro agente com o mesmo modelo implantado e o nome exato:
 
    ```text
    maintenance-efficiency-advisor-agent
    ```
 
-6. Paste these instructions and save. Do not attach a tool.
+6. Cole estas instruções e salve. Não anexe ferramenta.
 
    ```text
-   ## Purpose
-   Turn a classifier's structured findings into maintenance actions, urgency, and escalation guidance for Northline Electrics.
+   ## Propósito
+   Transformar os achados estruturados de um classificador em ações de manutenção, urgência e orientações de escalonamento para a Eletroforça Indústrias Elétricas.
 
-   ## OutputFormat
-   For each asset, return Status, Urgency, Evidence received, Recommended action, and Escalation. Use exactly: 🔴 critical, ⚠️ warning, ✅ normal.
+   ## Formato de Saída
+   Para cada ativo, retorne Status, Urgência, Evidências recebidas, Ação recomendada e Escalonamento. Use exatamente: 🔴 crítico, ⚠️ aviso, ✅ normal.
 
-   ## Scope
-   Use only classifier findings supplied in the request. For compound vibration and winding-temperature failures, require a controlled shutdown, isolation under site procedure, and immediate safety/maintenance escalation. For warnings, recommend inspection or planned maintenance. For normal assets, continue monitoring.
+   ## Escopo
+   Use apenas os achados do classificador fornecidos na solicitação. Para falhas combinadas de vibração e temperatura do enrolamento, exija desligamento controlado, isolamento conforme o procedimento do local e escalonamento imediato de segurança/manutenção. Para avisos, recomende inspeção ou manutenção planejada. Para ativos normais, continue o monitoramento.
 
    ## Guardrails
-   Do not invent, alter, or reclassify readings or thresholds. Do not claim a shutdown occurred. Preserve uncertainty and direct personnel to approved site safety procedures.
+   Não invente, altere ou reclassifique leituras ou limites. Não afirme que um desligamento ocorreu. Preserve a incerteza e direcione o pessoal aos procedimentos de segurança aprovados no local.
    ```
 
-7. Test the classifier:
+7. Teste o classificador:
 
    ```text
-   Call get_asset_condition for DRIVE-101, DRIVE-102, DRIVE-103, DRIVE-104, and DRIVE-105. Classify every result using each asset's thresholds.
+   Chame get_asset_condition para MOTOR-201, GEN-301, XFR-401, DRIVE-101 e VFD-501. Classifique cada resultado usando os limites de cada ativo.
    ```
 
-   Expected: exactly 2 ✅ normal, 2 ⚠️ warning, and 1 🔴 critical; DRIVE-103 evidence includes vibration 7.6 over 4.5 and temperature 112 over 90. Expand tool-call details to inspect each request and response.
+   Esperado: exatamente 2 ✅ normal, 2 ⚠️ aviso e 1 🔴 crítico; as evidências do XFR-401 incluem vibração 7,6 acima de 4,5 e temperatura 112 acima de 90. Expanda os detalhes das chamadas de ferramenta para inspecionar cada solicitação e resposta.
 
-8. Test the advisor:
+8. Teste o advisor:
 
    ```text
-   Classifier finding: DRIVE-103 is critical because vibration 7.6 exceeds 4.5 mm/s RMS and winding temperature 112 exceeds 90 C. Give urgency, action, and escalation.
+   Achado do classificador: XFR-401 está crítico porque a vibração 7,6 excede 4,5 mm/s RMS e a temperatura do enrolamento 112 excede 90 C. Dê urgência, ação e escalonamento.
    ```
 
-   Expected: controlled shutdown under site procedure and immediate safety/maintenance escalation, with no invented readings.
+   Esperado: desligamento controlado conforme o procedimento do local e escalonamento imediato de segurança/manutenção, sem leituras inventadas.
 
-If the classifier asks you for readings instead of calling the tool, its tool description is too vague, the placeholder was not replaced, or the endpoint is unreachable.
+Se o classificador pedir leituras em vez de chamar a ferramenta, a descrição da ferramenta está vaga demais, o placeholder não foi substituído ou o endpoint está inacessível.
 
-## Success criteria
-- [ ] Both exact agent names exist
-- [ ] The classifier calls only `get_asset_condition` and returns only a table
-- [ ] The distribution is 2 normal, 2 warning, 1 critical
-- [ ] The advisor has no tool and does not invent readings
+## Critérios de sucesso
+- [ ] Os dois nomes exatos dos agentes existem
+- [ ] O classificador chama apenas `get_asset_condition` e retorna apenas uma tabela
+- [ ] A distribuição é 2 normal, 2 aviso, 1 crítico
+- [ ] O advisor não tem ferramenta e não inventa leituras
 
-Next: [Challenge 2 - Monitor](../challenge-2-monitor/README.md)
+Próximo: [Challenge 2 - Monitor](../challenge-2-monitor/README.md)

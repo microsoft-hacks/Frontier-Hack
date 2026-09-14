@@ -62,15 +62,7 @@ nav:
       - Challenge 2 — Monitor: callcenter/challenge-2-monitor/README.md
       - Challenge 3 — Evaluate: callcenter/challenge-3-evaluate/README.md
       - Challenge 4 — Workflow: callcenter/challenge-4-workflow/README.md
-      - Wrap Up: callcenter/wrapup.md
-  - 🚜 Agro Tech (SDK):
-      - Overview: agro-tech/README.md
-      - Challenge 0 — Setup: agro-tech/challenge-0-setup/README.md
-      - Challenge 1 — Build Agents: agro-tech/challenge-1-build/README.md
-      - Challenge 2 — Monitor: agro-tech/challenge-2-monitor/README.md
-      - Challenge 3 — Evaluate: agro-tech/challenge-3-evaluate/README.md
-      - Challenge 4 — Workflow: agro-tech/challenge-4-workflow/README.md
-      - Wrap Up: agro-tech/wrapup.md
+      - Wrap Up: callcenter/wrapup.md  
   - 🚜 Agro Tech (No-Code):
       - Overview: agro-tech-portal/README.md
       - Challenge 0 — Setup: agro-tech-portal/challenge-0-setup/README.md
@@ -79,15 +71,7 @@ nav:
       - Challenge 3 — Evaluate: agro-tech-portal/challenge-3-evaluate/README.md
       - Challenge 4 — Workflow: agro-tech-portal/challenge-4-workflow/README.md
       - Wrap Up: agro-tech-portal/wrapup.md
-  - 🏭 Electric Plant (SDK):
-      - Overview: electric-plant/README.md
-      - Challenge 0 — Setup: electric-plant/challenge-0-setup/README.md
-      - Challenge 1 — Build Agents: electric-plant/challenge-1-build/README.md
-      - Challenge 2 — Monitor: electric-plant/challenge-2-monitor/README.md
-      - Challenge 3 — Evaluate: electric-plant/challenge-3-evaluate/README.md
-      - Challenge 4 — Workflow: electric-plant/challenge-4-workflow/README.md
-      - Wrap Up: electric-plant/wrapup.md
-  - 🏭 Electric Plant (Portal):
+  - 🏭 Smart Electric (No-Code):
       - Overview: electric-plant-portal/README.md
       - Challenge 0 — Setup: electric-plant-portal/challenge-0-setup/README.md
       - Challenge 1 — Build Agents: electric-plant-portal/challenge-1-build/README.md

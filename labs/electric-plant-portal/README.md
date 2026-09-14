@@ -1,21 +1,21 @@
-# Electric Plant (Portal)
+# Usina Elétrica (Portal)
 
-Northline Electrics operates the fictional Riverbend Electrification Plant. In this no-code track, you use Microsoft Foundry portal screens to classify five drive assets, turn evidence into maintenance guidance, inspect traces, evaluate quality, and build a visual workflow.
+A Eletroforça Indústrias Elétricas opera o Complexo Industrial Serrana. Neste percurso sem código, você usa as telas do portal do Microsoft Foundry para classificar cinco ativos, transformar evidências em orientações de manutenção, inspecionar traces, avaliar a qualidade e construir um fluxo de trabalho visual.
 
-| Asset | Name | Status | Current issue |
+| Ativo | Nome | Status | Problema atual |
 |---|---|---|---|
-| DRIVE-101 | Primary Coil Line Drive | ✅ normal | None |
-| DRIVE-102 | Busbar Forming Drive | ⚠️ warning | Vibration above its asset-specific maximum |
-| DRIVE-103 | High-Load Lamination Press Drive | 🔴 critical | Compound vibration and temperature failure; controlled shutdown and escalation required |
-| DRIVE-104 | Rotor Assembly Conveyor Drive | ✅ normal | None |
-| DRIVE-105 | Final Test Dynamometer Drive | ⚠️ warning | Efficiency below its asset-specific minimum |
+| MOTOR-201 | Motor de Linha de Bobinagem de Estator (Média Tensão) | ✅ normal | Nenhum |
+| GEN-301 | Bomba de Resfriamento do Turbogerador | ⚠️ aviso | Vibração acima do máximo específico do ativo |
+| XFR-401 | Ventilador de Resfriamento do Transformador de Potência (138/13,8 kV) | 🔴 crítico | Falha combinada de vibração e temperatura; desligamento controlado e escalonamento necessários |
+| DRIVE-101 | Acionamento do Sistema de Excitação Estática | ✅ normal | Nenhum |
+| VFD-501 | Motor de Transportador com Inversor de Frequência | ⚠️ aviso | Eficiência abaixo do mínimo específico do ativo |
 
-| Challenge | Time | Outcome |
+| Challenge | Tempo | Resultado |
 |---|---:|---|
-| [0 - Setup](challenge-0-setup/README.md) | 20 min | Provision and verify Foundry |
-| [1 - Build](challenge-1-build/README.md) | 35 min | Configure both agents and one OpenAPI tool |
-| [2 - Monitor](challenge-2-monitor/README.md) | 20 min | Inspect portal and Application Insights traces |
-| [3 - Evaluate](challenge-3-evaluate/README.md) | 30 min | Evaluate 10 quality cases |
-| [4 - Workflow](challenge-4-workflow/README.md) | 25 min | Build the visual classifier-to-advisor flow |
+| [0 - Setup](challenge-0-setup/README.md) | 20 min | Provisionamento e verificação do Foundry |
+| [1 - Build](challenge-1-build/README.md) | 35 min | Configuração dos dois agentes e uma ferramenta OpenAPI |
+| [2 - Monitor](challenge-2-monitor/README.md) | 20 min | Inspeção de traces no portal e no Application Insights |
+| [3 - Evaluation](challenge-3-evaluate/README.md) | 30 min | Avaliação de 10 casos de qualidade |
+| [4 - Workflow](challenge-4-workflow/README.md) | 25 min | Construção do fluxo visual classificador → advisor |
 
-Start with [Challenge 0](challenge-0-setup/README.md).
+Comece pelo [Challenge 0](challenge-0-setup/README.md).

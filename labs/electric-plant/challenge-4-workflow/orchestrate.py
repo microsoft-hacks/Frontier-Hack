@@ -9,21 +9,7 @@ from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "challenge-1-build"))
-from agents import ADVISOR_NAME, CLASSIFIER_NAME, run_with_tool  # noqa: E402
-
-
-def run_without_tools(client: AIProjectClient, agent_name: str, prompt: str) -> str:
-    openai_client = client.get_openai_client()
-    conversation = openai_client.conversations.create()
-    try:
-        response = openai_client.responses.create(
-            input=prompt,
-            conversation=conversation.id,
-            extra_body={"agent_reference": {"name": agent_name, "type": "agent_reference"}},
-        )
-        return response.output_text
-    finally:
-        openai_client.conversations.delete(conversation_id=conversation.id)
+from agents import ADVISOR_NAME, CLASSIFIER_NAME, run_agent, run_with_tool  # noqa: E402
 
 
 def main() -> None:
@@ -40,18 +26,19 @@ def main() -> None:
         if missing:
             sys.exit("Challenge 1 is required. Missing agents: " + ", ".join(missing))
 
-        requested_assets = ", ".join(f"DRIVE-{number}" for number in range(101, 106))
+        requested_assets = ", ".join(["MOTOR-201", "GEN-301", "XFR-401", "DRIVE-101", "VFD-501"])
         print("Stage 1: classifier with get_asset_condition")
-        findings = run_with_tool(client, CLASSIFIER_NAME, f"Classify {requested_assets}.")
+        findings = run_with_tool(client, CLASSIFIER_NAME, f"Classifique {requested_assets}.")
         print(findings)
         advisor_prompt = (
-            "Use only the delimited classifier findings below. Provide actions, urgency, and escalation.\n"
+            "Use os achados do classificador delimitados abaixo e a base de conhecimento "
+            "(Azure AI Search). Forneça ações, urgência e escalonamento e cite a fonte de cada ação.\n"
             "<classifier_findings>\n"
             f"{findings}\n"
             "</classifier_findings>"
         )
-        print("\nStage 2: advisor receives delimited classifier findings")
-        advice = run_without_tools(client, ADVISOR_NAME, advisor_prompt)
+        print("\nStage 2: advisor anchors recommendations on classifier findings and the knowledge base")
+        advice = run_agent(client, ADVISOR_NAME, advisor_prompt)
         print(advice)
     finally:
         client.close()

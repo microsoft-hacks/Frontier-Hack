@@ -1,11 +1,11 @@
 {
-  "company": "Northline Electrics",
-  "site": "Riverbend Electrification Plant",
+  "company": "Eletroforça Indústrias Elétricas",
+  "site": "Complexo Industrial Serrana",
   "timestamp": "2026-09-06T14:00:00Z",
   "assets": [
     {
-      "asset_id": "DRIVE-101",
-      "name": "Primary Coil Line Drive",
+      "asset_id": "MOTOR-201",
+      "name": "Motor de Linha de Bobinagem de Estator (Média Tensão)",
       "status": "normal",
       "readings": {
         "vibration": {"value": 2.4, "unit": "mm/s RMS"},
@@ -22,8 +22,8 @@
       "issues": []
     },
     {
-      "asset_id": "DRIVE-102",
-      "name": "Busbar Forming Drive",
+      "asset_id": "GEN-301",
+      "name": "Bomba de Resfriamento do Turbogerador",
       "status": "warning",
       "readings": {
         "vibration": {"value": 4.8, "unit": "mm/s RMS"},
@@ -37,11 +37,11 @@
         "current_load": {"min": 25.0, "max": 92.0},
         "operating_efficiency": {"min": 89.0, "max": 100.0}
       },
-      "issues": ["Intermittent bearing-side vibration noted during the latest inspection."]
+      "issues": ["Vibração intermitente no lado do mancal observada na última inspeção."]
     },
     {
-      "asset_id": "DRIVE-103",
-      "name": "High-Load Lamination Press Drive",
+      "asset_id": "XFR-401",
+      "name": "Ventilador de Resfriamento do Transformador de Potência (138/13,8 kV)",
       "status": "critical",
       "readings": {
         "vibration": {"value": 7.6, "unit": "mm/s RMS"},
@@ -55,11 +55,11 @@
         "current_load": {"min": 30.0, "max": 95.0},
         "operating_efficiency": {"min": 88.0, "max": 100.0}
       },
-      "issues": ["Compound vibration and winding-temperature excursion requires controlled shutdown and safety escalation."]
+      "issues": ["Excursão combinada de vibração e temperatura do enrolamento exige desligamento controlado e escalonamento de segurança."]
     },
     {
-      "asset_id": "DRIVE-104",
-      "name": "Rotor Assembly Conveyor Drive",
+      "asset_id": "DRIVE-101",
+      "name": "Acionamento do Sistema de Excitação Estática",
       "status": "normal",
       "readings": {
         "vibration": {"value": 3.1, "unit": "mm/s RMS"},
@@ -76,8 +76,8 @@
       "issues": []
     },
     {
-      "asset_id": "DRIVE-105",
-      "name": "Final Test Dynamometer Drive",
+      "asset_id": "VFD-501",
+      "name": "Motor de Transportador com Inversor de Frequência",
       "status": "warning",
       "readings": {
         "vibration": {"value": 2.8, "unit": "mm/s RMS"},
@@ -91,7 +91,7 @@
         "current_load": {"min": 20.0, "max": 88.0},
         "operating_efficiency": {"min": 89.0, "max": 100.0}
       },
-      "issues": ["Efficiency has declined across three consecutive production cycles."]
+      "issues": ["Eficiência em declínio em três ciclos consecutivos de produção."]
     }
   ]
 }
