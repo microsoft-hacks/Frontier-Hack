@@ -10,7 +10,7 @@ Este laboratório reutiliza o Bicep e o fluxo de trabalho `azd` da raiz do repos
 
 ## Primeiros passos
 
-1. Confirme os pré-requisitos: uma assinatura do Azure em que você tenha **Contributor** e **Azure AI User/Foundry User**, Python 3.10+, Azure CLI, Azure Developer CLI, Git e um terminal.
+1. Confirme os pré-requisitos: uma assinatura do Azure em que você tenha **Contributor** e **Foundry User/Foundry User**, Python 3.10+, Azure CLI, Azure Developer CLI, Git e um terminal.
 2. Clone e entre no repositório:
 
    ```powershell

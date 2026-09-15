@@ -15,7 +15,7 @@ By the end of this challenge, you will have:
 ## Prerequisites
 
 - A modern web browser
-- An Azure subscription where you have the **Contributor** and **Azure AI User** roles
+- An Azure subscription where you have the **Contributor** and **Foundry User** roles
 - The name of the Azure **region** your proctor asked you to use (this lab uses **Sweden Central**)
 
 > [!NOTE]
@@ -33,9 +33,9 @@ By the end of this challenge, you will have:
    | Field | Value |
    |---|---|
    | **Subscription** | The subscription your proctor assigned |
-   | **Resource group** | Select **Create new** and name it `rg-aigro-<your-initials>` |
+   | **Resource group** | Select **Create new** and name it `rg-hack-dev-XXX` |
    | **Region** | **Sweden Central** (or the region your proctor gave you) |
-   | **Name** | `foundry-aigro-<your-initials>` — must be globally unique |
+   | **Name** | `foundry-hack-dev-XXX` — must be globally unique |
    | **Project name** | `agro-tech-portal-project` |
 
 5. Leave every other tab at its default. Select **Review + create**, then **Create**.

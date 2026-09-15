@@ -1,70 +1,125 @@
-# Challenge 0: Configurar o Microsoft Foundry
+# Desafio 0: Crie seu projeto Foundry
 
-Tempo: ~20 minutos
+Tempo: ~25 minutos
 
 ## Objetivos
-- ✅ Provisionar o projeto compartilhado do Foundry e verificar o acesso ao portal
 
-## Contexto
-O laboratório reutiliza a infraestrutura da raiz do repositório e a convenção `.env` sem alterar `infra/main.bicep`. O trabalho com agentes depois da configuração ocorre inteiramente no portal. Cada participante deve usar um nome de ambiente exclusivo.
+Ao final deste desafio, você terá:
 
-## Primeiros passos
+- ✅ Um recurso e um projeto do Microsoft Foundry criados a partir do portal do Azure
+- ✅ Um modelo de chat implantado e testado no playground
+- ✅ Application Insights conectado ao seu projeto, pronto para o Desafio 2
 
-1. Confirme o acesso a uma assinatura do Azure com **Contributor** e **Azure AI User/Foundry User**, além de Git, Python 3.10+, Azure CLI, Azure Developer CLI e um terminal. Python faz parte da configuração comum do workshop, mas não é usado para construir este percurso de portal.
-2. Clone o repositório e prepare um ambiente.
+![setup](./images/setup.png)
 
-   Windows PowerShell:
+## Pré-requisitos
 
-   ```powershell
-   git clone https://github.com/microsoft-hacks/Frontier-Hack.git
-   Set-Location Frontier-Hack
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
+- Um navegador web moderno
+- Uma assinatura do Azure na qual você tenha as funções **Contributor** e **Foundry User**
+- O nome da **região** do Azure que o instrutor pediu para você usar (este laboratório utiliza **Sweden Central**)
+
+> [!NOTE]
+> Não há nada para instalar. Não clone o repositório, não crie um ambiente virtual nem use um terminal — tudo abaixo acontece no navegador.
+
+---
+
+## Etapa 1 — Criar o recurso Microsoft Foundry
+
+1. Acesse [portal.azure.com](https://portal.azure.com) e faça login.
+2. Na caixa de pesquisa superior, digite **Azure AI Foundry** e selecione-o nos resultados de **Services**.
+3. Selecione **+ Create** e, em seguida, **Azure AI Foundry**.
+4. Preencha a aba **Basics**:
+
+   | Campo | Valor |
+   |---|---|
+   | **Subscription** | A assinatura designada pelo instrutor |
+   | **Resource group** | Selecione **Create new** e nomeie como `rg-hack-dev-XXX` |
+   | **Region** | **Sweden Central** (ou a região informada pelo instrutor) |
+   | **Name** | `foundry-hack-dev-XXX` — deve ser globalmente único |
+   | **Project name** | `agro-tech-portal-project` |
+
+5. Deixe as demais abas com os valores padrão. Selecione **Review + create** e depois **Create**.
+6. Aguarde a mensagem **Your deployment is complete** e selecione **Go to resource**.
+
+> [!TIP]
+> Use nomes curtos, em minúsculas e sem espaços. Se o portal indicar que o nome já está em uso, adicione um número ao final.
+
+Seu grupo de recursos deve ficar parecido com isto:
+
+![Azure Portal Resources](./images/azure-portal-resources.png)
+
+> [!NOTE]
+> Os prefixos dos nomes de recursos variam de acordo com o cenário, e os sufixos são únicos para cada implantação. Sua lista não será exatamente igual.
+
+---
+
+## Etapa 2 — Abrir o projeto no portal do Foundry
+
+1. Acesse [ai.azure.com/nextgen](https://ai.azure.com/nextgen) e faça login com a mesma conta.
+2. Se você não for direcionado automaticamente ao seu projeto, use o seletor de projetos no canto superior direito e selecione **agro-tech-portal-project**.
+
+![Foundry Project](./images/foundry-project.png)
+
+Mantenha esta aba aberta — você usará ela durante todo o restante do laboratório.
+
+---
+
+## Etapa 3 — Implantar um modelo
+
+1. Na navegação superior, selecione **Build** e depois **Models** na barra lateral esquerda.
+
+   > [!NOTE]
+   > Em algumas versões do portal do Foundry, a aba **Models** é chamada de **Deployments**. Ambas têm a mesma finalidade.
+
+2. Selecione **+ Deploy model** → **Deploy base model**.
+3. Procure por um modelo de chat — este laboratório foi escrito para o **gpt-5.4**. Se ele não estiver disponível na sua região, escolha o modelo GPT de chat mais recente aprovado pelo instrutor.
+4. Selecione o modelo e depois **Confirm**.
+5. Mantenha o **Deployment name** sugerido e anote-o — você selecionará este modelo ao criar cada agente.
+6. Selecione **Deploy** e aguarde até que o status mostre **Succeeded**.
+
+![Foundry Model](./images/foundry-model.png)
+
+---
+
+## Etapa 4 — Testar o modelo no playground
+
+1. Selecione sua implantação e depois **Open in playground**.
+2. Digite uma mensagem simples, por exemplo:
+
+   ```text
+   In one sentence, what does a soil moisture reading of 18% suggest for a strawberry crop?
    ```
 
-   Linux/macOS bash:
+3. Envie e confirme que você recebeu uma resposta.
 
-   ```bash
-   git clone https://github.com/microsoft-hacks/Frontier-Hack.git
-   cd Frontier-Hack
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
+![Foundry Model Playground](./images/foundry-model-playground.png)
 
-3. Entre com a sua conta, verifique a assinatura e faça o provisionamento. Informe um nome exclusivo como `electric-plant-youralias-01` e use `swedencentral`.
+Se ocorrer um erro aqui, pare e corrija antes de continuar — todos os desafios seguintes dependem de uma implantação de modelo funcional.
 
-   ```powershell
-   az login --tenant <your-tenant-id>
-   az account list --output table
-   az account set --subscription <subscription-id>
-   az account show --output table
-   azd auth login
-   azd env new electric-plant-youralias-01
-   azd env set AZURE_LOCATION swedencentral
-   azd up
-   ```
+---
 
-4. Copie o `.env` da raiz para a pasta do laboratório.
+## Etapa 5 — Conectar o Application Insights
 
-   PowerShell:
+Você precisará disso para o Desafio 2. Configurar agora significa que o Desafio 2 será puramente exploratório.
 
-   ```powershell
-   Copy-Item .env labs/electric-plant-portal/.env
-   ```
+1. No portal do Foundry, vá em **Observability** → **Tracing** na barra lateral esquerda.
+2. Se aparecer o banner **"Create or connect an App Insights resource to get started"**, selecione **Connect**.
+3. No painel, escolha um recurso de Application Insights existente ou selecione **Create new** e aceite o nome sugerido.
+4. Confirme. O banner desaparece e a visualização de Tracing fica disponível.
 
-   Bash:
+> [!NOTE]
+> A visualização de Tracing estará vazia por enquanto — isso é esperado. Você gerará rastreamentos no Desafio 1 e os lerá no Desafio 2.
 
-   ```bash
-   cp .env labs/electric-plant-portal/.env
-   ```
+<!-- TODO: screenshot — Observability > Tracing "Connect App Insights" panel -->
 
-5. No [portal do Azure](https://portal.azure.com), confirme que o grupo de recursos contém um recurso/projeto do Foundry, um deployment de modelo, o Application Insights e um workspace do Log Analytics.
-6. No [portal do Microsoft Foundry](https://ai.azure.com/nextgen), abra o projeto. Em **Build** → **Models** ou **Deployments**, confirme que o status do modelo implantado é **Succeeded**.
-7. Abra o playground do modelo, envie `Reply with: portal setup verified` e confirme que uma resposta aparece.
+---
 
 ## Critérios de sucesso
-- [ ] O projeto está visível e o deployment do modelo mostra **Succeeded**
-- [ ] O playground do modelo responde
-- [ ] `labs/electric-plant-portal/.env` existe
 
-Próximo: [Challenge 1 - Build](../challenge-1-build/README.md)
+- [ ] Seu grupo de recursos no portal do Azure contém um recurso Microsoft Foundry
+- [ ] Você consegue abrir **agro-tech-portal-project** em [ai.azure.com/nextgen](https://ai.azure.com/nextgen)
+- [ ] Sua implantação de modelo mostra o status **Succeeded**
+- [ ] Você recebeu uma resposta no playground do modelo
+- [ ] **Observability → Tracing** mostra um recurso Application Insights conectado, e não o banner de conexão
+
+Próximo: [Desafio 1 — Construir agentes](../challenge-1-build/README.md)

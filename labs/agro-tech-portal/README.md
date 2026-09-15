@@ -44,7 +44,7 @@ Build an AI agent system that:
 ## Prerequisites
 
 - A modern web browser
-- An Azure subscription where you have the **Contributor** and **Azure AI User** roles
+- An Azure subscription where you have the **Contributor** and **Foundry User** roles
 - Nothing else — no Python, no Azure CLI, no `git`
 
 > [!TIP]
