@@ -33,9 +33,9 @@ Ao final deste desafio, você terá:
    | Campo | Valor |
    |---|---|
    | **Subscription** | A assinatura designada pelo instrutor |
-   | **Resource group** | Selecione **Create new** e nomeie como `rg-hack-dev-XXX` |
+   | **Resource group** | Selecione **Create new** e nomeie como `rg-hack-dev-<suffix>` |
    | **Region** | **Sweden Central** (ou a região informada pelo instrutor) |
-   | **Name** | `foundry-hack-dev-XXX` — deve ser globalmente único |
+   | **Name** | `foundry-hack-dev-<suffix>` — deve ser globalmente único |
    | **Project name** | `agro-tech-portal-project` |
 
 5. Deixe as demais abas com os valores padrão. Selecione **Review + create** e depois **Create**.

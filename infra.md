@@ -31,10 +31,10 @@ flowchart LR
 
 Resource names receive a unique suffix derived from the resource group ID. The default naming pattern is:
 
-- Foundry account: `aif-frontier-<suffix>`
-- Foundry project: `prj-frontier-<suffix>`
-- Log Analytics: `logs-<suffix>`
-- Application Insights: `insights-<suffix>`
+- Foundry account: `aif-hack-dev-<suffix>`
+- Foundry project: `prj-hack-dev-<suffix>`
+- Log Analytics: `logs-hack-dev-<suffix>`
+- Application Insights: `insights-hack-dev-<suffix>`
 
 ## Provisioning flow
 

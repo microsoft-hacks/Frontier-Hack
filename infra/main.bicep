@@ -2,7 +2,7 @@
 param location string = 'swedencentral'
 
 @description('Unique suffix used in globally unique resource names.')
-param suffix string = 'frontier-${take(uniqueString(resourceGroup().id), 8)}'
+param suffix string = 'hack-dev-${take(uniqueString(resourceGroup().id), 8)}'
 
 param foundryResourceName string = 'aif-${suffix}'
 param projectName string = 'prj-${suffix}'
