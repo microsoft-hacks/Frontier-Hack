@@ -36,7 +36,7 @@ Ao final deste desafio, você terá:
    | **Resource group** | Selecione **Create new** e nomeie como `rg-hack-dev-<suffix>` |
    | **Region** | **Sweden Central** (ou a região informada pelo instrutor) |
    | **Name** | `foundry-hack-dev-<suffix>` — deve ser globalmente único |
-   | **Project name** | `agro-tech-portal-project` |
+   | **Project name** | `prj-hack-dev-<suffix>` |
 
 5. Deixe as demais abas com os valores padrão. Selecione **Review + create** e depois **Create**.
 6. Aguarde a mensagem **Your deployment is complete** e selecione **Go to resource**.

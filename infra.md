@@ -31,7 +31,7 @@ flowchart LR
 
 Resource names receive a unique suffix derived from the resource group ID. The default naming pattern is:
 
-- Foundry account: `aif-hack-dev-<suffix>`
+- Foundry account: `foundry-hack-dev-<suffix>`
 - Foundry project: `prj-hack-dev-<suffix>`
 - Log Analytics: `logs-hack-dev-<suffix>`
 - Application Insights: `insights-hack-dev-<suffix>`
