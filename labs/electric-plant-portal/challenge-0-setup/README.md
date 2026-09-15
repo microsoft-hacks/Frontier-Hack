@@ -56,7 +56,7 @@ Seu grupo de recursos deve ficar parecido com isto:
 ## Etapa 2 — Abrir o projeto no portal do Foundry
 
 1. Acesse [ai.azure.com/nextgen](https://ai.azure.com/nextgen) e faça login com a mesma conta.
-2. Se você não for direcionado automaticamente ao seu projeto, use o seletor de projetos no canto superior direito e selecione **agro-tech-portal-project**.
+2. Se você não for direcionado automaticamente ao seu projeto, use o seletor de projetos no canto superior direito e selecione **prj-hack-dev-<suffix>**.
 
 ![Foundry Project](./images/foundry-project.png)
 
@@ -117,7 +117,7 @@ Você precisará disso para o Desafio 2. Configurar agora significa que o Desafi
 ## Critérios de sucesso
 
 - [ ] Seu grupo de recursos no portal do Azure contém um recurso Microsoft Foundry
-- [ ] Você consegue abrir **agro-tech-portal-project** em [ai.azure.com/nextgen](https://ai.azure.com/nextgen)
+- [ ] Você consegue abrir **prj-hack-dev-<suffix>** em [ai.azure.com/nextgen](https://ai.azure.com/nextgen)
 - [ ] Sua implantação de modelo mostra o status **Succeeded**
 - [ ] Você recebeu uma resposta no playground do modelo
 - [ ] **Observability → Tracing** mostra um recurso Application Insights conectado, e não o banner de conexão
