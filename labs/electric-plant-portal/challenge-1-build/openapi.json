@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "API de Condição de Ativos — Eletroforça Indústrias Elétricas",
+    "title": "API de Condição de Ativos — Smart Electric",
     "version": "1.0.0",
     "description": "Dados somente leitura dos ativos do Complexo Industrial Serrana. Substitua a URL do servidor pelo deployment confirmado pelo facilitador antes de importar."
   },

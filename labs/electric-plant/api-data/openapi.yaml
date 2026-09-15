@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: API de Condição de Ativos — Eletroforça Indústrias Elétricas
+  title: API de Condição de Ativos — Smart Electric
   description: Retorna leituras atuais, limites específicos do ativo, violações e
     status reportado para um ativo do Complexo Industrial Serrana.
   version: 1.0.0

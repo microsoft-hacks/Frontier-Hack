@@ -1,6 +1,6 @@
 # Usina Elétrica (Portal)
 
-A Eletroforça Indústrias Elétricas opera o Complexo Industrial Serrana. Neste percurso sem código, você usa as telas do portal do Microsoft Foundry para classificar cinco ativos, transformar evidências em orientações de manutenção, inspecionar traces, avaliar a qualidade e construir um fluxo de trabalho visual.
+Smart Electric é referência global em motores, geradores, transformadores e controles elétricos, com oferta ampla e integrada para eletrificação, automação e digitalização — a empresa busca ser reconhecida globalmente como marca de referência em máquinas elétricas, entregando soluções completas e eficientes e construindo relacionamentos fortes com os clientes. A Smart Electric opera o Complexo Industrial Serrana. Neste percurso sem código, você usa as telas do portal do Microsoft Foundry para classificar cinco ativos, transformar evidências em orientações de manutenção, inspecionar traces, avaliar a qualidade e construir um fluxo de trabalho visual.
 
 | Ativo | Nome | Status | Problema atual |
 |---|---|---|---|

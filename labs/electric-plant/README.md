@@ -1,6 +1,6 @@
 # Usina Elétrica (SDK)
 
-A Eletroforça Indústrias Elétricas opera o Complexo Industrial Serrana. Cinco ativos reportam vibração, temperatura do enrolamento, carga de corrente e eficiência operacional. Seu objetivo é construir um classificador baseado em ferramentas e um advisor de manutenção ancorado em uma base de conhecimento técnico (RAG via Azure AI Search), observar e avaliar ambos e, em seguida, orquestrar a passagem de dados entre eles. Cada recomendação do advisor deve citar a fonte recuperada.
+Smart Electric é referência global em motores, geradores, transformadores e controles elétricos, com oferta ampla e integrada para eletrificação, automação e digitalização — a empresa busca ser reconhecida globalmente como marca de referência em máquinas elétricas, entregando soluções completas e eficientes e construindo relacionamentos fortes com os clientes. A Smart Electric opera o Complexo Industrial Serrana. Cinco ativos reportam vibração, temperatura do enrolamento, carga de corrente e eficiência operacional. Seu objetivo é construir um classificador baseado em ferramentas e um advisor de manutenção ancorado em uma base de conhecimento técnico (RAG via Azure AI Search), observar e avaliar ambos e, em seguida, orquestrar a passagem de dados entre eles. Cada recomendação do advisor deve citar a fonte recuperada.
 
 | Ativo | Nome | Status | Problema atual |
 |---|---|---|---|

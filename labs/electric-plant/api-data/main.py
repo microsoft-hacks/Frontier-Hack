@@ -1,4 +1,4 @@
-"""Read-only FastAPI service for Eletroforça Indústrias Elétricas asset condition data."""
+"""Read-only FastAPI service for Smart Electric asset condition data."""
 
 from fastapi import FastAPI, HTTPException, Path
 from fastapi.openapi.utils import get_openapi
@@ -8,7 +8,7 @@ from models import AssetCondition, ErrorResponse
 
 
 app = FastAPI(
-    title="API de Condição de Ativos — Eletroforça Indústrias Elétricas",
+    title="API de Condição de Ativos — Smart Electric",
     description=(
         "Retorna leituras atuais, limites específicos do ativo, violações e status reportado "
         "para um ativo do Complexo Industrial Serrana."
