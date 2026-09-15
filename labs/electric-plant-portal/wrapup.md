@@ -1,4 +1,4 @@
-# Encerramento da Usina Elétrica (Portal)
+# Encerramento da Smart Electric (Portal)
 
 | Challenge | Habilidade praticada |
 |---|---|

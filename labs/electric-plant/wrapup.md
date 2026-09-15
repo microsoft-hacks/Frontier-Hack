@@ -1,4 +1,4 @@
-# Encerramento da Usina Elétrica (SDK)
+# Encerramento da Smart Electric (SDK)
 
 | Challenge | Habilidade praticada |
 |---|---|
