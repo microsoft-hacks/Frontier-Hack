@@ -1,121 +1,121 @@
-# Challenge 3: Evaluate
+# Desafio 3: Avaliar
 
-Time: ~30 minutes
+Tempo: ~30 minutos
 
-## Objectives
+## Objetivos
 
-By the end of this challenge, you will have:
+Ao final deste desafio, você terá:
 
-- ✅ Run a systematic evaluation of your Classifier with a 10-case test dataset
-- ✅ Used built-in evaluators (coherence and fluency) to measure quality
-- ✅ Interpreted the results at aggregate and per-row level
-- ✅ Understood how evaluation fits into a release process
+- ✅ Executado uma avaliação sistemática do seu Classificador com um dataset de 10 casos de teste
+- ✅ Usado avaliadores integrados (coherence e fluency) para medir a qualidade
+- ✅ Interpretado os resultados no nível agregado e por linha
+- ✅ Entendido como a avaliação se encaixa em um processo de release
 
 ![evaluate](./images/evaluate.png)
 
-## Context
+## Contexto
 
-Monitoring tells you **what is happening** (latency, errors, token usage). Evaluation tells you **whether the classifications are actually any good**.
+O monitoramento mostra **o que está acontecendo** (latência, erros, uso de tokens). A avaliação mostra **se as classificações realmente são boas**.
 
-You have a dataset of 10 test cases. Each one is a zone scenario with readings, plus the expected classification. You will run the Classifier against all 10 and score the results with LLM-as-judge evaluators.
+Você tem um dataset com 10 casos de teste. Cada um é um cenário de máquina, com telemetria e limites, junto com a classificação esperada. Você vai executar o Classificador nos 10 casos e pontuar os resultados com avaliadores LLM-as-judge.
 
-## Why evaluate?
+## Por que evaluation?
 
-Monitoring tells you your agents are *running* — evaluation tells you whether they are doing the *right thing*. These are different questions.
+O monitoramento diz que seus agentes estão *funcionando* — a avaliação diz se eles estão fazendo a *coisa certa*. São perguntas diferentes.
 
-Monitoring captures **operational signals**: latency, token count, error rates, availability. They tell you *how* the system behaves mechanically. Evaluation captures **quality signals**: are the outputs correct, relevant, coherent, and consistent with what you expected? They tell you *whether* the system is fulfilling its purpose.
+O monitoramento captura **sinais operacionais**: latência, contagem de tokens, taxas de erro e disponibilidade. Eles dizem *como* o sistema se comporta mecanicamente. A avaliação captura **sinais de qualidade**: as saídas estão corretas, relevantes, coerentes e consistentes com o que você esperava? Eles dizem *se* o sistema está cumprindo seu propósito.
 
-Without systematic evaluation you rely on spot checks — reading a few responses and judging them by feel. That does not scale, is not repeatable, and will not catch a regression when you edit a prompt or switch models. An evaluation gives you a measurable baseline: a number you can track over time and compare across versions.
+Sem uma avaliação sistemática, você depende de verificações pontuais — ler algumas respostas e julgá-las por impressão. Isso não escala, não é repetível e não detecta uma regressão quando você edita um prompt ou troca de modelo. Uma avaliação oferece uma linha de base mensurável: um número que você pode acompanhar ao longo do tempo e comparar entre versões.
 
-Evaluation also catches problems monitoring cannot see. An agent that always responds quickly and without errors, but misreads a threshold, looks perfectly healthy in the monitoring dashboard.
+A avaliação também detecta problemas que o monitoramento não enxerga. Um agente que sempre responde rápido e sem erros, mas lê um limite de forma errada, parece perfeitamente saudável no dashboard de monitoramento.
 
-Evaluations should run:
+As avaliações devem ser executadas:
 
-- **Before deployment** — to establish a quality baseline and gate a release on a minimum score
-- **After any change** — to instructions, model, tools, or grounding data
-- **On a schedule** — to catch drift as the underlying model is updated
+- **Antes da implantação** — para estabelecer uma linha de base de qualidade e condicionar um release a uma pontuação mínima
+- **Após qualquer mudança** — nas instruções, no modelo, nas ferramentas ou nos dados de grounding
+- **Em uma agenda** — para detectar desvios (drift) conforme o modelo subjacente é atualizado
 
-Specifically for GreenRise: an agent that classifies ZONE-GAMMA — four critical readings and an active pest infestation — as a warning delays an agronomist visit by a day. Monitoring sees a fast, successful response. Only evaluation catches the error.
+Especificamente para a Smart Industry: um agente que classifica a INJ-002 — temperatura de 210 °C contra um limite de 195 °C — como alta em vez de crítica atrasa o escalonamento para a manutenção. Ou um que usa um limite genérico e marca a WLD-001 (320 °C, limite de 380 °C) como crítica gera um alarme falso. O monitoramento vê uma resposta rápida e bem-sucedida. Somente a avaliação detecta o erro.
 
 ---
 
-## The evaluation dataset
+## O dataset de avaliação
 
-The dataset is [eval_portal.jsonl](./eval_portal.jsonl) in this folder. It contains 10 rows, and each row has:
+O dataset é o [eval_portal.jsonl](./eval_portal.jsonl), nesta pasta. Ele contém 10 linhas, e cada linha tem:
 
-- `query` — the zone scenario sent to the agent
-- `ground_truth` — the expected classification, anomalies, urgency, and recommended action
+- `query` — o cenário da máquina enviado ao agente, com telemetria e limites
+- `ground_truth` — a classificação esperada, com a prioridade, o status de cada métrica e as anomalias
 
-The 10 cases cover all five zones twice, across normal, warning, and critical conditions, with both single-metric and multi-metric violations — including the ZONE-GAMMA pest case.
+Os 10 casos cobrem máquinas normais, em alerta e críticas, violações de uma ou de várias métricas, uma máquina offline (ROB-003), uma máquina pausada (FKL-001) e máquinas com limites bem diferentes entre si (como a WLD-001 e a CVY-003) para verificar se o agente usa os limites de cada máquina.
 
-An example row:
+Um exemplo de linha:
 
 ```json
 {
-  "classification": "warning",
-  "anomalies": ["soil moisture below min", "temperature above max"],
-  "urgency": "medium",
-  "recommended_action": "Irrigate promptly and inspect heat exposure within 24 hours."
+  "priority": "Alta",
+  "temperature": "alta",
+  "vibration": "baixa",
+  "anomalies": ["temperatura acima do limite, mas abaixo de tempLimit × 1,05"]
 }
 ```
 
-**Download [eval_portal.jsonl](./eval_portal.jsonl) to your machine now** — the portal asks you to browse for a local file.
+**Baixe o [eval_portal.jsonl](./eval_portal.jsonl) para o seu computador agora** — o portal pede que você procure um arquivo local.
 
-## About the evaluators
+## Sobre os avaliadores
 
-Microsoft Foundry uses an **LLM-as-judge** approach: a separate model reads each agent response along with the input, then assigns a score from 1 to 5. You will use two built-in evaluators:
+O Microsoft Foundry usa uma abordagem **LLM-as-judge**: um modelo separado lê cada resposta do agente junto com a entrada e atribui uma pontuação de 1 a 5. Você vai usar dois avaliadores integrados:
 
-- **Coherence** — is the response logically structured and internally consistent? A 5 means clear, well organised, and easy to follow. A low score means the output contradicts itself or is hard to read. For the Classifier, this catches things like marking a zone ✅ normal in one column while flagging it 🔴 critical in the priority column.
+- **Coherence** — a resposta é logicamente estruturada e internamente consistente? Nota 5 significa clara, bem organizada e fácil de acompanhar. Uma nota baixa significa que a saída se contradiz ou é difícil de ler. Para o Classificador, isso detecta casos como marcar uma máquina com ✅ na temperatura e com 🔴 na coluna de prioridade sem que haja motivo.
 
-- **Fluency** — is the response grammatically and linguistically sound? A 5 means well written and natural. A low score means awkward phrasing that reduces confidence in the classification even when the underlying decision is correct.
+- **Fluency** — a resposta é gramatical e linguisticamente correta? Nota 5 significa bem escrita e natural. Uma nota baixa significa uma redação estranha que reduz a confiança na classificação, mesmo quando a decisão em si está correta.
 
-Together these two give you a quick quality signal. A low coherence score points at the structure of your instructions. A low fluency score points at how you asked the agent to phrase its output.
+Juntos, esses dois avaliadores dão um sinal rápido de qualidade. Uma nota baixa em coherence aponta para a estrutura das suas instruções. Uma nota baixa em fluency aponta para a forma como você pediu ao agente que redigisse a saída.
 
 ---
 
-## Step 1 — Open the evaluation wizard
+## Etapa 1 — Abrir o assistente de avaliação
 
-1. Open [ai.azure.com/nextgen](https://ai.azure.com/nextgen) → your project.
-2. In the top navigation select **Build** → **Evaluations** → **Create**.
+1. Abra [ai.azure.com/nextgen](https://ai.azure.com/nextgen) → seu projeto.
+2. Na navegação superior, selecione **Build** → **Evaluations** → **Create**.
 
-## Step 2 — Configure the evaluation
+## Etapa 2 — Configurar a avaliação
 
-3. Select **Agent** as the evaluation target.
-4. Choose `agro-tech-portal-classifier-agent` from the dropdown.
-5. Select **Individual Turns**, then **Existing Dataset**.
-6. Select **Upload new dataset**. Enter a name first — for example `agro-tech-portal-eval` — because the upload button stays disabled until the name is filled in. Then browse for the `eval_portal.jsonl` file you downloaded and confirm the upload.
-7. Leave **Field Mapping** and **Configure Agents** as they are.
-8. On the **Criteria** step, keep only **Coherence** and **Fluency**. Remove every other evaluator — in particular **uncheck Tool Call Accuracy**, because it scores tool usage in a way this dataset does not support and will always come out poorly. A shorter evaluator list also makes the run much faster.
-9. Keep the suggested evaluation name or set your own.
-10. **Submit**. The run takes several minutes.
+3. Selecione **Agent** como alvo da avaliação.
+4. Escolha `1-classifier-agent` na lista.
+5. Selecione **Individual Turns** e depois **Existing Dataset**.
+6. Selecione **Upload new dataset**. Informe primeiro um nome — por exemplo `smart-industry-eval` — porque o botão de upload fica desabilitado até que o nome seja preenchido. Em seguida, procure o arquivo `eval_portal.jsonl` que você baixou e confirme o upload.
+7. Deixe **Field Mapping** e **Configure Agents** como estão.
+8. Na etapa **Criteria**, mantenha apenas **Coherence** e **Fluency**. Remova todos os outros avaliadores — em particular, **desmarque Tool Call Accuracy**, porque ele pontua o uso de ferramentas de uma forma que este dataset não suporta e sempre terá um resultado ruim. Uma lista menor de avaliadores também deixa a execução bem mais rápida.
+9. Mantenha o nome de avaliação sugerido ou defina o seu.
+10. Selecione **Submit**. A execução leva alguns minutos.
 
-<!-- TODO: screenshot — Evaluations > Create wizard, Criteria step with only Coherence and Fluency checked -->
+<!-- TODO: screenshot — Evaluations > Create wizard, etapa Criteria com apenas Coherence e Fluency marcados -->
 
-## Step 3 — Read the results
+## Etapa 3 — Ler os resultados
 
-Results appear on the **Evaluations** page within a few minutes. Select the run name to open it.
+Os resultados aparecem na página **Evaluations** em alguns minutos. Selecione o nome da execução para abri-la.
 
-There are two ways to read the results, and they answer different questions:
+Há duas formas de ler os resultados, e elas respondem a perguntas diferentes:
 
-- **Aggregate metrics** — the average score for each evaluator across the 10 cases (for example, an overall coherence of 4.2). This is your quality baseline in a single number — the one you track over time and compare across agent versions.
-- **Per-row analysis** — the score for each individual case, so you can see *which scenarios* pulled the average down. The aggregate tells you *whether* a problem exists; the per-row view tells you *where*.
+- **Métricas agregadas** — a pontuação média de cada avaliador nos 10 casos (por exemplo, uma coherence geral de 4,2). É a sua linha de base de qualidade em um único número — aquele que você acompanha ao longo do tempo e compara entre versões do agente.
+- **Análise por linha** — a pontuação de cada caso individual, para você ver *quais cenários* puxaram a média para baixo. O agregado diz *se* existe um problema; a visão por linha diz *onde*.
 
-Sort by lowest score and open the worst case. Then ask yourself:
+Ordene pela menor pontuação e abra o pior caso. Depois, pergunte-se:
 
-- Was the agent actually wrong, or just phrased awkwardly?
-- Which line of the instructions would you change to fix it?
-- Would that change break any of the cases that scored well?
+- O agente realmente errou ou apenas redigiu de forma estranha?
+- Qual linha das instruções você mudaria para corrigir isso?
+- Essa mudança prejudicaria algum dos casos que tiveram boa pontuação?
 
 > [!TIP]
-> Change one line of the Classifier's instructions, then re-run the same evaluation. Comparing two runs on an identical dataset is the entire point — a single score in isolation tells you very little.
+> Mude uma linha das instruções do Classificador e execute novamente a mesma avaliação. Comparar duas execuções em um dataset idêntico é o objetivo central — uma pontuação isolada diz muito pouco.
 
 ---
 
-## Success criteria
+## Critérios de sucesso
 
-- [ ] The evaluation runs on all 10 test cases without errors
-- [ ] You can view per-row coherence and fluency scores
-- [ ] You identified at least one case where the agent can improve
-- [ ] You can explain the difference between aggregate metrics and per-row analysis
+- [ ] A avaliação é executada nos 10 casos de teste sem erros
+- [ ] Você consegue ver as pontuações de coherence e fluency por linha
+- [ ] Você identificou pelo menos um caso em que o agente pode melhorar
+- [ ] Você consegue explicar a diferença entre métricas agregadas e análise por linha
 
-Next: [Challenge 4 — Orchestrate](../challenge-4-workflow/README.md)
+Próximo: [Desafio 4 — Workflow](../challenge-4-workflow/README.md)
