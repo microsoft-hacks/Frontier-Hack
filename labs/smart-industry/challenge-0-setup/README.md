@@ -83,6 +83,22 @@ Mantenha esta aba aberta — você usará ela durante todo o restante do laborat
 
 ![Foundry Model Deploy](./images/foundry-model-3.png)
 
+   > [!NOTE]
+   > No Microsoft Foundry, o tipo de deployment de um modelo responde essencialmente a três perguntas: onde a inferência é processada, como você paga e quais características de throughput e latência você obtém.
+
+
+| Tipo de deployment | Onde o processamento de inferência ocorre | Cobrança | Melhor cenário de uso |
+|---|---|---|---|
+| **Global Standard** | Qualquer região do Azure | Pagamento por token | ⭐ Opção padrão para a maioria dos workloads de produção |
+| **Data Zone Standard** | Dentro da zona US, EU ou APAC | Pagamento por token | Residência de dados + consumo flexível |
+| **Standard** | Geografia do Azure selecionada pelo cliente | Pagamento por token | Requisitos mais rígidos de localização geográfica do processamento |
+| **Global Provisioned** | Qualquer região do Azure | Capacidade reservada em PTUs | Workloads de produção grandes e previsíveis |
+| **Data Zone Provisioned** | Dentro da Data Zone especificada | Capacidade reservada em PTUs | Workloads previsíveis + requisitos de residência |
+| **Regional Provisioned** | Geografia do Azure selecionada pelo cliente | Capacidade reservada em PTUs | Previsibilidade + requisitos geográficos de processamento |
+| **Global Batch** | Qualquer região do Azure | Processamento assíncrono com custo reduzido | Grandes workloads offline ou em lote |
+| **Data Zone Batch** | Dentro da Data Zone especificada | Processamento assíncrono com custo reduzido | Workloads offline + requisitos de residência |
+| **Developer** | Sem garantia de residência de dados | Deployment especializado | Avaliação de modelos com fine-tuning |
+
 ---
 
 ## Etapa 4 — Testar o modelo no playground

@@ -71,7 +71,7 @@ A API já está implantada e em execução — você não precisa hospedá-la.
 > [!IMPORTANT]
 > **Peça a URL da API ao seu facilitador.** O arquivo de schema contém uma URL de exemplo (`/`), que não é um deployment real. Confirme a URL atual e abra `<url-da-api>/plant/status` no navegador para verificar se ela responde com JSON.
 
-O arquivo de schema que você vai enviar é o [openapi.json](./openapi.json), nesta pasta. Baixe-o para o seu computador agora — o portal pede que você procure um arquivo local.
+O arquivo de schema que você vai enviar é o [openapi.json](../api-data/openapi.json), nesta pasta. Baixe-o para o seu computador agora — o portal pede que você procure um arquivo local.
 
 ---
 
@@ -124,7 +124,7 @@ O arquivo de schema que você vai enviar é o [openapi.json](./openapi.json), ne
    - Se estiver fora do escopo: não responda ao conteúdo da solicitação. Apenas explique o seu propósito.
 
    ## Guardrails
-   - Não crie dados de clientes.
+   - Não crie dados de telemetria.
    - Não recomende nada.
    - Se faltarem dados-chave, faça perguntas de acompanhamento precisas.
    ```
@@ -174,18 +174,7 @@ O arquivo de schema que você vai enviar é o [openapi.json](./openapi.json), ne
 ## Etapa 3 — Testar o Classificador
 
 1. Abra o **Playground** do agente (o painel de chat ao lado da configuração do agente).
-2. Envie este prompt para testar as regras sem a ferramenta — as leituras e os limites estão no próprio texto:
-
-   ```text
-   Classifique as máquinas a seguir:
-   - CNC-003 (Fresa CNC 1): temp 89 °C (tempLimit 85), vib 1,4 mm/s (vibLimit 1,5), usage 76 %, mode auto, commLost false
-   - INJ-002 (Injetora 2): temp 210 °C (tempLimit 195), vib 1,3 mm/s (vibLimit 1,5), usage 88 %, mode auto, commLost false
-   - ROB-003 (Braço Robô C): commLost true, mode auto
-   ```
-
-   Você deve receber somente uma tabela, com uma linha por máquina: INJ-002 🔴 Crítica (210 °C ≥ 204,75 °C), ROB-003 🔴 Crítica (sem comunicação, métricas "—") e CNC-003 ⚠️ Alta (89 °C ≥ 85 °C, mas abaixo de 89,25 °C).
-
-3. Agora teste a **ferramenta**. Envie:
+2. Agora teste a **ferramenta**. Envie:
 
    ```text
    Classifique todas as máquinas da planta usando os dados atuais.
@@ -193,7 +182,7 @@ O arquivo de schema que você vai enviar é o [openapi.json](./openapi.json), ne
 
    O agente deve chamar `list_machines` em vez de pedir as leituras. Expanda a entrada da chamada de ferramenta no chat para ver a solicitação feita e o JSON recebido. O resultado deve mostrar **16 máquinas: 2 críticas (INJ-002 e ROB-003), 3 altas (CNC-003, CVY-003 e FKL-003) e 11 baixas**.
 
-4. Teste também uma máquina específica: `Classifique a máquina FKL-003.` O agente deve chamar `get_machine`.
+3. Teste também uma máquina específica: `Classifique a máquina FKL-003.` O agente deve chamar `get_machine`.
 
 > [!TIP]
 > Se o agente pedir as leituras em vez de chamar a ferramenta, a descrição da ferramenta está vaga demais ou a URL da API está inacessível. Abra `<url-da-api>/machines` no navegador para confirmar que a API responde e depois torne a descrição mais explícita.
@@ -215,15 +204,20 @@ O arquivo de schema que você vai enviar é o [openapi.json](./openapi.json), ne
    ```text
    ## Propósito
    Transformar os achados estruturados de um classificador em ações de manutenção, urgência e orientações de escalonamento para a Smart Industry.
+   Use apenas os achados do classificador fornecidos na solicitação. Para temperatura crítica, exija parada controlada da máquina conforme o procedimento do local e escalonamento imediato para a manutenção. Para máquinas offline, oriente a verificação do gateway/sensor e das condições físicas antes de considerar a telemetria confiável. Para prioridade alta, recomende inspeção ou manutenção planejada. Para máquinas com prioridade baixa, continue o monitoramento.
 
    ## Formato de Saída
    Para cada máquina, retorne Prioridade, Urgência, Evidências recebidas, Ação recomendada e Escalonamento. Use exatamente: 🔴 crítica, ⚠️ alta, ✅ baixa.
 
    ## Escopo
-   Use apenas os achados do classificador fornecidos na solicitação. Para temperatura crítica, exija parada controlada da máquina conforme o procedimento do local e escalonamento imediato para a manutenção. Para máquinas offline, oriente a verificação do gateway/sensor e das condições físicas antes de considerar a telemetria confiável. Para prioridade alta, recomende inspeção ou manutenção planejada. Para máquinas com prioridade baixa, continue o monitoramento.
+   - Antes de responder, verifique se a solicitação está relacionada a este Propósito.
+   - Se estiver no escopo: continue a conversa.
+   - Se estiver fora do escopo: não responda ao conteúdo da solicitação. Apenas explique o seu propósito.
 
    ## Guardrails
-   Não invente, altere ou reclassifique leituras ou limites. Não afirme que uma parada ocorreu. Preserve a incerteza e direcione o pessoal aos procedimentos de segurança aprovados no local.
+   - Não crie dados de telemetria.
+   - Não recomende nada.
+   - Se faltarem dados-chave, faça perguntas de acompanhamento precisas.
    ```
 
 5. **Salve** o agente. Não anexe nenhuma ferramenta: o Advisor trabalha somente com os achados que receber.
@@ -246,13 +240,22 @@ O que a equipe de manutenção deve fazer hoje?
 
 Verifique a resposta:
 
-- INJ-002 deve gerar **parada controlada** e **escalonamento imediato** para a manutenção
-- ROB-003 deve gerar a **verificação do gateway/sensor**, sem tratar a telemetria como confiável
-- CNC-003 e CVY-003 devem gerar **inspeção ou manutenção planejada**
-- Nenhuma leitura ou limite novo deve ser inventado, e a resposta não deve afirmar que uma parada já ocorreu
+```text
+Para hoje, com base apenas nos achados recebidos:
 
-> [!TIP]
-> Se o Advisor inventar leituras ou limites, reforce na seção **Guardrails** que ele deve usar somente os achados fornecidos na solicitação.
+INJ-002 (Injetora 2)
+Prioridade: 🔴 crítica
+Urgência: imediata
+Evidências recebidas: temperatura 210 °C com limite de 195 °C; vibração 1,3 mm/s com limite 1,5 mm/s
+Ação recomendada: executar parada controlada da máquina conforme o procedimento do local e tratar a condição de temperatura crítica
+Escalonamento: escalonamento imediato para a manutenção
+ROB-003 (Braço Robô C)
+Prioridade: 🔴 crítica
+Urgência: imediata
+Evidências recebidas: sem comunicação; telemetria não confiável
+Ação recomendada: verificar gateway/sensor e condições físicas antes de considerar a telemetria confiável
+Escalonamento: escalonamento imediato para a manutenção
+```text
 
 ---
 
