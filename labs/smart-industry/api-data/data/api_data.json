@@ -1,0 +1,97 @@
+{
+  "company": "Smart Electric",
+  "site": "Complexo Industrial Serrana",
+  "timestamp": "2026-09-06T14:00:00Z",
+  "assets": [
+    {
+      "asset_id": "MOTOR-201",
+      "name": "Motor de Linha de Bobinagem de Estator (Média Tensão)",
+      "status": "normal",
+      "readings": {
+        "vibration": {"value": 2.4, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 68.0, "unit": "C"},
+        "current_load": {"value": 72.0, "unit": "%"},
+        "operating_efficiency": {"value": 94.0, "unit": "%"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 4.0},
+        "winding_temperature": {"min": 20.0, "max": 85.0},
+        "current_load": {"min": 25.0, "max": 90.0},
+        "operating_efficiency": {"min": 90.0, "max": 100.0}
+      },
+      "issues": []
+    },
+    {
+      "asset_id": "GEN-301",
+      "name": "Bomba de Resfriamento do Turbogerador",
+      "status": "warning",
+      "readings": {
+        "vibration": {"value": 4.8, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 73.0, "unit": "C"},
+        "current_load": {"value": 76.0, "unit": "%"},
+        "operating_efficiency": {"value": 92.0, "unit": "%"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 4.2},
+        "winding_temperature": {"min": 20.0, "max": 88.0},
+        "current_load": {"min": 25.0, "max": 92.0},
+        "operating_efficiency": {"min": 89.0, "max": 100.0}
+      },
+      "issues": ["Vibração intermitente no lado do mancal observada na última inspeção."]
+    },
+    {
+      "asset_id": "XFR-401",
+      "name": "Ventilador de Resfriamento do Transformador de Potência (138/13,8 kV)",
+      "status": "critical",
+      "readings": {
+        "vibration": {"value": 7.6, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 112.0, "unit": "C"},
+        "current_load": {"value": 96.0, "unit": "%"},
+        "operating_efficiency": {"value": 84.0, "unit": "%"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 4.5},
+        "winding_temperature": {"min": 20.0, "max": 90.0},
+        "current_load": {"min": 30.0, "max": 95.0},
+        "operating_efficiency": {"min": 88.0, "max": 100.0}
+      },
+      "issues": ["Excursão combinada de vibração e temperatura do enrolamento exige desligamento controlado e escalonamento de segurança."]
+    },
+    {
+      "asset_id": "DRIVE-101",
+      "name": "Acionamento do Sistema de Excitação Estática",
+      "status": "normal",
+      "readings": {
+        "vibration": {"value": 3.1, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 71.0, "unit": "C"},
+        "current_load": {"value": 64.0, "unit": "%"},
+        "operating_efficiency": {"value": 93.0, "unit": "%"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 3.8},
+        "winding_temperature": {"min": 18.0, "max": 82.0},
+        "current_load": {"min": 20.0, "max": 85.0},
+        "operating_efficiency": {"min": 91.0, "max": 100.0}
+      },
+      "issues": []
+    },
+    {
+      "asset_id": "VFD-501",
+      "name": "Motor de Transportador com Inversor de Frequência",
+      "status": "warning",
+      "readings": {
+        "vibration": {"value": 2.8, "unit": "mm/s RMS"},
+        "winding_temperature": {"value": 79.0, "unit": "C"},
+        "current_load": {"value": 58.0, "unit": "%"},
+        "operating_efficiency": {"value": 86.5, "unit": "%"}
+      },
+      "thresholds": {
+        "vibration": {"min": 0.0, "max": 3.5},
+        "winding_temperature": {"min": 20.0, "max": 80.0},
+        "current_load": {"min": 20.0, "max": 88.0},
+        "operating_efficiency": {"min": 89.0, "max": 100.0}
+      },
+      "issues": ["Eficiência em declínio em três ciclos consecutivos de produção."]
+    }
+  ]
+}

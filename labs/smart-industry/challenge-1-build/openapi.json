@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API de Condição de Ativos — Smart Electric",
+    "version": "1.0.0",
+    "description": "Dados somente leitura dos ativos do Complexo Industrial Serrana. Substitua a URL do servidor pelo deployment confirmado pelo facilitador antes de importar."
+  },
+  "servers": [{"url": "https://YOUR-API-HOST.example.com"}],
+  "paths": {
+    "/assets/{asset_id}/condition": {
+      "get": {
+        "operationId": "get_asset_condition",
+        "summary": "Obtém a condição de um ativo",
+        "description": "Obtém leituras atuais, limites específicos do ativo, status, violações e problemas conhecidos de um ativo (MOTOR-201, GEN-301, XFR-401, DRIVE-101, VFD-501). Sempre chame esta operação para cada ativo solicitado.",
+        "parameters": [{
+          "name": "asset_id",
+          "in": "path",
+          "required": true,
+          "description": "ID do ativo permanente, por exemplo XFR-401",
+          "schema": {"type": "string"}
+        }],
+        "responses": {
+          "200": {"description": "Asset condition returned"},
+          "404": {"description": "Asset not found"}
+        }
+      }
+    }
+  }
+}
