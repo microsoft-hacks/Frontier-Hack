@@ -106,6 +106,5 @@ Se ocorrer um erro aqui, pare e corrija antes de continuar — todos os desafios
 - [ ] Você consegue abrir **prj-hack-dev-<suffix>** em [ai.azure.com/nextgen](https://ai.azure.com/nextgen)
 - [ ] Sua implantação de modelo mostra o status **Succeeded**
 - [ ] Você recebeu uma resposta no playground do modelo
-- [ ] **Observability → Tracing** mostra um recurso Application Insights conectado, e não o banner de conexão
 
 Próximo: [Desafio 1 — Construir agentes](../challenge-1-build/README.md)

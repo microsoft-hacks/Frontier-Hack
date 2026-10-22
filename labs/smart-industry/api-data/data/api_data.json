@@ -1,97 +1,261 @@
 {
-  "company": "Smart Electric",
-  "site": "Complexo Industrial Serrana",
-  "timestamp": "2026-09-06T14:00:00Z",
-  "assets": [
+  "company": "Smart Industry",
+  "plant": "Unidade Industrial SP",
+  "timestamp": "2026-10-22T14:00:00Z",
+  "units": {
+    "telemetry.temp": "°C",
+    "telemetry.vib": "mm/s",
+    "telemetry.usage": "%",
+    "params.speed": "%",
+    "params.targetTemp": "°C",
+    "params.tempLimit": "°C",
+    "params.vibLimit": "mm/s",
+    "params.cycleTime": "s"
+  },
+  
+  "summary": {
+    "total": 16,
+    "online": 11,
+    "alert": 4,
+    "offline": 1,
+    "machinesWithCriticalTemperature": 1,
+    "alertMachineIds": ["CNC-003", "CVY-003", "FKL-003", "INJ-002"],
+    "offlineMachineIds": ["ROB-003"]
+  },
+  "readings": [    
     {
-      "asset_id": "MOTOR-201",
-      "name": "Motor de Linha de Bobinagem de Estator (Média Tensão)",
-      "status": "normal",
-      "readings": {
-        "vibration": {"value": 2.4, "unit": "mm/s RMS"},
-        "winding_temperature": {"value": 68.0, "unit": "C"},
-        "current_load": {"value": 72.0, "unit": "%"},
-        "operating_efficiency": {"value": 94.0, "unit": "%"}
-      },
-      "thresholds": {
-        "vibration": {"min": 0.0, "max": 4.0},
-        "winding_temperature": {"min": 20.0, "max": 85.0},
-        "current_load": {"min": 25.0, "max": 90.0},
-        "operating_efficiency": {"min": 90.0, "max": 100.0}
-      },
-      "issues": []
+      "id": "CNC-001",
+      "name": "Torno CNC 1",
+      "type": "cnc",
+      "typeLabel": "Centro de usinagem CNC",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 72, "vib": 0.8, "usage": 87 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 72, "tempLimit": 85, "vibLimit": 1.5, "cycleTime": 42 },
+      "reasons": [],
+      "alerts": []
     },
     {
-      "asset_id": "GEN-301",
-      "name": "Bomba de Resfriamento do Turbogerador",
-      "status": "warning",
-      "readings": {
-        "vibration": {"value": 4.8, "unit": "mm/s RMS"},
-        "winding_temperature": {"value": 73.0, "unit": "C"},
-        "current_load": {"value": 76.0, "unit": "%"},
-        "operating_efficiency": {"value": 92.0, "unit": "%"}
-      },
-      "thresholds": {
-        "vibration": {"min": 0.0, "max": 4.2},
-        "winding_temperature": {"min": 20.0, "max": 88.0},
-        "current_load": {"min": 25.0, "max": 92.0},
-        "operating_efficiency": {"min": 89.0, "max": 100.0}
-      },
-      "issues": ["Vibração intermitente no lado do mancal observada na última inspeção."]
+      "id": "CNC-002",
+      "name": "Torno CNC 2",
+      "type": "cnc",
+      "typeLabel": "Centro de usinagem CNC",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 68, "vib": 0.6, "usage": 92 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 68, "tempLimit": 85, "vibLimit": 1.5, "cycleTime": 38 },
+      "reasons": [],
+      "alerts": []
     },
     {
-      "asset_id": "XFR-401",
-      "name": "Ventilador de Resfriamento do Transformador de Potência (138/13,8 kV)",
-      "status": "critical",
-      "readings": {
-        "vibration": {"value": 7.6, "unit": "mm/s RMS"},
-        "winding_temperature": {"value": 112.0, "unit": "C"},
-        "current_load": {"value": 96.0, "unit": "%"},
-        "operating_efficiency": {"value": 84.0, "unit": "%"}
-      },
-      "thresholds": {
-        "vibration": {"min": 0.0, "max": 4.5},
-        "winding_temperature": {"min": 20.0, "max": 90.0},
-        "current_load": {"min": 30.0, "max": 95.0},
-        "operating_efficiency": {"min": 88.0, "max": 100.0}
-      },
-      "issues": ["Excursão combinada de vibração e temperatura do enrolamento exige desligamento controlado e escalonamento de segurança."]
+      "id": "CNC-003",
+      "name": "Fresa CNC 1",
+      "type": "cnc",
+      "typeLabel": "Centro de usinagem CNC",
+      "status": "alert",
+      "statusLabel": "Alerta",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 89, "vib": 1.4, "usage": 76 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 89, "tempLimit": 85, "vibLimit": 1.5, "cycleTime": 55 },
+      "reasons": ["Temperatura elevada de 89 °C; limite de 85 °C."],
+      "alerts": [
+        { "metric": "temp", "level": "warn", "value": 89, "limit": 85, "unit": "°C" }
+      ]
     },
     {
-      "asset_id": "DRIVE-101",
-      "name": "Acionamento do Sistema de Excitação Estática",
-      "status": "normal",
-      "readings": {
-        "vibration": {"value": 3.1, "unit": "mm/s RMS"},
-        "winding_temperature": {"value": 71.0, "unit": "C"},
-        "current_load": {"value": 64.0, "unit": "%"},
-        "operating_efficiency": {"value": 93.0, "unit": "%"}
-      },
-      "thresholds": {
-        "vibration": {"min": 0.0, "max": 3.8},
-        "winding_temperature": {"min": 18.0, "max": 82.0},
-        "current_load": {"min": 20.0, "max": 85.0},
-        "operating_efficiency": {"min": 91.0, "max": 100.0}
-      },
-      "issues": []
+      "id": "ROB-001",
+      "name": "Braço Robô A",
+      "type": "robot",
+      "typeLabel": "Robô industrial 6 eixos",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 55, "vib": 0.3, "usage": 64 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 55, "tempLimit": 70, "vibLimit": 1.0, "cycleTime": 8 },
+      "reasons": [],
+      "alerts": []
     },
     {
-      "asset_id": "VFD-501",
-      "name": "Motor de Transportador com Inversor de Frequência",
-      "status": "warning",
-      "readings": {
-        "vibration": {"value": 2.8, "unit": "mm/s RMS"},
-        "winding_temperature": {"value": 79.0, "unit": "C"},
-        "current_load": {"value": 58.0, "unit": "%"},
-        "operating_efficiency": {"value": 86.5, "unit": "%"}
-      },
-      "thresholds": {
-        "vibration": {"min": 0.0, "max": 3.5},
-        "winding_temperature": {"min": 20.0, "max": 80.0},
-        "current_load": {"min": 20.0, "max": 88.0},
-        "operating_efficiency": {"min": 89.0, "max": 100.0}
-      },
-      "issues": ["Eficiência em declínio em três ciclos consecutivos de produção."]
+      "id": "ROB-002",
+      "name": "Braço Robô B",
+      "type": "robot",
+      "typeLabel": "Robô industrial 6 eixos",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 52, "vib": 0.4, "usage": 71 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 52, "tempLimit": 70, "vibLimit": 1.0, "cycleTime": 8 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "ROB-003",
+      "name": "Braço Robô C",
+      "type": "robot",
+      "typeLabel": "Robô industrial 6 eixos",
+      "status": "offline",
+      "statusLabel": "Offline",
+      "commLost": true,
+      "telemetryQuality": "stale_simulated_reference",
+      "telemetry": { "temp": 30, "vib": 0, "usage": 0 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 54, "tempLimit": 70, "vibLimit": 1.0, "cycleTime": 8 },
+      "reasons": ["Sem comunicação. O cadastro inicial simula a última comunicação 25 minutos antes da inicialização; verificar gateway/sensor."],
+      "alerts": [
+        { "kind": "communication_lost", "level": "offline", "initialSimulatedSilenceMinutes": 25 }
+      ]
+    },
+    {
+      "id": "CVY-001",
+      "name": "Esteira 1",
+      "type": "conveyor",
+      "typeLabel": "Esteira transportadora",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 41, "vib": 0.2, "usage": 83 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 41, "tempLimit": 60, "vibLimit": 0.6, "cycleTime": 6 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "CVY-002",
+      "name": "Esteira 2",
+      "type": "conveyor",
+      "typeLabel": "Esteira transportadora",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 39, "vib": 0.2, "usage": 79 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 39, "tempLimit": 60, "vibLimit": 0.6, "cycleTime": 6 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "CVY-003",
+      "name": "Esteira 3",
+      "type": "conveyor",
+      "typeLabel": "Esteira transportadora",
+      "status": "alert",
+      "statusLabel": "Alerta",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 58, "vib": 0.7, "usage": 91 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 58, "tempLimit": 60, "vibLimit": 0.6, "cycleTime": 5 },
+      "reasons": ["Vibração elevada de 0,7 mm/s; limite de 0,6 mm/s."],
+      "alerts": [
+        { "metric": "vib", "level": "warn", "value": 0.7, "limit": 0.6, "unit": "mm/s" }
+      ]
+    },
+    {
+      "id": "FKL-001",
+      "name": "Empilhadeira 1",
+      "type": "forklift",
+      "typeLabel": "Empilhadeira elétrica",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 48, "vib": 0.5, "usage": 55 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 48, "tempLimit": 65, "vibLimit": 1.2, "cycleTime": 120 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "FKL-002",
+      "name": "Empilhadeira 2",
+      "type": "forklift",
+      "typeLabel": "Empilhadeira elétrica",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 51, "vib": 0.6, "usage": 62 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 51, "tempLimit": 65, "vibLimit": 1.2, "cycleTime": 110 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "FKL-003",
+      "name": "Empilhadeira 3",
+      "type": "forklift",
+      "typeLabel": "Empilhadeira elétrica",
+      "status": "alert",
+      "statusLabel": "Alerta",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 66, "vib": 1.1, "usage": 78 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 66, "tempLimit": 65, "vibLimit": 1.2, "cycleTime": 140 },
+      "reasons": ["Temperatura elevada de 66 °C; limite de 65 °C."],
+      "alerts": [
+        { "metric": "temp", "level": "warn", "value": 66, "limit": 65, "unit": "°C" }
+      ]
+    },
+    {
+      "id": "INJ-001",
+      "name": "Injetora 1",
+      "type": "injector",
+      "typeLabel": "Injetora de plástico",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 185, "vib": 0.9, "usage": 94 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 185, "tempLimit": 195, "vibLimit": 1.5, "cycleTime": 24 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "INJ-002",
+      "name": "Injetora 2",
+      "type": "injector",
+      "typeLabel": "Injetora de plástico",
+      "status": "alert",
+      "statusLabel": "Alerta",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 210, "vib": 1.3, "usage": 88 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 210, "tempLimit": 195, "vibLimit": 1.5, "cycleTime": 26 },
+      "reasons": ["Temperatura crítica de 210 °C; limite de 195 °C."],
+      "alerts": [
+        { "metric": "temp", "level": "critical", "value": 210, "limit": 195, "unit": "°C" }
+      ]
+    },
+    {
+      "id": "PRE-001",
+      "name": "Prensa Hidráulica",
+      "type": "press",
+      "typeLabel": "Prensa hidráulica",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 62, "vib": 2.1, "usage": 45 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 62, "tempLimit": 80, "vibLimit": 2.5, "cycleTime": 12 },
+      "reasons": [],
+      "alerts": []
+    },
+    {
+      "id": "WLD-001",
+      "name": "Solda Robótica",
+      "type": "welder",
+      "typeLabel": "Célula de solda robotizada",
+      "status": "online",
+      "statusLabel": "Online",
+      "commLost": false,
+      "telemetryQuality": "simulated_reference",
+      "telemetry": { "temp": 320, "vib": 0.4, "usage": 37 },
+      "params": { "mode": "auto", "modeLabel": "Automático", "speed": 100, "targetTemp": 320, "tempLimit": 380, "vibLimit": 1.0, "cycleTime": 18 },
+      "reasons": [],
+      "alerts": []
     }
   ]
 }

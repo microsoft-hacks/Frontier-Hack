@@ -1,4 +1,4 @@
-"""Load and classify the canonical industrial asset dataset."""
+"""Load and query the canonical industrial machine dataset."""
 
 import json
 from functools import lru_cache
@@ -14,38 +14,32 @@ def load_plant() -> dict:
         return json.load(data_file)
 
 
-def get_assets() -> list[dict]:
-    return load_plant()["assets"]
+def get_machines(status: str | None = None, machine_type: str | None = None) -> list[dict]:
+    machines = load_plant()["readings"]
+    if status is not None:
+        machines = [machine for machine in machines if machine["status"] == status]
+    if machine_type is not None:
+        machines = [machine for machine in machines if machine["type"] == machine_type.strip().lower()]
+    return machines
 
 
-def get_asset(asset_id: str) -> dict | None:
-    requested_id = asset_id.strip().upper()
-    return next((asset for asset in get_assets() if asset["asset_id"] == requested_id), None)
+def get_machine(machine_id: str) -> dict | None:
+    requested_id = machine_id.strip().upper()
+    return next((machine for machine in load_plant()["readings"] if machine["id"] == requested_id), None)
 
 
-def get_asset_condition(asset_id: str) -> dict | None:
-    asset = get_asset(asset_id)
-    if asset is None:
-        return None
-
-    metrics = {}
-    violations = []
-    for metric_name, reading in asset["readings"].items():
-        threshold = asset["thresholds"][metric_name]
-        in_range = threshold["min"] <= reading["value"] <= threshold["max"]
-        metrics[metric_name] = {
-            **reading,
-            **threshold,
-            "in_range": in_range,
-        }
-        if not in_range:
-            violations.append(metric_name)
-
+def get_machine_list(status: str | None = None, machine_type: str | None = None) -> dict:
+    plant = load_plant()
+    machines = get_machines(status, machine_type)
     return {
-        "asset_id": asset["asset_id"],
-        "name": asset["name"],
-        "reported_status": asset["status"],
-        "metrics": metrics,
-        "violations": violations,
-        "issues": asset["issues"],
+        "company": plant["company"],
+        "plant": plant["plant"],
+        "timestamp": plant["timestamp"],
+        "count": len(machines),
+        "machines": machines,
     }
+
+
+def get_plant_status() -> dict:
+    plant = load_plant()
+    return {key: plant[key] for key in ("company", "plant", "timestamp", "units", "summary")}

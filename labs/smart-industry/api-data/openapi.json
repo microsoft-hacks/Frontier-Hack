@@ -1,33 +1,77 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "API de Condição de Ativos — Smart Electric",
-    "description": "Retorna leituras atuais, limites específicos do ativo, violações e status reportado para um ativo do Complexo Industrial Serrana.",
-    "version": "1.0.0"
+    "title": "API de M\u00e1quinas Industriais \u2014 Smart Industry",
+    "description": "Retorna telemetria atual, par\u00e2metros operacionais, status, motivos e alertas das m\u00e1quinas da Unidade Industrial SP.",
+    "version": "1.1.0"
   },
   "servers": [
     {
-      "url": "https://app-electric-plant.azurewebsites.net/",
+      "url": "/",
       "description": "Substitua pela URL base da API confirmada pelo facilitador"
     }
   ],
   "paths": {
-    "/assets/{asset_id}/condition": {
+    "/plant/status": {
       "get": {
-        "summary": "Obtém a condição de um ativo",
-        "description": "Use esta operação sempre que um ID de ativo como XFR-401 precisar ser classificado. Ela retorna as quatro leituras, os limites específicos do ativo, as violações e os problemas conhecidos.",
-        "operationId": "get_asset_condition",
+        "summary": "Obt\u00e9m o resumo da planta",
+        "description": "Retorna o resumo de m\u00e1quinas por status (online, alert, offline), os IDs em alerta e offline e as unidades de cada campo.",
+        "operationId": "get_plant_status",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/machines": {
+      "get": {
+        "summary": "Lista as m\u00e1quinas",
+        "description": "Retorna a telemetria, os par\u00e2metros, o status, os motivos e os alertas de todas as m\u00e1quinas. Use os filtros opcionais status e type para restringir o resultado.",
+        "operationId": "list_machines",
         "parameters": [
           {
-            "name": "asset_id",
-            "in": "path",
-            "required": true,
+            "name": "status",
+            "in": "query",
+            "required": false,
             "schema": {
-              "type": "string",
-              "description": "ID do ativo permanente (MOTOR-201, GEN-301, XFR-401, DRIVE-101, VFD-501)",
-              "title": "Asset Id"
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MachineStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filtra por status: online, alert ou offline.",
+              "title": "Status"
             },
-            "description": "ID do ativo permanente (MOTOR-201, GEN-301, XFR-401, DRIVE-101, VFD-501)"
+            "description": "Filtra por status: online, alert ou offline."
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filtra por tipo: cnc, robot, conveyor, forklift, injector, press ou welder.",
+              "title": "Type"
+            },
+            "description": "Filtra por tipo: cnc, robot, conveyor, forklift, injector, press ou welder."
           }
         ],
         "responses": {
@@ -36,13 +80,55 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AssetCondition"
+                  "$ref": "#/components/schemas/MachineList"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/machines/{machine_id}": {
+      "get": {
+        "summary": "Obt\u00e9m uma m\u00e1quina",
+        "description": "Use esta opera\u00e7\u00e3o sempre que um ID de m\u00e1quina como CNC-003 precisar ser analisado. Ela retorna telemetria, par\u00e2metros com limites, status, motivos e alertas.",
+        "operationId": "get_machine",
+        "parameters": [
+          {
+            "name": "machine_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "ID da m\u00e1quina (por exemplo CNC-003, ROB-003, CVY-003, INJ-002)",
+              "title": "Machine Id"
+            },
+            "description": "ID da m\u00e1quina (por exemplo CNC-003, ROB-003, CVY-003, INJ-002)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Machine"
                 }
               }
             }
           },
           "404": {
-            "description": "Ativo não encontrado",
+            "description": "M\u00e1quina n\u00e3o encontrada",
             "content": {
               "application/json": {
                 "schema": {
@@ -67,67 +153,106 @@
   },
   "components": {
     "schemas": {
-      "AssetCondition": {
+      "Alert": {
         "properties": {
-          "asset_id": {
-            "type": "string",
-            "title": "Asset Id"
+          "metric": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metric",
+            "description": "M\u00e9trica em alerta (temp ou vib). Ausente em perda de comunica\u00e7\u00e3o."
           },
-          "name": {
-            "type": "string",
-            "title": "Name"
+          "kind": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kind",
+            "description": "Tipo do alerta quando n\u00e3o \u00e9 de m\u00e9trica, por exemplo communication_lost."
           },
-          "reported_status": {
-            "$ref": "#/components/schemas/AssetStatus"
+          "level": {
+            "$ref": "#/components/schemas/AlertLevel",
+            "description": "Severidade do alerta: warn, critical ou offline."
           },
-          "metrics": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/MetricCondition"
-            },
-            "type": "object",
-            "title": "Metrics"
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value",
+            "description": "Valor medido que violou o limite."
           },
-          "violations": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Violations"
+          "limit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Limit",
+            "description": "Limite excedido."
           },
-          "issues": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Issues"
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit",
+            "description": "Unidade do valor e do limite."
+          },
+          "initialSimulatedSilenceMinutes": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Initialsimulatedsilenceminutes",
+            "description": "Minutos simulados sem comunica\u00e7\u00e3o no cadastro inicial (perda de comunica\u00e7\u00e3o)."
           }
         },
         "type": "object",
         "required": [
-          "asset_id",
-          "name",
-          "reported_status",
-          "metrics",
-          "violations",
-          "issues"
+          "level"
         ],
-        "title": "AssetCondition"
+        "title": "Alert"
       },
-      "AssetStatus": {
+      "AlertLevel": {
         "type": "string",
         "enum": [
-          "normal",
-          "warning",
-          "critical"
+          "warn",
+          "critical",
+          "offline"
         ],
-        "title": "AssetStatus"
+        "title": "AlertLevel"
       },
       "ErrorResponse": {
         "properties": {
           "detail": {
             "type": "string",
             "title": "Detail",
-            "description": "Mensagem de erro legível por humanos."
+            "description": "Human-readable error message."
           }
         },
         "type": "object",
@@ -149,38 +274,289 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
-      "MetricCondition": {
+      "Machine": {
         "properties": {
-          "value": {
-            "type": "number",
-            "title": "Value"
-          },
-          "unit": {
+          "id": {
             "type": "string",
-            "title": "Unit"
+            "title": "Id",
+            "description": "ID da m\u00e1quina, por exemplo CNC-003."
           },
-          "min": {
-            "type": "number",
-            "title": "Min"
+          "name": {
+            "type": "string",
+            "title": "Name"
           },
-          "max": {
-            "type": "number",
-            "title": "Max"
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "Tipo da m\u00e1quina: cnc, robot, conveyor, forklift, injector, press ou welder."
           },
-          "in_range": {
+          "typeLabel": {
+            "type": "string",
+            "title": "Typelabel"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MachineStatus",
+            "description": "Status da m\u00e1quina: online, alert ou offline."
+          },
+          "statusLabel": {
+            "type": "string",
+            "title": "Statuslabel"
+          },
+          "commLost": {
             "type": "boolean",
-            "title": "In Range"
+            "title": "Commlost",
+            "description": "Verdadeiro quando a comunica\u00e7\u00e3o com a m\u00e1quina foi perdida."
+          },
+          "telemetryQuality": {
+            "type": "string",
+            "title": "Telemetryquality",
+            "description": "Qualidade da telemetria, por exemplo simulated_reference."
+          },
+          "telemetry": {
+            "$ref": "#/components/schemas/Telemetry"
+          },
+          "params": {
+            "$ref": "#/components/schemas/Params"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons",
+            "description": "Motivos leg\u00edveis do status atual; vazio quando online."
+          },
+          "alerts": {
+            "items": {
+              "$ref": "#/components/schemas/Alert"
+            },
+            "type": "array",
+            "title": "Alerts",
+            "description": "Alertas estruturados; vazio quando online."
           }
         },
         "type": "object",
         "required": [
-          "value",
-          "unit",
-          "min",
-          "max",
-          "in_range"
+          "id",
+          "name",
+          "type",
+          "typeLabel",
+          "status",
+          "statusLabel",
+          "commLost",
+          "telemetryQuality",
+          "telemetry",
+          "params",
+          "reasons",
+          "alerts"
         ],
-        "title": "MetricCondition"
+        "title": "Machine"
+      },
+      "MachineList": {
+        "properties": {
+          "company": {
+            "type": "string",
+            "title": "Company"
+          },
+          "plant": {
+            "type": "string",
+            "title": "Plant"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "machines": {
+            "items": {
+              "$ref": "#/components/schemas/Machine"
+            },
+            "type": "array",
+            "title": "Machines"
+          }
+        },
+        "type": "object",
+        "required": [
+          "company",
+          "plant",
+          "timestamp",
+          "count",
+          "machines"
+        ],
+        "title": "MachineList"
+      },
+      "MachineStatus": {
+        "type": "string",
+        "enum": [
+          "online",
+          "alert",
+          "offline"
+        ],
+        "title": "MachineStatus"
+      },
+      "Params": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "description": "Modo de opera\u00e7\u00e3o: auto, paused ou off."
+          },
+          "modeLabel": {
+            "type": "string",
+            "title": "Modelabel",
+            "description": "R\u00f3tulo leg\u00edvel do modo de opera\u00e7\u00e3o."
+          },
+          "speed": {
+            "type": "number",
+            "title": "Speed",
+            "description": "Velocidade configurada em %."
+          },
+          "targetTemp": {
+            "type": "number",
+            "title": "Targettemp",
+            "description": "Temperatura alvo em \u00b0C."
+          },
+          "tempLimit": {
+            "type": "number",
+            "title": "Templimit",
+            "description": "Limite de temperatura em \u00b0C."
+          },
+          "vibLimit": {
+            "type": "number",
+            "title": "Viblimit",
+            "description": "Limite de vibra\u00e7\u00e3o em mm/s."
+          },
+          "cycleTime": {
+            "type": "number",
+            "title": "Cycletime",
+            "description": "Tempo de ciclo em segundos."
+          }
+        },
+        "type": "object",
+        "required": [
+          "mode",
+          "modeLabel",
+          "speed",
+          "targetTemp",
+          "tempLimit",
+          "vibLimit",
+          "cycleTime"
+        ],
+        "title": "Params"
+      },
+      "PlantStatus": {
+        "properties": {
+          "company": {
+            "type": "string",
+            "title": "Company"
+          },
+          "plant": {
+            "type": "string",
+            "title": "Plant"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "units": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Units",
+            "description": "Unidade de cada campo, por exemplo telemetry.temp: \u00b0C."
+          },
+          "summary": {
+            "$ref": "#/components/schemas/Summary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "company",
+          "plant",
+          "timestamp",
+          "units",
+          "summary"
+        ],
+        "title": "PlantStatus"
+      },
+      "Summary": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "online": {
+            "type": "integer",
+            "title": "Online"
+          },
+          "alert": {
+            "type": "integer",
+            "title": "Alert"
+          },
+          "offline": {
+            "type": "integer",
+            "title": "Offline"
+          },
+          "machinesWithCriticalTemperature": {
+            "type": "integer",
+            "title": "Machineswithcriticaltemperature"
+          },
+          "alertMachineIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alertmachineids"
+          },
+          "offlineMachineIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Offlinemachineids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "online",
+          "alert",
+          "offline",
+          "machinesWithCriticalTemperature",
+          "alertMachineIds",
+          "offlineMachineIds"
+        ],
+        "title": "Summary"
+      },
+      "Telemetry": {
+        "properties": {
+          "temp": {
+            "type": "number",
+            "title": "Temp",
+            "description": "Temperatura atual em \u00b0C."
+          },
+          "vib": {
+            "type": "number",
+            "title": "Vib",
+            "description": "Vibra\u00e7\u00e3o atual em mm/s."
+          },
+          "usage": {
+            "type": "number",
+            "title": "Usage",
+            "description": "Taxa de utiliza\u00e7\u00e3o atual em %."
+          }
+        },
+        "type": "object",
+        "required": [
+          "temp",
+          "vib",
+          "usage"
+        ],
+        "title": "Telemetry"
       },
       "ValidationError": {
         "properties": {
@@ -205,13 +581,6 @@
           "type": {
             "type": "string",
             "title": "Error Type"
-          },
-          "input": {
-            "title": "Input"
-          },
-          "ctx": {
-            "type": "object",
-            "title": "Context"
           }
         },
         "type": "object",
