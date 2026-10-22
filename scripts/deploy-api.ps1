@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Publica a Agro Tech (SDK) API-AGRO (FastAPI) no Azure App Service (Linux) usando o Azure CLI.
+    Publica API (FastAPI) no Azure App Service (Linux) usando o Azure CLI.
 
 .DESCRIPTION
     Usa o contexto de autenticação já ativo do usuário (az login). Pergunta interativamente
@@ -28,10 +28,10 @@
     Nome ou ID da subscription. Se omitido, será perguntado interativamente (padrão: subscription atual do az cli).
 
 .EXAMPLE
-    ./scripts/deploy-api-agro.ps1
+    ./scripts/deploy-api.ps1
 
 .EXAMPLE
-    ./scripts/deploy-api-agro.ps1 -AppName agro-api-demo -Location brazilsouth
+    ./scripts/deploy-api.ps1 -AppName hack-dev-api -Location swedencentral
 #>
 
 [CmdletBinding()]
@@ -58,7 +58,7 @@ function Read-ValueOrDefault {
 $ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$apiPath = Join-Path $repoRoot "labs\agro-tech\api-agro"
+$apiPath = Join-Path $repoRoot "labs\smart-industry\api-data"
 
 if (-not (Test-Path $apiPath)) {
     throw "Não encontrei a pasta da API em '$apiPath'."
@@ -142,7 +142,7 @@ az webapp config set -n $AppName -g $ResourceGroup `
     --startup-file "python -m uvicorn main:app --host 0.0.0.0" | Out-Null
 
 # 8. Empacotar o código (zip)
-$zipPath = Join-Path $env:TEMP "api-agro-deploy.zip"
+$zipPath = Join-Path $env:TEMP "hack-dev-api-deploy.zip"
 if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
 
 Write-Host "Empacotando código de '$apiPath'..." -ForegroundColor Yellow

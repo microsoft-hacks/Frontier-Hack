@@ -79,6 +79,25 @@ def get_machine(
     return machine
 
 
+def _to_openapi_30(node):
+    """Rewrite OpenAPI 3.1 nullable unions (anyOf with type null) into valid 3.0.3 constructs."""
+    if isinstance(node, list):
+        return [_to_openapi_30(item) for item in node]
+    if not isinstance(node, dict):
+        return node
+    node = {key: _to_openapi_30(value) for key, value in node.items()}
+    options = node.get("anyOf")
+    if isinstance(options, list) and any(option == {"type": "null"} for option in options):
+        remaining = [option for option in options if option != {"type": "null"}]
+        if len(remaining) == 1:
+            if "$ref" in remaining[0]:
+                return remaining[0]
+            rest = {key: value for key, value in node.items() if key != "anyOf"}
+            return {**remaining[0], **rest}
+        node["anyOf"] = remaining
+    return node
+
+
 def custom_openapi() -> dict:
     if app.openapi_schema:
         return app.openapi_schema
@@ -90,8 +109,8 @@ def custom_openapi() -> dict:
         servers=app.servers,
         openapi_version=app.openapi_version,
     )
-    app.openapi_schema = schema
-    return schema
+    app.openapi_schema = _to_openapi_30(schema)
+    return app.openapi_schema
 
 
 app.openapi = custom_openapi

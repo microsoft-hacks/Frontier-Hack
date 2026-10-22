@@ -33,19 +33,13 @@ paths:
         in: query
         required: false
         schema:
-          anyOf:
-          - $ref: '#/components/schemas/MachineStatus'
-          - type: 'null'
-          description: 'Filtra por status: online, alert ou offline.'
-          title: Status
+          $ref: '#/components/schemas/MachineStatus'
         description: 'Filtra por status: online, alert ou offline.'
       - name: type
         in: query
         required: false
         schema:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           description: 'Filtra por tipo: cnc, robot, conveyor, forklift, injector,
             press ou welder.'
           title: Type
@@ -104,42 +98,30 @@ components:
     Alert:
       properties:
         metric:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           title: Metric
           description: Métrica em alerta (temp ou vib). Ausente em perda de comunicação.
         kind:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           title: Kind
           description: Tipo do alerta quando não é de métrica, por exemplo communication_lost.
         level:
           $ref: '#/components/schemas/AlertLevel'
           description: 'Severidade do alerta: warn, critical ou offline.'
         value:
-          anyOf:
-          - type: number
-          - type: 'null'
+          type: number
           title: Value
           description: Valor medido que violou o limite.
         limit:
-          anyOf:
-          - type: number
-          - type: 'null'
+          type: number
           title: Limit
           description: Limite excedido.
         unit:
-          anyOf:
-          - type: string
-          - type: 'null'
+          type: string
           title: Unit
           description: Unidade do valor e do limite.
         initialSimulatedSilenceMinutes:
-          anyOf:
-          - type: number
-          - type: 'null'
+          type: number
           title: Initialsimulatedsilenceminutes
           description: Minutos simulados sem comunicação no cadastro inicial (perda
             de comunicação).
