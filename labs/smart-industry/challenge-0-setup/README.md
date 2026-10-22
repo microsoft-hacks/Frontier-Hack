@@ -72,7 +72,7 @@ Mantenha esta aba aberta — você usará ela durante todo o restante do laborat
    > Em algumas versões do portal do Foundry, a aba **Models** é chamada de **Deployments**. Ambas têm a mesma finalidade.
 
 2. Selecione **+ Deploy model** → **Deploy base model**.
-![Foundry Model](./images/foundry-model.png)
+![Foundry Model](./images/foundry-model-1.png)
 3. Procure por um modelo de chat — este laboratório foi escrito para o **gpt-5.4**. Se ele não estiver disponível na sua região, escolha o modelo GPT de chat mais recente aprovado pelo instrutor.
 ![Foundry Model](./images/foundry-model-2.png)
 4. Selecione o modelo
@@ -81,7 +81,7 @@ Mantenha esta aba aberta — você usará ela durante todo o restante do laborat
 - **Deployment Type** = Global Standard
 - clicar **Deploy**.
 
-![Foundry Model Deploy](./images/foundry-model-deploy.png)
+![Foundry Model Deploy](./images/foundry-model-3.png)
 
 ---
 
@@ -96,7 +96,7 @@ Mantenha esta aba aberta — você usará ela durante todo o restante do laborat
 
 3. Envie e confirme que você recebeu uma resposta.
 
-![Foundry Model Playground](./images/foundry-model-playground.png)
+![Foundry Model Playground](./images/foundry-model-4.png)
 
 Se ocorrer um erro aqui, pare e corrija antes de continuar — todos os desafios seguintes dependem de uma implantação de modelo funcional.
 
