@@ -1,136 +1,98 @@
-# Challenge 4: Orchestrate with the Workflows designer
+# Desafio 4: Construir um workflow visual
 
-Time: ~25 minutes
+Tempo: ~25 minutos
 
-## Objectives
+## Objetivos
 
-By the end of this challenge, you will have:
+Ao final deste desafio, você terá:
 
-- ✅ A visual workflow that chains your two agents together
-- ✅ The Classifier's tool-grounded analysis flowing into the Advisor as context
-- ✅ A single run that produces a full morning field report from one prompt
-- ✅ An understanding of when to split work across agents instead of writing one big prompt
+- ✅ Um workflow visual no portal que conecta o Classificador ao Advisor
+- ✅ A saída do classificador passando como entrada do advisor, sem copiar e colar
+- ✅ Um trace completo do workflow, com os dois agentes e a ferramenta OpenAPI
 
-## Context
+## Contexto
 
-Up to now you have run each agent by hand and copied the output between them. That is fine for a playground, not for a farm. In this challenge you connect them once, visually, so a single question produces the whole answer.
+Até aqui você testou cada agente separadamente e copiou os achados do Classificador para o Advisor manualmente. Em produção, essa passagem precisa ser automática. Um **workflow** no Foundry orquestra os agentes em sequência: a saída de um nó vira a entrada do próximo.
 
-### Why two agents instead of one?
-
-You could put every instruction into one agent. You should not:
-
-- **Separation of concerns** — the Classifier is forbidden from recommending anything, so it cannot let an opinion contaminate the data. The Advisor never touches raw readings, so it cannot quietly reclassify a zone to justify its advice.
-- **Independent tools** — the Classifier reads the farm API; the Advisor searches treatment documents. Neither needs the other's tool.
-- **Independent evaluation** — you evaluated the Classifier alone in Challenge 3. A single merged agent would make it impossible to tell which half was wrong.
-- **Independent reuse** — the Classifier is useful on its own for a dashboard; the Advisor is useful on its own for an agronomist.
-
-## Orchestration flow
+A passagem visual preserva a separação entre a classificação das medições e a recomendação de ações:
 
 ```mermaid
-flowchart TD
-    U["👤 User prompt<br/>Analyse all zones and recommend actions"]
-   A1["🤖 Agent 1 — Classifier<br/><code>agro-tech-portal-classifier-agent</code>"]
-    T["🔧 farm_api tool<br/>Live zone readings and thresholds"]
-   A2["🤖 Agent 2 — Advisor<br/><code>agro-tech-portal-advisor-agent</code>"]
-    R["📄 Final field report"]
-
-    U --> A1
-    A1 <--> T
-    A1 -->|Classification summary table| A2
-    A2 --> R
+flowchart LR
+    U[Prompt do usuário] --> C[1-classifier-agent]
+    C <--> T[plant_api]
+    C --> F[Achados estruturados]
+    F --> A[2-advisor-agent]
+    A <--> S[File search]
+    A --> R[Resposta final]
 ```
 
+O Classificador lê os dados reais da planta pela ferramenta `plant_api` e produz a tabela de classificação. O Advisor recebe essa tabela e a transforma em ações, urgência e escalonamento, consultando os documentos da planta (procedimentos, SLAs e histórico) pela ferramenta **File search**.
+
 ---
 
-## Step 1 — Create the workflow
+## Etapa 1 — Criar o workflow
 
-1. Open [ai.azure.com/nextgen](https://ai.azure.com/nextgen) → your project.
-2. In the top navigation select **Build**, then **Workflows** in the left sidebar.
-3. Select **+ New workflow** and name it:
+1. Abra [ai.azure.com/nextgen](https://ai.azure.com/nextgen) e selecione o seu projeto.
+2. Na navegação superior, selecione **Build** → **Workflows** → **+ New workflow**.
+3. Dê ao workflow o nome:
 
    ```text
-   agro-tech-portal-field-report
+   smart-industry-workflow
    ```
 
-4. The designer opens with a **Start** (input) node and an **End** (output) node.
+## Etapa 2 — Adicionar o nó do Classificador
 
-<!-- TODO: screenshot — Workflows > New workflow, empty designer canvas -->
+1. Adicione um nó **Agent**.
+2. Selecione o agente `1-classifier-agent`.
 
-## Step 2 — Add the Classifier node
 
-1. Select **+ Add node** (or drag from the Start node) and choose **Agent**.
-2. Pick `agro-tech-portal-classifier-agent` from the list.
-3. Name the node `classify`.
-4. Connect **Start → classify**, and set the node's input to the workflow input.
+## Etapa 3 — Adicionar o nó do Advisor
 
-## Step 3 — Add the Advisor node
-
-1. Add a second **Agent** node and pick `agro-tech-portal-advisor-agent`.
-2. Name the node `advise`.
-3. Connect **classify → advise**.
-4. Set the `advise` node's input to the **output of `classify`**. If the designer offers a message template, use something like:
+1. Adicione um nó **Agent**.
+2. Selecione o agente `2-advisor-agent`.
+3. Conecte **classify → advise**.
+4. Use o seletor de variáveis do portal para inserir a saída do classificador neste modelo de entrada do advisor:
 
    ```text
-   Here is today's zone classification:
-
+   Use somente estes achados do classificador:
+   <classifier_findings>
    {{classify.output}}
-
-   Recommend actions for the field crew.
+   </classifier_findings>
+   Forneça ações, urgência e escalonamento.
    ```
 
-   > [!NOTE]
-   > The exact expression syntax for referencing an upstream node's output varies by portal version. Use the node/variable picker the designer offers rather than typing it by hand.
+   A expressão exata pode variar conforme a versão do portal; selecione a saída de `classify` no seletor de variáveis em vez de digitar uma expressão não suportada.
 
-5. Connect **advise → End**.
+> [!NOTE]
+> O modelo diz ao Advisor para usar **somente** os achados recebidos. Isso reforça o guardrail do Desafio 1: o Advisor não inventa leituras nem reclassifica máquinas.
 
-## Step 4 — Run it
+## Etapa 4 — Finalizar e executar
 
-1. Select **Save**, then **Run**.
-2. Enter this as the workflow input:
+1. Conecte **advise → End** e salve o workflow.
+2. Execute o workflow com:
 
    ```text
-   Analyse all zones on the farm using the current sensor data and recommend actions for today.
+   Analise todas as máquinas da planta usando os dados atuais da ferramenta e, em seguida, recomende ações de manutenção.
    ```
 
-3. Watch each node light up as it executes.
+## Etapa 5 — Inspecionar a execução
 
-## Step 5 — Inspect the run
-
-1. Select the `classify` node in the run view. Confirm it called `farm_api` and produced the classification table — two warning zones, one critical, two normal.
-2. Select the `advise` node. Confirm its input contains the Classifier's table, and that its output is three bullets of practical advice with ZONE-GAMMA escalated.
-3. Go to **Observability** → **Tracing** and find the run you just made. The workflow appears as one trace with both agent turns and the tool call nested inside it — exactly the view you learned to read in [Challenge 2](../challenge-2-monitor/README.md).
+1. Abra os detalhes da execução e confirme que:
+   - `classify` chamou a ferramenta `plant_api` (`list_machines`) e produziu a tabela com **2 máquinas críticas (INJ-002 e ROB-003), 3 altas (CNC-003, CVY-003 e FKL-003) e 11 baixas**
+   - essa tabela foi passada para `advise`
+   - a saída final exige **parada controlada e escalonamento imediato para a manutenção** na INJ-002 e a **verificação do gateway/sensor** na ROB-003, sem leituras inventadas
+2. Abra **Observability** → **Tracing** e inspecione o trace completo do workflow: as duas etapas de agentes e a chamada à ferramenta OpenAPI.
 
 > [!TIP]
-> Try changing the workflow input to a single zone, for example *"What should we do about ZONE-EPSILON today?"*, and compare the traces. The Classifier should make a narrower tool call.
+> Se o `classify` pedir leituras em vez de chamar a ferramenta, a ferramenta `plant_api` não está anexada ao `1-classifier-agent` ou a URL da API está inacessível. Revise a Etapa 2 do Desafio 1.
 
 ---
 
-## Alternative — connected agents
+## Critérios de sucesso
 
-If **Workflows** is not available in your region or tenant, you can get the same behaviour by making the Classifier a tool of the Advisor:
+- [ ] Start → classify → advise → End está conectado
+- [ ] A ferramenta OpenAPI do classificador é invocada
+- [ ] O advisor usa a saída do classificador e não inventa leituras
+- [ ] Cada passagem é visível nos detalhes da execução
 
-1. Open `agro-tech-portal-advisor-agent` → **Tools** → **+ Add**.
-2. Choose **Connected agent** (sometimes shown as **Agent tool** or **Add agent as tool**).
-3. Select `agro-tech-portal-classifier-agent`.
-4. Give it a description such as:
-
-   ```text
-   Classifies GreenRise farm zones against their thresholds and returns a status table. Call this before giving any recommendation.
-   ```
-
-5. Test by sending the Advisor: *"Analyse all zones and recommend actions for today."* The Advisor now calls the Classifier itself.
-
-The trade-off: the Advisor decides *whether* to call the Classifier, so the sequence is not guaranteed. A workflow makes the order explicit.
-
----
-
-## Success criteria
-
-- [ ] The workflow contains both agents, wired Start → classify → advise → End
-- [ ] A single run produces both a classification table and a recommendation
-- [ ] The `classify` node called the `farm_api` tool
-- [ ] The `advise` node's input contains the `classify` node's output
-- [ ] The run appears as a single trace under **Observability → Tracing**
-- [ ] You can explain why the work is split across two agents
-
-You are done — head to the [wrap up](../wrapup.md) for a recap and cleanup steps.
+Próximo: [Encerramento](../wrapup.md)

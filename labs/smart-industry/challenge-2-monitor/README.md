@@ -96,7 +96,7 @@ Antes de explorar, gere algumas interações. No **Playground** de cada agente, 
 
    - **Painel Monitor** — A aba **Overview** traz um resumo rápido de integridade, com **Operational metrics** (custo estimado e uso total de tokens) e os cards **Evaluations**, **Scheduled evaluations** e **Scheduled red teaming run issues**. Abaixo, os gráficos de **Operational metrics** mostram **Agent runs** (quantas vezes o agente foi chamado) e **Runs and token metrics** (chamadas versus tokens consumidos) no período selecionado. Use a aba **Tools**, os filtros de data, **Settings** ou **Open in Azure Monitor** para uma análise mais profunda.
 
-7. Repita os passos 2 a 6 para o `2-advisor-agent`. Observe que ele não tem chamadas de ferramenta, pois não possui nenhuma ferramenta anexada.
+7. Repita os passos 2 a 6 para o `2-advisor-agent`. Observe que as chamadas de ferramenta dele são buscas do **File search** nos documentos de `advisor-context`, e não chamadas à `plant_api`.
 
 ## Etapa 2 — Application Insights
 
